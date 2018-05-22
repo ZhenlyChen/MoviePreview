@@ -26,13 +26,15 @@ https://developers.douban.com/wiki/?title=movie_v2
 
 https://api.douban.com/v2/movie/in_theaters
 
+参数：city ,start,count
+
 返回结果实例：
 
 ```json
 {
   "count": 20, // 获取到的结果包含电影总数
   "start": 0,
-  "total": 26, // 并不知道有扫描用
+  "total": 26, // 一共的数目
   "subjects": [{ // 电影集合
     "rating": {
       "max": 10,
