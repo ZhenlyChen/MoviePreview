@@ -8,7 +8,7 @@ using Windows.Data.Json;
 using Windows.Data.Xml.Dom;
 
 namespace MoviePreview.Services {
-    class NetService {
+    public static class NetService {
         private static async Task<string> Get(string url) {
             //Create an HTTP client object
             HttpClient httpClient = new HttpClient();

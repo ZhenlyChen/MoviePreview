@@ -1,5 +1,4 @@
-# 豆瓣公共API
-返回均为JSON
+# 豆瓣API
 
 [TOC]
 
@@ -11,7 +10,7 @@ https://developers.douban.com/wiki/?title=movie_v2
 
 中文均为Unicode编码
 
-商务要求：
+部分接口为商务代码，商务要求：
 
 - 评分需和资料任一项同时显示，并且标注“豆瓣评分”
 - 如使用资料，须在影片资料下增加链接“去豆瓣电影查看详情”，链接指向为相应条目url
@@ -20,6 +19,8 @@ https://developers.douban.com/wiki/?title=movie_v2
 - 如果应用使用豆瓣资料、评分、影评，则此应用不得采用其他平台方提供的同类型数据，且应用不得自建评分、影评服务
 
 ## 具体
+
+返回均为JSON
 
 ### 当前上映(商务接口)
 
@@ -158,8 +159,6 @@ https://api.douban.com/v2/movie/subject/:id
 
 https://api.douban.com/v2/movie/celebrity/:id
 
-
-
 ```json
 {
   "mobile_url": "https:\/\/movie.douban.com\/celebrity\/1390831\/mobile",
@@ -252,8 +251,6 @@ https://api.douban.com/v2/movie/coming_soon
 
 参数：
 start, count
-
-
 
 ```json
 { 

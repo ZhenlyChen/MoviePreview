@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace MoviePreview.Models {
     public class MovieItem { // 电影
@@ -19,7 +21,7 @@ namespace MoviePreview.Models {
             get;set;
         }
         // 评分
-        public float Rating {
+        public double Rating {
             get;set;
         }
         // 类型
@@ -67,6 +69,14 @@ namespace MoviePreview.Models {
         public string[] Aka {
             get;set;
         }
+        // ---- 生成属性 ——--
+        // 海报URL
+        public BitmapImage ImageUri {
+            get {
+                return new BitmapImage(new Uri(Image));
+            }
+        }
+    
 
     }
 
@@ -87,25 +97,6 @@ namespace MoviePreview.Models {
         public string Alt {
             get; set;
         }
-        // --- 详细信息 ----
-        // 作品
-        public Work[] Works {
-            get;set;
-        }
-        // 出生地
-        public string BornPlace {
-            get;set;
-        }
-
     }
-
-    public class Work { // 作品
-        public string Role {
-            get;set;
-        }
-        public MovieItem subject {
-            get;set;
-        }
-    }
-   
+    
 }
