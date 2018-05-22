@@ -129,6 +129,7 @@
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\TaskExtensions.cs" />
     <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\MovieItem.cs" />
     <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Models\ShareSourceData.cs" />
     <Compile Include="Models\ShareSourceItem.cs" />
