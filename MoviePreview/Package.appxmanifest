@@ -8,11 +8,11 @@
   IgnorableNamespaces="uap mp genTemplate">
 
   <Identity
-    Name="6B235F2E-E35C-4DB0-9615-6E2A786827BE"
+    Name="6FC641B0-6E29-4F08-9B52-E689AB8DDF68"
     Publisher="CN=Zhenly"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="6B235F2E-E35C-4DB0-9615-6E2A786827BE" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="6FC641B0-6E29-4F08-9B52-E689AB8DDF68" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>MoviePreview</DisplayName>

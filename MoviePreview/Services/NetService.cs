@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Data.Xml.Dom;
 
-namespace MoviePreview.Services
-{
+namespace MoviePreview.Services {
     class NetService {
         private static async Task<string> Get(string url) {
             //Create an HTTP client object
             HttpClient httpClient = new HttpClient();
-            
+
             Uri requestUri = new Uri(url);
 
             //Send the GET request asynchronously and retrieve the response as a string.
@@ -25,8 +24,7 @@ namespace MoviePreview.Services
                 httpResponse = await httpClient.GetAsync(requestUri);
                 httpResponse.EnsureSuccessStatusCode();
                 httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
             }
             return httpResponseBody;

@@ -16,45 +16,40 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace MoviePreview.ViewModels
-{
-    public class ShellViewModel : ViewModelBase
-    {
+namespace MoviePreview.ViewModels {
+    public class ShellViewModel : ViewModelBase {
         private NavigationView _navigationView;
         private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
 
-        public NavigationServiceEx NavigationService
-        {
-            get
-            {
+        public NavigationServiceEx NavigationService {
+            get {
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 
-        public NavigationViewItem Selected
-        {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
+        public NavigationViewItem Selected {
+            get {
+                return _selected;
+            }
+            set {
+                Set(ref _selected, value);
+            }
         }
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
-        public ShellViewModel()
-        {
+        public ShellViewModel() {
         }
 
-        public void Initialize(Frame frame, NavigationView navigationView)
-        {
+        public void Initialize(Frame frame, NavigationView navigationView) {
             _navigationView = navigationView;
             NavigationService.Frame = frame;
             NavigationService.Navigated += Frame_Navigated;
         }
 
-        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
-        {
-            if (args.IsSettingsInvoked)
-            {
+        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args) {
+            if (args.IsSettingsInvoked) {
                 NavigationService.Navigate(typeof(SettingsViewModel).FullName);
                 return;
             }
@@ -66,10 +61,8 @@ namespace MoviePreview.ViewModels
             NavigationService.Navigate(pageKey);
         }
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            if (e.SourcePageType == typeof(SettingsPage))
-            {
+        private void Frame_Navigated(object sender, NavigationEventArgs e) {
+            if (e.SourcePageType == typeof(SettingsPage)) {
                 Selected = _navigationView.SettingsItem as NavigationViewItem;
                 return;
             }
@@ -79,8 +72,7 @@ namespace MoviePreview.ViewModels
                             .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
 
-        private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
-        {
+        private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType) {
             var navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType);
             var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
             return pageKey == navigatedPageKey;

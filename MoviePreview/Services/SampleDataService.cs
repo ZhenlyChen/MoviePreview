@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 using MoviePreview.Models;
 
-namespace MoviePreview.Services
-{
+namespace MoviePreview.Services {
     // This class holds sample data used by some generated pages to show how they can be used.
     // TODO WTS: Delete this file once your app is using real data.
-    public static class SampleDataService
-    {
-        private static IEnumerable<SampleOrder> AllOrders()
-        {
+    public static class SampleDataService {
+        private static IEnumerable<SampleOrder> AllOrders() {
             // The following is order summary data
             var data = new ObservableCollection<SampleOrder>
             {
@@ -123,8 +120,7 @@ namespace MoviePreview.Services
         }
 
         // TODO WTS: Remove this once your chart page is displaying real data
-        public static ObservableCollection<DataPoint> GetChartSampleData()
-        {
+        public static ObservableCollection<DataPoint> GetChartSampleData() {
             var data = AllOrders().Select(o => new DataPoint() { Category = o.Company, Value = o.OrderTotal })
                                   .OrderBy(dp => dp.Category);
 
@@ -132,8 +128,7 @@ namespace MoviePreview.Services
         }
 
         // TODO WTS: Remove this once your MasterDetail pages are displaying real data
-        public static async Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync()
-        {
+        public static async Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync() {
             await Task.CompletedTask;
 
             return AllOrders();

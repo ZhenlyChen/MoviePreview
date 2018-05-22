@@ -6,27 +6,21 @@ using MoviePreview.Services;
 
 using Windows.ApplicationModel.Activation;
 
-namespace MoviePreview.Activation
-{
-    internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
-    {
+namespace MoviePreview.Activation {
+    internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs> {
         private readonly string _navElement;
 
-        private NavigationServiceEx NavigationService
-        {
-            get
-            {
+        private NavigationServiceEx NavigationService {
+            get {
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 
-        public DefaultLaunchActivationHandler(Type navElement)
-        {
+        public DefaultLaunchActivationHandler(Type navElement) {
             _navElement = navElement.FullName;
         }
 
-        protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
-        {
+        protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args) {
             // When the navigation stack isn't restored, navigate to the first page and configure
             // the new page by passing required information in the navigation parameter
             NavigationService.Navigate(_navElement, args.Arguments);
@@ -37,8 +31,7 @@ namespace MoviePreview.Activation
             await Task.CompletedTask;
         }
 
-        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
-        {
+        protected override bool CanHandleInternal(LaunchActivatedEventArgs args) {
             // None of the ActivationHandlers has handled the app activation
             return NavigationService.Frame.Content == null;
         }

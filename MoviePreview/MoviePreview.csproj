@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{F6FD6926-4D8E-419F-BA78-83ABBF1722C9}</ProjectGuid>
+    <ProjectGuid>{965208BB-23B5-46DA-811B-A82193A49CEC}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MoviePreview</RootNamespace>
@@ -121,7 +121,7 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="BackgroundTasks\BackgroundTask.cs" />
-    <Compile Include="BackgroundTasks\BackgroundTaskMoive.cs" />
+    <Compile Include="BackgroundTasks\BackgroundTask1.cs" />
     <Compile Include="Helpers\DataRequestExtensions.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
@@ -129,7 +129,6 @@
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\TaskExtensions.cs" />
     <Compile Include="Models\DataPoint.cs" />
-    <Compile Include="Models\MoiveItem.cs" />
     <Compile Include="Models\SampleOrder.cs" />
     <Compile Include="Models\ShareSourceData.cs" />
     <Compile Include="Models\ShareSourceItem.cs" />
@@ -140,7 +139,10 @@
     <Compile Include="Services\LiveTileService.Samples.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\NetService.cs" />
+    <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
     <Compile Include="Services\SampleDataService.cs" />
+    <Compile Include="Services\SuspendAndResumeService.cs" />
+    <Compile Include="Services\SuspensionState.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\ToastNotificationsService.cs" />
     <Compile Include="Services\ToastNotificationsService.Samples.cs" />

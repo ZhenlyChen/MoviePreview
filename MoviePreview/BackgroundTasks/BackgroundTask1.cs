@@ -5,24 +5,21 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.System.Threading;
 
-namespace MoviePreview.BackgroundTasks
-{
-    public sealed class BackgroundTaskMoive : BackgroundTask
-    {
-        public static string Message { get; set; }
+namespace MoviePreview.BackgroundTasks {
+    public sealed class BackgroundTask1 : BackgroundTask {
+        public static string Message {
+            get; set;
+        }
 
         private volatile bool _cancelRequested = false;
         private IBackgroundTaskInstance _taskInstance;
         private BackgroundTaskDeferral _deferral;
 
-        public override void Register()
-        {
+        public override void Register() {
             var taskName = GetType().Name;
 
-            if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName))
-            {
-                var builder = new BackgroundTaskBuilder()
-                {
+            if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName)) {
+                var builder = new BackgroundTaskBuilder() {
                     Name = taskName
                 };
 
@@ -35,17 +32,14 @@ namespace MoviePreview.BackgroundTasks
             }
         }
 
-        public override Task RunAsyncInternal(IBackgroundTaskInstance taskInstance)
-        {
-            if (taskInstance == null)
-            {
+        public override Task RunAsyncInternal(IBackgroundTaskInstance taskInstance) {
+            if (taskInstance == null) {
                 return null;
             }
 
             _deferral = taskInstance.GetDeferral();
 
-            return Task.Run(() =>
-            {
+            return Task.Run(() => {
                 //// TODO WTS: Insert the code that should be executed in the background task here.
                 //// This sample initializes a timer that counts to 100 in steps of 10.  It updates Message each time.
 
@@ -63,29 +57,21 @@ namespace MoviePreview.BackgroundTasks
             });
         }
 
-        public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
-        {
-           // TODO WTS: Insert code to handle the cancelation request here.
-           // Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
+        public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason) {
+            // TODO WTS: Insert code to handle the cancelation request here.
+            // Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
         }
 
-        private void SampleTimerCallback(ThreadPoolTimer timer)
-        {
-            if ((_cancelRequested == false) && (_taskInstance.Progress < 100))
-            {
+        private void SampleTimerCallback(ThreadPoolTimer timer) {
+            if ((_cancelRequested == false) && (_taskInstance.Progress < 100)) {
                 _taskInstance.Progress += 10;
                 Message = $"Background Task {_taskInstance.Task.Name} running";
-            }
-            else
-            {
+            } else {
                 timer.Cancel();
 
-                if (_cancelRequested)
-                {
+                if (_cancelRequested) {
                     Message = $"Background Task {_taskInstance.Task.Name} cancelled";
-                }
-                else
-                {
+                } else {
                     Message = $"Background Task {_taskInstance.Task.Name} finished";
                 }
 

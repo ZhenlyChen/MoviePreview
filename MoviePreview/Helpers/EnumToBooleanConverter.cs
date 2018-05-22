@@ -2,18 +2,15 @@
 
 using Windows.UI.Xaml.Data;
 
-namespace MoviePreview.Helpers
-{
-    public class EnumToBooleanConverter : IValueConverter
-    {
-        public Type EnumType { get; set; }
+namespace MoviePreview.Helpers {
+    public class EnumToBooleanConverter : IValueConverter {
+        public Type EnumType {
+            get; set;
+        }
 
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (parameter is string enumString)
-            {
-                if (!Enum.IsDefined(EnumType, value))
-                {
+        public object Convert(object value, Type targetType, object parameter, string language) {
+            if (parameter is string enumString) {
+                if (!Enum.IsDefined(EnumType, value)) {
                     throw new ArgumentException("ExceptionEnumToBooleanConverterValueMustBeAnEnum".GetLocalized());
                 }
 
@@ -25,10 +22,8 @@ namespace MoviePreview.Helpers
             throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized());
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            if (parameter is string enumString)
-            {
+        public object ConvertBack(object value, Type targetType, object parameter, string language) {
+            if (parameter is string enumString) {
                 return Enum.Parse(EnumType, enumString);
             }
 

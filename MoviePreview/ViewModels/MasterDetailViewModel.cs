@@ -10,37 +10,34 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using MoviePreview.Models;
 using MoviePreview.Services;
 
-namespace MoviePreview.ViewModels
-{
-    public class MasterDetailViewModel : ViewModelBase
-    {
+namespace MoviePreview.ViewModels {
+    public class MasterDetailViewModel : ViewModelBase {
         private SampleOrder _selected;
 
-        public SampleOrder Selected
-        {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
+        public SampleOrder Selected {
+            get {
+                return _selected;
+            }
+            set {
+                Set(ref _selected, value);
+            }
         }
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
-        public MasterDetailViewModel()
-        {
+        public MasterDetailViewModel() {
         }
 
-        public async Task LoadDataAsync(MasterDetailsViewState viewState)
-        {
+        public async Task LoadDataAsync(MasterDetailsViewState viewState) {
             SampleItems.Clear();
 
             var data = await SampleDataService.GetSampleModelDataAsync();
 
-            foreach (var item in data)
-            {
+            foreach (var item in data) {
                 SampleItems.Add(item);
             }
 
-            if (viewState == MasterDetailsViewState.Both)
-            {
+            if (viewState == MasterDetailsViewState.Both) {
                 Selected = SampleItems.First();
             }
         }

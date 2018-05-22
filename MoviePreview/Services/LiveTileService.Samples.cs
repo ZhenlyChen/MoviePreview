@@ -6,28 +6,21 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 
-namespace MoviePreview.Services
-{
-    internal partial class LiveTileService
-    {
+namespace MoviePreview.Services {
+    internal partial class LiveTileService {
         // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
-        public void SampleUpdate()
-        {
+        public void SampleUpdate() {
             // These would be initialized with actual data
             string from = "Jennifer Parker";
             string subject = "Photos from our trip";
             string body = "Check out these awesome photos I took while in New Zealand!";
 
             // Construct the tile content
-            var content = new TileContent()
-            {
-                Visual = new TileVisual()
-                {
+            var content = new TileContent() {
+                Visual = new TileVisual() {
                     Arguments = "Jennifer Parker",
-                    TileMedium = new TileBinding()
-                    {
-                        Content = new TileBindingContentAdaptive()
-                        {
+                    TileMedium = new TileBinding() {
+                        Content = new TileBindingContentAdaptive() {
                             Children =
                             {
                                 new AdaptiveText()
@@ -48,10 +41,8 @@ namespace MoviePreview.Services
                         }
                     },
 
-                    TileWide = new TileBinding()
-                    {
-                        Content = new TileBindingContentAdaptive()
-                        {
+                    TileWide = new TileBinding() {
+                        Content = new TileBindingContentAdaptive() {
                             Children =
                             {
                                 new AdaptiveText()
@@ -80,8 +71,7 @@ namespace MoviePreview.Services
             UpdateTile(notification);
         }
 
-        public async Task SamplePinSecondaryAsync(string pageName)
-        {
+        public async Task SamplePinSecondaryAsync(string pageName) {
             // TODO WTS: Call this method to Pin a Secondary Tile from a page.
             // You also must implement the navigation to this specific page in the OnLaunched event handler on App.xaml.cs
             var tile = new SecondaryTile(DateTime.Now.Ticks.ToString());
