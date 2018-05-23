@@ -7,7 +7,7 @@ using Windows.Data.Json;
 namespace MoviePreview.Services {
     public static class APIService {
         // 正在上映 | query参数：city, start, count
-        private static readonly string APIMoviesInTheaters = "https://api.douban.com/v2/movie/in_theaters?city={0}&start={1}&count={2}";
+        private static readonly string APIMoviesInTheaters = "https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city={0}&start={1}&count={2}";
         // 即将上映 | query参数：start, count
         private static readonly string APIComingMovies = "https://api.douban.com/v2/movie/coming_soon?start={0}&count={1}";
         // 电影详情 | path参数：id
@@ -28,7 +28,8 @@ namespace MoviePreview.Services {
         /// </summary>
         /// <param name="subject">People对应的Json对象cast或director</param>
         /// <returns>PeopleItem</returns>
-        private static PeopleItem ParseJsonToPeople(JsonObject people) {
+        private static PeopleItem ParseJsonToPeople(IJsonValue value) {
+            JsonObject people = value.GetObject();
             PeopleItem peopleItem = new PeopleItem {
                 Name = people["name"].GetString(),
                 Avatar = (people["avatars"].GetObject())["medium"].GetString(), // 获取中等大小的图片(small,large,medium)
@@ -43,7 +44,8 @@ namespace MoviePreview.Services {
         /// </summary>
         /// <param name="movie">Moive对应的Json对象subjects</param>
         /// <returns>MovieItem</returns>
-        private static MovieItem ParseJsonToMovie(JsonObject movie) {
+        private static MovieItem ParseJsonToMovie(IJsonValue value) {
+            JsonObject movie = value.GetObject();
             // 解析基本信息
             MovieItem movieItem = new MovieItem {
                 Rating = (movie["rating"].GetObject())["average"].GetNumber(),
@@ -66,14 +68,14 @@ namespace MoviePreview.Services {
             var castsList = new List<PeopleItem>();
             JsonArray casts = movie["casts"].GetArray();
             foreach (var cast in casts) {
-                castsList.Add(ParseJsonToPeople(cast.GetObject()));
+                castsList.Add(ParseJsonToPeople(cast));
             }
             movieItem.Casts = castsList.ToArray();
 
             var directorsList = new List<PeopleItem>();
             JsonArray directors = movie["directors"].GetArray();
             foreach (var director in directors) {
-                directorsList.Add(ParseJsonToPeople(director.GetObject()));
+                directorsList.Add(ParseJsonToPeople(director));
             }
             movieItem.Directors = directorsList.ToArray();
 
@@ -117,8 +119,9 @@ namespace MoviePreview.Services {
             var moviesList = new List<MovieItem>();
             JsonArray movies = res["subjects"].GetArray();
             foreach (var movie in movies) {
-                moviesList.Add(ParseJsonToMovie(movie.GetObject()));
+                moviesList.Add(ParseJsonToMovie(movie));
             }
+
             return Tuple.Create(moviesList, (int)res["total"].GetNumber());
         }
 
@@ -129,7 +132,7 @@ namespace MoviePreview.Services {
         /// <param name="eachPage">每页有多少个，默认10</param>
         /// <returns>电影列表, 列表项目总数</returns>
         public static async Task<Tuple<List<MovieItem>, int>> GetComing(int page, int eachPage) {
-            // todo
+            //TODO: API GetComing
             return null;
         }
 
@@ -138,8 +141,8 @@ namespace MoviePreview.Services {
         /// 总数为固定值（11），一次性返回全部
         /// </summary>
         /// <returns>电影列表</returns>
-        public static List<MovieItem> GetTopInUs() {
-            // todo
+        public static async Task<List<MovieItem>> GetTopInUs() {
+            //TODO: API GetTopInUs
             return null;
         }
 
@@ -151,8 +154,8 @@ namespace MoviePreview.Services {
         /// <param name="page">第几页</param>
         /// <param name="eachPage">每页有多少个，默认10</param>
         /// <returns>电影列表</returns>
-        public static List<MovieItem> GetTop250(int page, int eachPage) {
-            // todo
+        public static async Task<List<MovieItem>> GetTop250(int page, int eachPage) {
+            //TODO: API GetTop250
             return null;
         }
 
@@ -161,8 +164,8 @@ namespace MoviePreview.Services {
         /// </summary>
         /// <param name="id">电影ID</param>
         /// <returns>电影详情</returns>
-        public static MovieItem GetMovieDetail(string id) {
-            // todo
+        public static async Task<MovieItem> GetMovieDetail(string id) {
+            //TODO: API GetMovieDetail
             return null;
         }
 
@@ -171,8 +174,8 @@ namespace MoviePreview.Services {
         /// </summary>
         /// <param name="id">人物ID</param>
         /// <returns>人物详情</returns>
-        public static PeopleItem GetPeopleDetail(string id) {
-            // Nothing
+        public static async Task<PeopleItem> GetPeopleDetail(string id) {
+            //TODO: API GetPeopleDetail
             return null;
         }
 
@@ -184,7 +187,7 @@ namespace MoviePreview.Services {
         /// <param name="eachPage">每页多少个项， 默认10</param>
         /// <returns>电影列表, 列表项目总数</returns>
         public static async Task<Tuple<List<MovieItem>, int>> SearchByName(string name, int page, int eachPage) {
-            // todo
+            //TODO: API SearchByName
             return null;
         }
 
@@ -196,7 +199,7 @@ namespace MoviePreview.Services {
         /// <param name="eachPage">每页多少个项， 默认10</param>
         /// <returns>电影列表, 列表项目总数</returns>
         public static async Task<Tuple<List<MovieItem>, int>> SearchByTag(string tag, int page, int eachPage) {
-            // todo
+            //TODO: API SearchByTag
             return null;
         }
 

@@ -24,7 +24,7 @@ namespace MoviePreview.ViewModels {
 
         public NavigationServiceEx NavigationService {
             get {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                return ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 

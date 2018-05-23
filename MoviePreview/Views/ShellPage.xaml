@@ -9,7 +9,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-
+    
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
@@ -23,10 +23,10 @@
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MainViewModel" />
-            <NavigationViewItem x:Uid="Shell_Blank" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.BlankViewModel" />
-            <NavigationViewItem x:Uid="Shell_MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MasterDetailViewModel" />
-            <NavigationViewItem x:Uid="Shell_Chart" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.ChartViewModel" />
+            <NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MainViewModel" />
+            <NavigationViewItem x:Uid="Shell_Blank" Icon="VideoChat" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.BlankViewModel" />
+            <NavigationViewItem x:Uid="Shell_MasterDetail" Icon="Emoji2" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MasterDetailViewModel" />
+            <NavigationViewItem x:Uid="Shell_Chart" Icon="AllApps" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.ChartViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
