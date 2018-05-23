@@ -12,15 +12,19 @@ namespace MoviePreview.ViewModels {
         public MainViewModel() {
         }
         public ObservableCollection<MovieItem> MovieItems { get; private set; } = new ObservableCollection<MovieItem>();
-
+        public Boolean EmptyItem {
+            get {
+                return MovieItems.Count == 0;
+            }
+        }
         public async Task LoadData() {
             if (MovieItems.Count == 0) {
                 MovieItems.Clear();
-                var data = await APIService.GetInTheaters("广州", 1, 10);
-                List<MovieItem> movieList = data.Item1;
-                foreach (var movie in movieList) {
+                var data = await TimeAPIService.GetLocationMovies();
+                foreach (var movie in data) {
                     MovieItems.Add(movie);
                 }
+                RaisePropertyChanged("EmptyItem");
             }
         }
 

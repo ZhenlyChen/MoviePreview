@@ -11,8 +11,9 @@
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <ListView x:Name="toDoList"
+        <Grid>
+            <ProgressRing x:Name="Loading" IsActive="{x:Bind ViewModel.EmptyItem, Mode=OneWay}" Visibility="{x:Bind ViewModel.EmptyItem, Mode=OneWay}"/>
+            <ListView x:Name="LocationMovieList"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{x:Bind ViewModel.MovieItems}"
                   Margin="25,25,25,0"
@@ -37,29 +38,29 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:MovieItem">
+                    <DataTemplate x:DataType="model:MovieItemNow">
                         <RelativePanel>
                             <Image x:Name="Image" Source="{x:Bind ImageUri}" Height="300" Margin="0,20"></Image>
-                            <TextBlock x:Name="TextDate" Text="{x:Bind Directors[0].Name}"
+                            <TextBlock x:Name="TextDate" Text="{x:Bind Date}"
                                        RelativePanel.Below="Image"/>
                             <TextBlock x:Name="TextHigh"
                                    RelativePanel.Below="TextDate"
                                    FontSize="21"
-                                   Text="{x:Bind Year}" Margin="0,10"/>
+                                   Text="{x:Bind TitleEn}" Margin="0,10"/>
                             <TextBlock x:Name="TextLow"
                                    RelativePanel.Below="TextDate"
                                    RelativePanel.RightOf="TextHigh"
-                                   Margin="10,18"
+                                   Margin="5,18"
                                    FontSize="14"
-                                   Text="{x:Bind OriginalTitle}"/>
+                                   Text="{x:Bind Directors}"/>
                             <TextBlock x:Name="TextType"
                                     RelativePanel.Below="TextHigh"
                                    FontSize="22"
-                                   Margin="0, 10"
-                                   Text="{x:Bind Title}"/>
+                                   Margin="0, 5"
+                                   Text="{x:Bind TitleCn}"/>
                             <TextBlock x:Name="TextWind"
                                    RelativePanel.Below="TextType"
-                                   Text="{x:Bind Casts[0].Name}"/>
+                                   Text="{x:Bind MovieType}"/>
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
