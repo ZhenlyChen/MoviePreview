@@ -1,7 +1,9 @@
 ﻿using System;
 
-namespace MoviePreview.Services {
-    public class SuspensionState {
+namespace MoviePreview.Services
+{
+    public class SuspensionState
+    {
         public object Data {
             get; set;
         }

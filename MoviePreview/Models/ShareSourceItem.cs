@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 
 using Windows.Storage;
 
-namespace MoviePreview.Models {
-    internal enum ShareSourceItemType {
+namespace MoviePreview.Models
+{
+    internal enum ShareSourceItemType
+    {
         Text = 0,
         WebLink = 1,
         ApplicationLink = 2,
@@ -15,7 +17,8 @@ namespace MoviePreview.Models {
         DeferredContent = 6
     }
 
-    internal class ShareSourceItem {
+    internal class ShareSourceItem
+    {
         public ShareSourceItemType DataType {
             get;
         }
@@ -52,48 +55,63 @@ namespace MoviePreview.Models {
             get; private set;
         }
 
-        private ShareSourceItem(ShareSourceItemType dataType) {
+        private ShareSourceItem(ShareSourceItemType dataType)
+        {
             DataType = dataType;
         }
 
-        internal static ShareSourceItem FromText(string text) {
-            return new ShareSourceItem(ShareSourceItemType.Text) {
+        internal static ShareSourceItem FromText(string text)
+        {
+            return new ShareSourceItem(ShareSourceItemType.Text)
+            {
                 Text = text
             };
         }
 
-        internal static ShareSourceItem FromWebLink(Uri webLink) {
-            return new ShareSourceItem(ShareSourceItemType.WebLink) {
+        internal static ShareSourceItem FromWebLink(Uri webLink)
+        {
+            return new ShareSourceItem(ShareSourceItemType.WebLink)
+            {
                 WebLink = webLink
             };
         }
 
-        internal static ShareSourceItem FromApplicationLink(Uri applicationLink) {
-            return new ShareSourceItem(ShareSourceItemType.ApplicationLink) {
+        internal static ShareSourceItem FromApplicationLink(Uri applicationLink)
+        {
+            return new ShareSourceItem(ShareSourceItemType.ApplicationLink)
+            {
                 ApplicationLink = applicationLink
             };
         }
 
-        internal static ShareSourceItem FromHtml(string html) {
-            return new ShareSourceItem(ShareSourceItemType.Html) {
+        internal static ShareSourceItem FromHtml(string html)
+        {
+            return new ShareSourceItem(ShareSourceItemType.Html)
+            {
                 Html = html
             };
         }
 
-        internal static ShareSourceItem FromImage(StorageFile image) {
-            return new ShareSourceItem(ShareSourceItemType.Image) {
+        internal static ShareSourceItem FromImage(StorageFile image)
+        {
+            return new ShareSourceItem(ShareSourceItemType.Image)
+            {
                 Image = image
             };
         }
 
-        internal static ShareSourceItem FromStorageItems(IEnumerable<IStorageItem> storageItems) {
-            return new ShareSourceItem(ShareSourceItemType.StorageItems) {
+        internal static ShareSourceItem FromStorageItems(IEnumerable<IStorageItem> storageItems)
+        {
+            return new ShareSourceItem(ShareSourceItemType.StorageItems)
+            {
                 StorageItems = storageItems
             };
         }
 
-        internal static ShareSourceItem FromDeferredContent(string deferredDataFormatId, Func<Task<object>> getDeferredDataAsyncFunc) {
-            return new ShareSourceItem(ShareSourceItemType.DeferredContent) {
+        internal static ShareSourceItem FromDeferredContent(string deferredDataFormatId, Func<Task<object>> getDeferredDataAsyncFunc)
+        {
+            return new ShareSourceItem(ShareSourceItemType.DeferredContent)
+            {
                 DeferredDataFormatId = deferredDataFormatId,
                 GetDeferredDataAsyncFunc = getDeferredDataAsyncFunc
             };

@@ -6,8 +6,10 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
-namespace MoviePreview {
-    public sealed partial class App : Application {
+namespace MoviePreview
+{
+    public sealed partial class App : Application
+    {
         private Lazy<ActivationService> _activationService;
 
         private ActivationService ActivationService {
@@ -16,7 +18,8 @@ namespace MoviePreview {
             }
         }
 
-        public App() {
+        public App()
+        {
             InitializeComponent();
 
             EnteredBackground += App_EnteredBackground;
@@ -25,29 +28,36 @@ namespace MoviePreview {
             _activationService = new Lazy<ActivationService>(CreateActivationService);
         }
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs args) {
-            if (!args.PrelaunchActivated) {
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        {
+            if (!args.PrelaunchActivated)
+            {
                 await ActivationService.ActivateAsync(args);
             }
         }
 
-        protected override async void OnActivated(IActivatedEventArgs args) {
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
             await ActivationService.ActivateAsync(args);
         }
 
-        private ActivationService CreateActivationService() {
+        private ActivationService CreateActivationService()
+        {
             return new ActivationService(this, typeof(ViewModels.MainViewModel), new Lazy<UIElement>(CreateShell));
         }
 
-        private UIElement CreateShell() {
+        private UIElement CreateShell()
+        {
             return new Views.ShellPage();
         }
 
-        protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args) {
+        protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+        {
             await ActivationService.ActivateAsync(args);
         }
 
-        private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e) {
+        private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
+        {
             var deferral = e.GetDeferral();
             await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();

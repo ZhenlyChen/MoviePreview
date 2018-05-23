@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using MoviePreview.Models;
 using Windows.Data.Json;
 
-namespace MoviePreview.Services {
-    public static class TimeAPIService {
+namespace MoviePreview.Services
+{
+    public static class TimeAPIService
+    {
         // 地区码
         private static readonly string LocationGuangZhou = "365";
         // 正在热映
@@ -31,9 +33,11 @@ namespace MoviePreview.Services {
         /// </summary>
         /// <param name="value">Json值</param>
         /// <returns>MovieItemNow</returns>
-        public static MovieItemNow ParseLocationMovie(IJsonValue value) {
+        private static MovieItemNow ParseLocationMovie(IJsonValue value)
+        {
             JsonObject m = value.GetObject();
-            return new MovieItemNow {
+            return new MovieItemNow
+            {
                 Actor1 = m["aN1"].GetString(),
                 Actor2 = m["aN2"].GetString(),
                 Actors = m["actors"].GetString(),
@@ -43,6 +47,7 @@ namespace MoviePreview.Services {
                 Image = m["img"].GetString(),
                 MovieType = m["movieType"].GetString(),
                 Rating = m["r"].GetNumber(),
+                // 转换日期格式
                 Date = DateTime.ParseExact(m["rd"].GetString(), "yyyyMMdd",
                                   CultureInfo.InvariantCulture).ToString("yyyy/M/dd"),
                 TitleCn = m["tCn"].GetString(),
@@ -54,16 +59,45 @@ namespace MoviePreview.Services {
 
         /// <summary>
         /// 获取当前地区的上映电影
+        /// API: APILocationMovies
         /// </summary>
+        /// <param name="location">地区，默认为广州,后期再加上定位和选择</param>
         /// <returns>电影列表</returns>
-        public static async Task<List<MovieItemNow>> GetLocationMovies() {
-            JsonObject res = await NetService.GetJson(string.Format(APILocationMovies, LocationGuangZhou));
+        public static async Task<List<MovieItemNow>> GetLocationMovies(string location = "365")
+        {
+            JsonObject res = await NetService.GetJson(string.Format(APILocationMovies, location));
             JsonArray ms = res["ms"].GetArray();
             var movieList = new List<MovieItemNow>();
-            foreach (var m in ms) {
+            foreach (var m in ms)
+            {
                 movieList.Add(ParseLocationMovie(m));
             }
             return movieList;
         }
+
+        /// <summary>
+        /// 获取当前地区即将上映电影
+        /// API: APIMovieComingNew
+        /// </summary>
+        /// <param name="location">地区，默认为广州</param>
+        /// <returns>电影列表</returns>
+        public static async Task<List<MovieItemComing>> GetComingMovies(string location = "365")
+        {
+            // TODO API
+            return null;
+        }
+
+        /// <summary>
+        /// 获取电影详情(包括详情，影评，预告片，剧照，演员表)
+        /// 需使用5个API
+        /// </summary>
+        /// <param name="id">电影ID</param>
+        /// <returns></returns>
+        public static async Task<List<MovieItemDetail>> GetMovieDetail(string id)
+        {
+            // TODO API
+            return null;
+        }
+
     }
 }

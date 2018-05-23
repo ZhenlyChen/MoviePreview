@@ -5,8 +5,10 @@ using MoviePreview.Models;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace MoviePreview.Views {
-    public sealed partial class MasterDetailDetailControl : UserControl {
+namespace MoviePreview.Views
+{
+    public sealed partial class MasterDetailDetailControl : UserControl
+    {
         public SampleOrder MasterMenuItem {
             get {
                 return GetValue(MasterMenuItemProperty) as SampleOrder;
@@ -18,11 +20,13 @@ namespace MoviePreview.Views {
 
         public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(MasterDetailDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
 
-        public MasterDetailDetailControl() {
+        public MasterDetailDetailControl()
+        {
             InitializeComponent();
         }
 
-        private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+        private static void OnMasterMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
             var control = d as MasterDetailDetailControl;
             control.ForegroundElement.ChangeView(0, 0, 1);
         }

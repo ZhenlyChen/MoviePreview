@@ -7,9 +7,12 @@ using GalaSoft.MvvmLight.Ioc;
 using MoviePreview.Services;
 using MoviePreview.Views;
 
-namespace MoviePreview.ViewModels {
-    public class ViewModelLocator {
-        public ViewModelLocator() {
+namespace MoviePreview.ViewModels
+{
+    public class ViewModelLocator
+    {
+        public ViewModelLocator()
+        {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
@@ -36,7 +39,8 @@ namespace MoviePreview.ViewModels {
         public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
 
         public void Register<VM, V>()
-            where VM : class {
+            where VM : class
+        {
             SimpleIoc.Default.Register<VM>();
 
             NavigationService.Configure(typeof(VM).FullName, typeof(V));

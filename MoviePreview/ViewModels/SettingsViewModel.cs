@@ -10,9 +10,11 @@ using MoviePreview.Services;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 
-namespace MoviePreview.ViewModels {
+namespace MoviePreview.ViewModels
+{
     // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
-    public class SettingsViewModel : ViewModelBase {
+    public class SettingsViewModel : ViewModelBase
+    {
         private ElementTheme _elementTheme = ThemeSelectorService.Theme;
 
         public ElementTheme ElementTheme {
@@ -41,9 +43,11 @@ namespace MoviePreview.ViewModels {
 
         public ICommand SwitchThemeCommand {
             get {
-                if (_switchThemeCommand == null) {
+                if (_switchThemeCommand == null)
+                {
                     _switchThemeCommand = new RelayCommand<ElementTheme>(
-                        async (param) => {
+                        async (param) =>
+                        {
                             ElementTheme = param;
                             await ThemeSelectorService.SetThemeAsync(param);
                         });
@@ -53,14 +57,17 @@ namespace MoviePreview.ViewModels {
             }
         }
 
-        public SettingsViewModel() {
+        public SettingsViewModel()
+        {
         }
 
-        public void Initialize() {
+        public void Initialize()
+        {
             VersionDescription = GetVersionDescription();
         }
 
-        private string GetVersionDescription() {
+        private string GetVersionDescription()
+        {
             var appName = "AppDisplayName".GetLocalized();
             var package = Package.Current;
             var packageId = package.Id;

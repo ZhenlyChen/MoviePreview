@@ -7,9 +7,12 @@ using MoviePreview.Models;
 using MoviePreview.Services;
 using Windows.UI.Xaml.Data;
 
-namespace MoviePreview.ViewModels {
-    public class MainViewModel : ViewModelBase {
-        public MainViewModel() {
+namespace MoviePreview.ViewModels
+{
+    public class MainViewModel : ViewModelBase
+    {
+        public MainViewModel()
+        {
         }
         public ObservableCollection<MovieItem> MovieItems { get; private set; } = new ObservableCollection<MovieItem>();
         public Boolean EmptyItem {
@@ -17,11 +20,14 @@ namespace MoviePreview.ViewModels {
                 return MovieItems.Count == 0;
             }
         }
-        public async Task LoadData() {
-            if (MovieItems.Count == 0) {
+        public async Task LoadData()
+        {
+            if (MovieItems.Count == 0)
+            {
                 MovieItems.Clear();
                 var data = await TimeAPIService.GetLocationMovies();
-                foreach (var movie in data) {
+                foreach (var movie in data)
+                {
                     MovieItems.Add(movie);
                 }
                 RaisePropertyChanged("EmptyItem");

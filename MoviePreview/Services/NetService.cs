@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Data.Xml.Dom;
 
-namespace MoviePreview.Services {
-    public static class NetService {
-        private static async Task<string> Get(string url) {
+namespace MoviePreview.Services
+{
+    public static class NetService
+    {
+        private static async Task<string> Get(string url)
+        {
             //Create an HTTP client object
             HttpClient httpClient = new HttpClient();
 
@@ -19,23 +22,28 @@ namespace MoviePreview.Services {
             HttpResponseMessage httpResponse = new HttpResponseMessage();
             string httpResponseBody = "";
 
-            try {
+            try
+            {
                 //Send the GET request
                 httpResponse = await httpClient.GetAsync(requestUri);
                 httpResponse.EnsureSuccessStatusCode();
                 httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
             }
             return httpResponseBody;
         }
 
 
-        public static async Task<JsonObject> GetJson(string url) {
+        public static async Task<JsonObject> GetJson(string url)
+        {
             return JsonObject.Parse(await Get(url));
         }
 
-        public static async Task<XmlDocument> GetXml(string url) {
+        public static async Task<XmlDocument> GetXml(string url)
+        {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(await Get(url));
             return doc;

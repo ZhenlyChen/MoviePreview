@@ -6,9 +6,12 @@ using GalaSoft.MvvmLight;
 using MoviePreview.Models;
 using MoviePreview.Services;
 
-namespace MoviePreview.ViewModels {
-    public class ChartViewModel : ViewModelBase {
-        public ChartViewModel() {
+namespace MoviePreview.ViewModels
+{
+    public class ChartViewModel : ViewModelBase
+    {
+        public ChartViewModel()
+        {
         }
 
         public ObservableCollection<DataPoint> Source {

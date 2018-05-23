@@ -1,7 +1,9 @@
 ﻿using System;
 
-namespace MoviePreview.Services {
-    public class OnBackgroundEnteringEventArgs : EventArgs {
+namespace MoviePreview.Services
+{
+    public class OnBackgroundEnteringEventArgs : EventArgs
+    {
         public SuspensionState SuspensionState {
             get; set;
         }
@@ -10,7 +12,8 @@ namespace MoviePreview.Services {
             get; private set;
         }
 
-        public OnBackgroundEnteringEventArgs(SuspensionState suspensionState, Type target) {
+        public OnBackgroundEnteringEventArgs(SuspensionState suspensionState, Type target)
+        {
             SuspensionState = suspensionState;
             Target = target;
         }

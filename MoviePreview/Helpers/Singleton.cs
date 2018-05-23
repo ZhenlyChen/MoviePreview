@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace MoviePreview.Helpers {
+namespace MoviePreview.Helpers
+{
     internal static class Singleton<T>
-        where T : new() {
+        where T : new()
+    {
         private static ConcurrentDictionary<Type, T> _instances = new ConcurrentDictionary<Type, T>();
 
         public static T Instance {

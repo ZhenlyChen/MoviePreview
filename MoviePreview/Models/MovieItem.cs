@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace MoviePreview.Models {
+namespace MoviePreview.Models
+{
 
-    public class MovieItem { // 即将上映的电影
+    public class MovieItem
+    { // 即将上映的电影
         // ID
         public string ID {
             get; set;
@@ -31,7 +33,7 @@ namespace MoviePreview.Models {
         }
         // 主要演员
         public string Actors {
-            get;set;
+            get; set;
         }
         // 导演
         public string Directors {
@@ -62,11 +64,13 @@ namespace MoviePreview.Models {
         }
     }
 
-    public class MovieItemComing : MovieItem {
+    public class MovieItemComing : MovieItem
+    {
 
     }
 
-    public class MovieItemNow : MovieItem { // 已经上映的电影
+    public class MovieItemNow : MovieItem
+    { // 已经上映的电影
         // -----已上映电影属性 -----
         // 英文名
         public string TitleEn {
@@ -86,7 +90,8 @@ namespace MoviePreview.Models {
         }
     }
 
-    public class MovieItemDetail : MovieItemNow {
+    public class MovieItemDetail : MovieItemNow
+    {
         // 演员
         public List<ActorItem> ActorList {
             get; set;
@@ -97,23 +102,23 @@ namespace MoviePreview.Models {
         }
         // 其他人员
         public List<PeopleItem> OtherList {
-            get;set;
+            get; set;
         }
         // 剧情
         public string Story {
-            get;set;
+            get; set;
         }
         // 剧照
         public List<string> Images {
-            get;set;
+            get; set;
         }
         // 票房
         public string TotalBox {
-            get;set;
+            get; set;
         }
         // 影评
         public List<CommentItem> Comments {
-            get;set;
+            get; set;
         }
         // 长评
         public List<CommentPlusItem> CommentsPlus {
@@ -121,82 +126,87 @@ namespace MoviePreview.Models {
         }
         // 预告片
         public List<VideoItem> Videos {
-            get;set;
+            get; set;
         }
     }
 
     // 预告片
-    public class VideoItem {
+    public class VideoItem
+    {
         // 标题
         public string Title {
-            get;set;
+            get; set;
         }
         // 图片
         public string Image {
-            get;set;
+            get; set;
         }
         // 视频
         public string Url {
-            get;set;
+            get; set;
         }
         // 片长
         public int Length {
-            get;set;
+            get; set;
         }
     }
 
     // 影评
-    public class CommentItem {
+    public class CommentItem
+    {
         // 昵称
         public string NickName {
-            get;set;
+            get; set;
         }
         // 地区
         public string LocationName {
-            get;set;
+            get; set;
         }
         // 内容
         public string Content {
-            get;set;
+            get; set;
         }
         // 头像
         public string HeadImg {
-            get;set;
+            get; set;
         }
     }
 
     // 长评论
-    public class CommentPlusItem : CommentItem {
+    public class CommentPlusItem : CommentItem
+    {
         public string Title {
-            get;set;
+            get; set;
         }
     }
 
 
-    public class PeopleItem {
+    public class PeopleItem
+    {
         // ID
         public int ID {
-            get;set;
+            get; set;
         }
         // 照片
         public string Image {
-            get;set;
+            get; set;
         }
         // 中文名
         public string NameCn {
-            get;set;
+            get; set;
         }
         // 英文名
         public string NameEn {
-            get;set;
+            get; set;
         }
         // 类型：演员/导演/编剧/服装设计
         public string TypeName {
-            get;set;
+            get; set;
         }
     }
 
-    public class ActorItem : PeopleItem { // 演员
+    public class ActorItem : PeopleItem
+    { // 演员
         // 角色名
         public string RoleName {
             get; set;
@@ -207,5 +217,5 @@ namespace MoviePreview.Models {
         }
     }
 
-    
+
 }
