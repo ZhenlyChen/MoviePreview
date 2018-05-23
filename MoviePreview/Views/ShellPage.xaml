@@ -1,4 +1,4 @@
-<Page
+﻿<Page
     x:Class="MoviePreview.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
@@ -27,6 +27,8 @@
             <NavigationViewItem x:Uid="Shell_Blank" Icon="VideoChat" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.BlankViewModel" />
             <NavigationViewItem x:Uid="Shell_MasterDetail" Icon="Emoji2" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MasterDetailViewModel" />
             <NavigationViewItem x:Uid="Shell_Chart" Icon="AllApps" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.ChartViewModel" />
+            <NavigationViewItem x:Uid="Shell_MediaPlayer" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MediaPlayerViewModel" />
+            <NavigationViewItem x:Uid="Shell_ImageGallery" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.ImageGalleryViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>

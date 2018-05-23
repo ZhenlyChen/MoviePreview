@@ -22,7 +22,17 @@ namespace MoviePreview.ViewModels
             Register<MasterDetailViewModel, MasterDetailPage>();
             Register<ChartViewModel, ChartPage>();
             Register<SettingsViewModel, SettingsPage>();
+            Register<MediaPlayerViewModel, MediaPlayerPage>();
+            Register<ImageGalleryViewModel, ImageGalleryPage>();
+            Register<ImageGalleryDetailViewModel, ImageGalleryDetailPage>();
         }
+
+        public ImageGalleryDetailViewModel ImageGalleryDetailViewModel => ServiceLocator.Current.GetInstance<ImageGalleryDetailViewModel>();
+
+        public ImageGalleryViewModel ImageGalleryViewModel => ServiceLocator.Current.GetInstance<ImageGalleryViewModel>();
+
+        // A Guid is generated as a unique key for each instance as reusing the same VM instance in multiple MediaPlayerElement instances can cause playback errors
+        public MediaPlayerViewModel MediaPlayerViewModel => ServiceLocator.Current.GetInstance<MediaPlayerViewModel>(Guid.NewGuid().ToString());
 
         public SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
 

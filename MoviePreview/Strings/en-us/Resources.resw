@@ -229,4 +229,12 @@
     <value>The Parameter DeferredDataFormatId is null or does not contains any element.</value>
     <comment>The Parameter DeferredDataFormatId is null or does not contains any element.</comment>
   </data>
+  <data name="Shell_MediaPlayer.Content" xml:space="preserve">
+    <value>MediaPlayer</value>
+    <comment>Navigation view item name for MediaPlayer</comment>
+  </data>
+  <data name="Shell_ImageGallery.Content" xml:space="preserve">
+    <value>ImageGallery</value>
+    <comment>Navigation view item name for ImageGallery</comment>
+  </data>
 </root>

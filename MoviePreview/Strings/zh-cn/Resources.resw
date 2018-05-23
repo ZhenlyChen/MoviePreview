@@ -229,4 +229,10 @@
     <value>The Parameter DeferredDataFormatId is null or does not contains any element.</value>
     <comment>The Parameter DeferredDataFormatId is null or does not contains any element.</comment>
   </data>
+  <data name="Shell_ImageGallery.Content" xml:space="preserve">
+    <value>剧照</value>
+  </data>
+  <data name="Shell_MediaPlayer.Content" xml:space="preserve">
+    <value>预告</value>
+  </data>
 </root>
