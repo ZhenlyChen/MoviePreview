@@ -237,4 +237,8 @@
     <value>ImageGallery</value>
     <comment>Navigation view item name for ImageGallery</comment>
   </data>
+  <data name="Shell_Login.Content" xml:space="preserve">
+    <value>Login</value>
+    <comment>Navigation view item name for Login</comment>
+  </data>
 </root>

@@ -8,8 +8,7 @@
     DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
     xmlns:model="using:MoviePreview.Models"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
+    <Grid x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid>
             <ProgressRing x:Name="Loading" IsActive="{x:Bind ViewModel.EmptyItem, Mode=OneWay}" Visibility="{x:Bind ViewModel.EmptyItem, Mode=OneWay}"/>

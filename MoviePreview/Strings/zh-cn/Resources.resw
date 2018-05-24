@@ -235,4 +235,7 @@
   <data name="Shell_MediaPlayer.Content" xml:space="preserve">
     <value>预告</value>
   </data>
+  <data name="Shell_Login.Content" xml:space="preserve">
+    <value>登陆</value>
+  </data>
 </root>

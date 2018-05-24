@@ -25,7 +25,10 @@ namespace MoviePreview.ViewModels
             Register<MediaPlayerViewModel, MediaPlayerPage>();
             Register<ImageGalleryViewModel, ImageGalleryPage>();
             Register<ImageGalleryDetailViewModel, ImageGalleryDetailPage>();
+            Register<LoginViewModel, LoginPage>();
         }
+
+        public LoginViewModel LoginViewModel => ServiceLocator.Current.GetInstance<LoginViewModel>();
 
         public ImageGalleryDetailViewModel ImageGalleryDetailViewModel => ServiceLocator.Current.GetInstance<ImageGalleryDetailViewModel>();
 
