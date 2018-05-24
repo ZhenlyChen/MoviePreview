@@ -14,7 +14,6 @@ namespace MoviePreview.ViewModels
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             SimpleIoc.Default.Register<ShellViewModel>();
             Register<MainViewModel, MainPage>();
@@ -26,7 +25,10 @@ namespace MoviePreview.ViewModels
             Register<ImageGalleryViewModel, ImageGalleryPage>();
             Register<ImageGalleryDetailViewModel, ImageGalleryDetailPage>();
             Register<LoginViewModel, LoginPage>();
+            Register<LoginWebViewViewModel, LoginWebViewPage>();
         }
+
+        public LoginWebViewViewModel LoginWebViewViewModel => ServiceLocator.Current.GetInstance<LoginWebViewViewModel>();
 
         public LoginViewModel LoginViewModel => ServiceLocator.Current.GetInstance<LoginViewModel>();
 

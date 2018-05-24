@@ -1,6 +1,7 @@
 ﻿using System;
 
 using MoviePreview.ViewModels;
+using MoviePreview.Services;
 
 using Windows.UI.Xaml.Controls;
 

@@ -10,23 +10,8 @@
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid VerticalAlignment="Center"
-              HorizontalAlignment="Center"
-              MinWidth="400">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="登陆你的账号"/>
-            <TextBox Grid.Row="1"
-                     PlaceholderText="邮箱 / 用户名"
-                     Margin="20"
-                     VerticalAlignment="Center"/>
-            <TextBox Grid.Row="2"
-                     PlaceholderText="密码"
-                     Margin="20"
-                     VerticalAlignment="Center"/>
+        <Grid>
+            
         </Grid>
     </Grid>
 </Page>

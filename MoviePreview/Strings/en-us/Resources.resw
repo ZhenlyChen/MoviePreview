@@ -241,4 +241,56 @@
     <value>Login</value>
     <comment>Navigation view item name for Login</comment>
   </data>
+  <data name="LoginWebView_FailedMessage.Text" xml:space="preserve">
+    <value>Page failed to load. Check connection and retry.</value>
+    <comment>Load failure message for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_Loading.Text" xml:space="preserve">
+    <value>Loading...</value>
+    <comment>Loading message for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_Retry.Content" xml:space="preserve">
+    <value>retry</value>
+    <comment>Retry button for LoginWebView</comment>
+  </data>
+    <data name="LoginWebView_BrowserBackButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Back</value>
+    <comment>WebView back button automation name property for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_BrowserBackButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Back</value>
+    <comment>Back button automation tooltip property for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_BrowserForwardButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Forward</value>
+    <comment>Forward button automation name property for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_BrowserForwardButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Forward</value>
+    <comment>Forward button automation tooltip property for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_RefreshBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Refresh button automation name property for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_RefreshBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Refresh</value>
+    <comment>Refresh button automation tooltip property for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_OpenInBrowserButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Open in browser</value>
+    <comment>Open in browser button automation name property for LoginWebView</comment>
+  </data>
+  <data name="LoginWebView_OpenInBrowserButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Open in browser</value>
+    <comment>Open in browser button automation tooltip property for LoginWebView</comment>
+  </data>
+  <data name="Shell_LoginWebView.Content" xml:space="preserve">
+    <value>LoginWebView</value>
+    <comment>Navigation view item name for LoginWebView</comment>
+  </data>
+  <data name="ExceptionViewLifeTimeControlViewDisposal" xml:space="preserve">
+    <value>This view is being disposed.</value>
+    <comment>View disposed</comment>
+  </data>
 </root>

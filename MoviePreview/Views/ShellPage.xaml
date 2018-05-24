@@ -30,6 +30,7 @@
             <NavigationViewItem x:Uid="Shell_MediaPlayer" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MediaPlayerViewModel" />
             <NavigationViewItem x:Uid="Shell_ImageGallery" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.ImageGalleryViewModel" />
             <NavigationViewItem x:Uid="Shell_Login" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.LoginViewModel" />
+            <NavigationViewItem x:Uid="Shell_LoginWebView" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.LoginWebViewViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
