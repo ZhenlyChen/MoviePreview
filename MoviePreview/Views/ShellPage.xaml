@@ -9,13 +9,13 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-    
+
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         IsSettingsVisible="True"
-        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        Background="{ThemeResource SystemControlAcrylicWindowBrush}">
         <NavigationView.MenuItems>
             <!--
             TODO WTS: Change the symbols for each item as appropriate for your app
@@ -31,6 +31,7 @@
             <NavigationViewItem x:Uid="Shell_ImageGallery" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.ImageGalleryViewModel" />
             <NavigationViewItem x:Uid="Shell_Login" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.LoginViewModel" />
             <NavigationViewItem x:Uid="Shell_LoginWebView" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.LoginWebViewViewModel" />
+            <NavigationViewItem x:Uid="Shell_MovieDetail" Icon="Document" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MovieDetailViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>

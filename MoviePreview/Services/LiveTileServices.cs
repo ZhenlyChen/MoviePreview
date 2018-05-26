@@ -11,12 +11,8 @@ namespace MoviePreview.Services
     internal partial class LiveTileService
     {
         // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
-        public void SampleUpdate()
+        public void AddTileToQueue(string title, string subject, string body)
         {
-            // These would be initialized with actual data
-            string from = "Jennifer Parker";
-            string subject = "Photos from our trip";
-            string body = "Check out these awesome photos I took while in New Zealand!";
 
             // Construct the tile content
             var content = new TileContent()
@@ -32,7 +28,7 @@ namespace MoviePreview.Services
                             {
                                 new AdaptiveText()
                                 {
-                                    Text = from
+                                    Text = title
                                 },
                                 new AdaptiveText()
                                 {
@@ -56,8 +52,34 @@ namespace MoviePreview.Services
                             {
                                 new AdaptiveText()
                                 {
-                                    Text = from,
-                                    HintStyle = AdaptiveTextStyle.Subtitle
+                                    Text = title,
+                                    HintStyle = AdaptiveTextStyle.Title
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = subject,
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                    HintWrap = true
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = body,
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                }
+                            }
+                        }
+                    },
+
+                    TileLarge = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            Children =
+                            {
+                                new AdaptiveText()
+                                {
+                                    Text = title,
+                                    HintStyle = AdaptiveTextStyle.Header
                                 },
                                 new AdaptiveText()
                                 {

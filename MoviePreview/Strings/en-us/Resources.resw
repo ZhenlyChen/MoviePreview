@@ -293,4 +293,8 @@
     <value>This view is being disposed.</value>
     <comment>View disposed</comment>
   </data>
+  <data name="Shell_MovieDetail.Content" xml:space="preserve">
+    <value>MovieDetail</value>
+    <comment>Navigation view item name for MovieDetail</comment>
+  </data>
 </root>

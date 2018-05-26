@@ -1,7 +1,7 @@
 ﻿using System;
 
 using MoviePreview.ViewModels;
-
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace MoviePreview.Views
@@ -17,6 +17,12 @@ namespace MoviePreview.Views
         public BlankPage()
         {
             InitializeComponent();
+            Loaded += BlankPage_Loaded;
+        }
+
+        private async void BlankPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await ViewModel.LoadData();
         }
     }
 }

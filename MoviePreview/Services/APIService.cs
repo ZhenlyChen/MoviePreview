@@ -14,19 +14,21 @@ namespace MoviePreview.Services
         // 地区码
         private static readonly string LocationGuangZhou = "365";
         // 正在热映
+        private static readonly string APIHotPlayMovies = "https://api-m.mtime.cn/PageSubArea/HotPlayMovies.api?locationId={0}";
+        // 本地电影
         private static readonly string APILocationMovies = "https://api-m.mtime.cn/Showtime/LocationMovies.api?locationId={0}";
         // 即将上映
         private static readonly string APIMovieComingNew = "https://api-m.mtime.cn/Movie/MovieComingNew.api?locationId={0}";
         // 影片详情
         private static readonly string APIMovieDetail = "https://ticket-api-m.mtime.cn/movie/detail.api?locationId={0}&movieId={1}";
         // 演员表
-        private static readonly string APIMovieCredits = "https://api-m.mtime.cn/Movie/MovieCreditsWithTypes.api?movieId={1}";
+        private static readonly string APIMovieCredits = "https://api-m.mtime.cn/Movie/MovieCreditsWithTypes.api?movieId={0}";
         // 影片评论
-        private static readonly string APIMovieComment = "https://ticket-api-m.mtime.cn/movie/hotComment.api?movieId={1}";
+        private static readonly string APIMovieComment = "https://ticket-api-m.mtime.cn/movie/hotComment.api?movieId={0}";
         // 预告片
-        private static readonly string APIMovieVideo = "https://api-m.mtime.cn/Movie/Video.api?pageIndex=1&movieId={1}";
+        private static readonly string APIMovieVideo = "https://api-m.mtime.cn/Movie/Video.api?pageIndex=1&movieId={0}";
         // 剧照
-        private static readonly string APIMovieImage = "https://api-m.mtime.cn/Movie/ImageAll.api?movieId={1}";
+        private static readonly string APIMovieImage = "https://api-m.mtime.cn/Movie/ImageAll.api?movieId={0}";
 
         /// <summary>
         /// 解析正在上映的电影
@@ -38,23 +40,199 @@ namespace MoviePreview.Services
             JsonObject m = value.GetObject();
             return new MovieItemNow
             {
-                Actor1 = m["aN1"].GetString(),
-                Actor2 = m["aN2"].GetString(),
-                Actors = m["actors"].GetString(),
+                Actor1 = m["actorName1"].GetString(),
+                Actor2 = m["actorName2"].GetString(),
                 CommonSpecial = m["commonSpecial"].GetString(),
-                Length = m["d"].GetString(),
-                Directors = m["dN"].GetString(),
-                Image = m["img"].GetString(),
-                MovieType = m["movieType"].GetString(),
-                Rating = m["r"].GetNumber(),
+                Directors = m["directorName"].GetString(),
+                Image = m["img"].GetString().Replace("_1280X720X2", "_225X312"),
+                MovieType = m["type"].GetString(),
+                Rating = m["ratingFinal"].GetNumber(),
                 // 转换日期格式
-                Date = DateTime.ParseExact(m["rd"].GetString(), "yyyyMMdd",
-                                  CultureInfo.InvariantCulture).ToString("yyyy/M/dd"),
-                TitleCn = m["tCn"].GetString(),
-                TitleEn = m["tEn"].GetString(),
+                Date = $"{m["rYear"].GetNumber().ToString()}-{m["rMonth"].GetNumber().ToString()}-{m["rDay"].GetNumber().ToString()}",
+                TitleCn = m["titleCn"].GetString(),
+                TitleEn = m["titleEn"].GetString(),
                 WantedCount = (int)m["wantedCount"].GetNumber(),
-                Year = m["year"].GetString()
+                ID = m["movieId"].GetNumber().ToString(),
             };
+        }
+
+        /// <summary>
+        /// 解析即将上映电影
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static MovieItemComing ParseComingMovie(IJsonValue value)
+        {
+            JsonObject m = value.GetObject();
+            return new MovieItemComing
+            {
+                Actor1 = m["actor1"].GetString(),
+                Actor2 = m["actor2"].GetString(),
+                Directors = m["director"].GetString(),
+                ID = m["id"].GetNumber().ToString(),
+                Image = m["image"].GetString().Replace("_1280X720X2", "_225X312"),
+                LocationName = m["locationName"].GetString(),
+                Date = m["releaseDate"].GetString(),
+                TitleCn = m["title"].GetString(),
+                MovieType = m["type"].GetString(),
+                WantedCount = (int)m["wantedCount"].GetNumber(),
+            };
+        }
+
+        /// <summary>
+        /// 解析电影详细Json
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private static MovieItemDetail ParseMovieDetail(JsonObject obj)
+        {
+            JsonObject m = obj["basic"].GetObject();
+            string movieType = "";
+            foreach (var t in m["type"].GetArray())
+            {
+                movieType += $" {t.GetString()}";
+            }
+            var b = obj["boxOffice"].GetObject();
+            string strBox = $"{b["totalBoxDes"].GetString()} {b["totalBoxUnit"].GetString()}";
+            return new MovieItemDetail
+            {
+                CommonSpecial = m["commentSpecial"].GetString(),
+                Directors = (m["director"].GetObject())["name"].GetString(),
+                ID = m["movieId"].GetNumber().ToString(),
+                Image = m["img"].GetString(),
+                MovieTime = m["mins"].GetString(),
+                TitleCn = m["name"].GetString(),
+                TitleEn = m["nameEn"].GetString(),
+                LocationName = m["releaseArea"].GetString(),
+                Date = DateTime.ParseExact(m["releaseDate"].GetString(), "yyyyMMdd",
+                                  CultureInfo.InvariantCulture).ToString("yyyy-M-dd"),
+                MovieType = movieType,
+                Rating = m["overallRating"].GetNumber(),
+                Story = m["story"].GetString(),
+                Url = m["url"].GetString().Replace("https", "http"),
+                TotalBox = strBox,
+            };
+        }
+
+        private static MovieItemDetail ParseMoviePeople(MovieItemDetail m, JsonObject obj)
+        {
+            var list = obj["types"].GetArray();
+
+            m.ActorList = new List<ActorItem>();
+            m.DirectorList = new List<PeopleItem>();
+            foreach (var t in list)
+            {
+                if ((t.GetObject())["typeNameEn"].GetString() == "Actor")
+                {
+                    foreach (var people in (t.GetObject())["persons"].GetArray())
+                    {
+                        var p = people.GetObject();
+                        if (p["name"].GetString() == "" || p["personate"].GetString() == "") continue;
+                        m.ActorList.Add(new ActorItem()
+                        {
+                            ID = p["id"].GetNumber().ToString(),
+                            NameCn = p["name"].GetString(),
+                            NameEn = p["nameEn"].GetString(),
+                            Image = p["image"].GetString().Replace("_1280X720X2", "_225X312"),
+                            RoleName = p["personate"].GetString(),
+                            RoleImage = p.ContainsKey("roleCover") ? p["roleCover"].GetString() : "",
+                            TypeName = (t.GetObject())["typeName"].GetString(),
+                        });
+
+                    }
+                }
+                else if ((t.GetObject())["typeNameEn"].GetString() == "Director")
+                {
+                    foreach (var people in (t.GetObject())["persons"].GetArray())
+                    {
+                        var p = people.GetObject();
+                        m.DirectorList.Add(new PeopleItem()
+                        {
+                            ID = p["id"].GetNumber().ToString(),
+                            NameCn = p["name"].GetString(),
+                            NameEn = p["nameEn"].GetString(),
+                            Image = p["image"].GetString().Replace("_1280X720X2", "_225X312"),
+                            TypeName = (t.GetObject())["typeName"].GetString(),
+                        });
+
+                    }
+                }
+            }
+            return m;
+        }
+        
+
+        /// <summary>
+        /// 解析评论
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private static MovieItemDetail ParseMovieComment(MovieItemDetail m, JsonObject obj)
+        {
+            var data = obj["data"].GetObject();
+            m.Comments = new List<CommentItem>();
+            var plusList = (data["plus"].GetObject())["list"].GetArray();
+            foreach (var plus in plusList)
+            {
+                var com = plus.GetObject();
+                m.Comments.Add(new CommentItem()
+                {
+                    Content = com["content"].GetString(),
+                    HeadImg = com["headImg"].GetString(),
+                    NickName = com["nickname"].GetString(),
+                    Rating = com["rating"].GetNumber(),
+                    LocationName = com["locationName"].GetString(),
+
+                });
+            }
+            var miniList = (data["mini"].GetObject())["list"].GetArray();
+            foreach (var mini in miniList )
+            {
+                var com = mini.GetObject();
+                m.Comments.Add(new CommentItem()
+                {
+                    Content = com["content"].GetString(),
+                    HeadImg = com["headImg"].GetString(),
+                    NickName = com["nickname"].GetString(),
+                    Rating = com["rating"].GetNumber(),
+                    LocationName = com["locationName"].GetString(),
+
+                });
+            }
+            return m;
+        }
+
+
+        private static MovieItemDetail ParseMovieVideo(MovieItemDetail m, JsonObject obj)
+        {
+            var list = obj["videoList"].GetArray();
+            m.Videos = new List<VideoItem>();
+            foreach (var video in list )
+            {
+                var v = video.GetObject();
+                m.Videos.Add(new VideoItem()
+                {
+                    Image = v["image"].GetString(),
+                    Url  = v["hightUrl"].GetString(),
+                    Title = v["title"].GetString(),
+                    Length =  (int)v["length"].GetNumber(),
+                    Type = (int)v["type"].GetNumber(),
+                });
+            }
+            return m;
+        }
+
+        private static MovieItemDetail ParseMovieImage(MovieItemDetail m, JsonObject obj)
+        {
+            var list = obj["images"].GetArray();
+            m.Images = new List<string>();
+            foreach (var i in list)
+            {
+                var img = i.GetObject();
+                m.Images.Add(img["image"].GetString());
+            }
+            return m;
         }
 
         /// <summary>
@@ -65,13 +243,18 @@ namespace MoviePreview.Services
         /// <returns>电影列表</returns>
         public static async Task<List<MovieItemNow>> GetLocationMovies(string location = "365")
         {
-            JsonObject res = await NetService.GetJson(string.Format(APILocationMovies, location));
-            JsonArray ms = res["ms"].GetArray();
+            JsonObject res = await NetService.GetJson(string.Format(APIHotPlayMovies, location));
+            JsonArray ms = res["movies"].GetArray();
             var movieList = new List<MovieItemNow>();
             foreach (var m in ms)
             {
-                movieList.Add(ParseLocationMovie(m));
+                var movie = ParseLocationMovie(m);
+                if (movie.Rating > 0)
+                {
+                    movieList.Add(movie);
+                }
             }
+
             return movieList;
         }
 
@@ -83,8 +266,23 @@ namespace MoviePreview.Services
         /// <returns>电影列表</returns>
         public static async Task<List<MovieItemComing>> GetComingMovies(string location = "365")
         {
-            // TODO API
-            return null;
+            var movieList = new List<MovieItemComing>();
+            JsonObject res = await NetService.GetJson(string.Format(APIMovieComingNew, location));
+            JsonArray attentions = res["attention"].GetArray();
+            foreach (var m in attentions)
+            {
+                var movie = ParseComingMovie(m);
+                movie.Hot = true;
+                movieList.Add(movie);
+            }
+            JsonArray moviecomings = res["moviecomings"].GetArray();
+            foreach (var m in moviecomings)
+            {
+                var movie = ParseComingMovie(m);
+                movie.Hot = false;
+                movieList.Add(movie);
+            }
+            return movieList;
         }
 
         /// <summary>
@@ -93,10 +291,29 @@ namespace MoviePreview.Services
         /// </summary>
         /// <param name="id">电影ID</param>
         /// <returns></returns>
-        public static async Task<List<MovieItemDetail>> GetMovieDetail(string id)
+        public static async Task<MovieItemDetail> GetMovieDetail(string id)
         {
-            // TODO API
-            return null;
+            // 详情
+            JsonObject detail = await NetService.GetJson(string.Format(APIMovieDetail, LocationGuangZhou, id));
+            var movieDetail = ParseMovieDetail(detail["data"].GetObject());
+
+            // 演员表
+            JsonObject people = await NetService.GetJson(string.Format(APIMovieCredits, id));
+            movieDetail = ParseMoviePeople(movieDetail, people);
+
+            // 影评
+            JsonObject comments = await NetService.GetJson(string.Format(APIMovieComment, id));
+            movieDetail = ParseMovieComment(movieDetail, comments);
+
+            // 预告片
+            JsonObject videos = await NetService.GetJson(string.Format(APIMovieVideo, id));
+            movieDetail = ParseMovieVideo(movieDetail, videos);
+
+            // 剧照
+            JsonObject images = await NetService.GetJson(string.Format(APIMovieImage, id));
+            movieDetail = ParseMovieImage(movieDetail, images);
+            
+            return movieDetail;
         }
 
     }

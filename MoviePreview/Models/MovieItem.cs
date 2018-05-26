@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -31,20 +33,12 @@ namespace MoviePreview.Models
         public string Actor2 {
             get; set;
         }
-        // 主要演员
-        public string Actors {
-            get; set;
-        }
         // 导演
         public string Directors {
             get; set;
         }
         // 想看人数
         public int WantedCount {
-            get; set;
-        }
-        // 年份
-        public string Year {
             get; set;
         }
         // 封面
@@ -59,14 +53,32 @@ namespace MoviePreview.Models
         // 海报URL
         public BitmapImage ImageUri {
             get {
-                return new BitmapImage(new Uri(Image));
+                if (Image != null && Image != "")
+                {
+                    return new BitmapImage(new Uri(Image));
+                } else
+                {
+                    return new BitmapImage(new Uri("ms-appx://Aesets/background.jpg"));
+                }
             }
         }
     }
 
     public class MovieItemComing : MovieItem
     {
-
+        // 国家
+        public string LocationName {
+            get;set;
+        }
+        // Hot
+        public bool Hot {
+            get;set;
+        }
+        public Visibility DisplayHot {
+            get {
+                return Hot ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
     }
 
     public class MovieItemNow : MovieItem
@@ -84,24 +96,34 @@ namespace MoviePreview.Models
         public string CommonSpecial {
             get; set;
         }
-        // 片长
-        public string Length {
-            get; set;
+        // ----- 生成属性 ----------
+        public double RatingFive {
+            get {
+                return Rating / 2;
+            }
         }
     }
 
     public class MovieItemDetail : MovieItemNow
     {
+        // 国家
+        public string LocationName {
+            get; set;
+        }
+        // 链接
+        public string Url {
+            get;set;
+        }
+        // 片长
+        public string MovieTime {
+            get;set;
+        }
         // 演员
         public List<ActorItem> ActorList {
             get; set;
         }
         // 导演
         public List<PeopleItem> DirectorList {
-            get; set;
-        }
-        // 其他人员
-        public List<PeopleItem> OtherList {
             get; set;
         }
         // 剧情
@@ -118,10 +140,6 @@ namespace MoviePreview.Models
         }
         // 影评
         public List<CommentItem> Comments {
-            get; set;
-        }
-        // 长评
-        public List<CommentPlusItem> CommentsPlus {
             get; set;
         }
         // 预告片
@@ -149,6 +167,9 @@ namespace MoviePreview.Models
         public int Length {
             get; set;
         }
+        public int Type {
+            get;set;
+        }
     }
 
     // 影评
@@ -170,13 +191,27 @@ namespace MoviePreview.Models
         public string HeadImg {
             get; set;
         }
-    }
-
-    // 长评论
-    public class CommentPlusItem : CommentItem
-    {
-        public string Title {
-            get; set;
+        // 评分
+        public double Rating {
+            get;set;
+        }
+        // ---- 生成属性 -----
+        public BitmapImage HeadImgUri {
+            get {
+                if (HeadImg != "")
+                {
+                    return new BitmapImage(new Uri(HeadImg));
+                }
+                else
+                {
+                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
+                }
+            }
+        }
+        public double RatingFive {
+            get {
+                return Rating / 2;
+            }
         }
     }
 
@@ -184,7 +219,7 @@ namespace MoviePreview.Models
     public class PeopleItem
     {
         // ID
-        public int ID {
+        public string ID {
             get; set;
         }
         // 照片
@@ -203,6 +238,19 @@ namespace MoviePreview.Models
         public string TypeName {
             get; set;
         }
+        // ---- 生成属性 -----
+        public BitmapImage ImageUri {
+            get {
+                if (Image != "")
+                {
+                    return new BitmapImage(new Uri(Image));
+                }
+                else
+                {
+                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
+                }
+            }
+        }
     }
 
     public class ActorItem : PeopleItem
@@ -215,7 +263,50 @@ namespace MoviePreview.Models
         public string RoleImage {
             get; set;
         }
+        // ---- 生成属性 -----
+        public BitmapImage RoleImageUri {
+            get {
+                if (RoleImage != "")
+                {
+                    return new BitmapImage(new Uri(RoleImage));
+                }
+                else
+                {
+                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
+                }
+            }
+        }
     }
 
+    public class StrToImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType,
+            object parameter, string language)
+        {
+            // value is the data from the source object.
+            string strUri;
+            if (value != null)
+            {
+                strUri = (string)value;
+                if (strUri != "")
+                {
+                    return new BitmapImage(new Uri(strUri));
+                } else
+                {
+                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
+                }
+            } else
+            {
+                return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
+            }
+        }
+
+        // ConvertBack is not implemented for a OneWay binding.
+        public object ConvertBack(object value, Type targetType,
+            object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 }

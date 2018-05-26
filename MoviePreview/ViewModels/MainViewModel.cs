@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
+using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 
 namespace MoviePreview.ViewModels
@@ -14,7 +16,8 @@ namespace MoviePreview.ViewModels
         public MainViewModel()
         {
         }
-        public ObservableCollection<MovieItem> MovieItems { get; private set; } = new ObservableCollection<MovieItem>();
+        public ObservableCollection<MovieItemNow> MovieItems { get; private set; } = new ObservableCollection<MovieItemNow>();
+
         public Boolean EmptyItem {
             get {
                 return MovieItems.Count == 0;
@@ -28,9 +31,10 @@ namespace MoviePreview.ViewModels
                 var data = await TimeAPIService.GetLocationMovies();
                 foreach (var movie in data)
                 {
-                    MovieItems.Add(movie);
+                        MovieItems.Add(movie);
                 }
                 RaisePropertyChanged("EmptyItem");
+                Singleton<LiveTileService>.Instance.AddTileToQueue("最新上映", MovieItems[0].TitleCn, MovieItems[0].TitleEn);
             }
         }
 

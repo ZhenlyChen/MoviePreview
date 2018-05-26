@@ -93,7 +93,7 @@ namespace MoviePreview.Services
         private async Task StartupAsync()
         {
             ThemeSelectorService.SetRequestedTheme();
-            Singleton<LiveTileService>.Instance.SampleUpdate();
+            // Singleton<LiveTileService>.Instance.SampleUpdate();
             await Task.CompletedTask;
         }
 

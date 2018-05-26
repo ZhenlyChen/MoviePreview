@@ -39,27 +39,46 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:MovieItemNow">
                         <RelativePanel>
-                            <Image x:Name="Image" Source="{x:Bind ImageUri}" Height="300" Margin="0,20"></Image>
-                            <TextBlock x:Name="TextDate" Text="{x:Bind Date}"
-                                       RelativePanel.Below="Image"/>
-                            <TextBlock x:Name="TextHigh"
-                                   RelativePanel.Below="TextDate"
-                                   FontSize="21"
-                                   Text="{x:Bind TitleEn}" Margin="0,10"/>
-                            <TextBlock x:Name="TextLow"
-                                   RelativePanel.Below="TextDate"
-                                   RelativePanel.RightOf="TextHigh"
-                                   Margin="5,18"
-                                   FontSize="14"
+                            <Image x:Name="ImageMovie"
+                                   Source="{x:Bind ImageUri}"
+                                   MaxHeight="300"
+                                   Margin="0,10"></Image>
+                            <TextBlock x:Name="TextTitleCn"
+                                    RelativePanel.Below="ImageMovie"
+                                   FontSize="20"
+                                   Text="{x:Bind TitleCn}"/>
+                            <TextBlock x:Name="TextTitleEn"
+                                   RelativePanel.Below="TextTitleCn"
+                                   FontSize="15"
+                                   Text="{x:Bind TitleEn}"/>
+                            <TextBlock x:Name="TextDirectors"
+                                   RelativePanel.Below="TextTitleEn"
+                                   Margin="0,8"
+                                   FontSize="17"
                                    Text="{x:Bind Directors}"/>
                             <TextBlock x:Name="TextType"
-                                    RelativePanel.Below="TextHigh"
-                                   FontSize="22"
-                                   Margin="0, 5"
-                                   Text="{x:Bind TitleCn}"/>
-                            <TextBlock x:Name="TextWind"
-                                   RelativePanel.Below="TextType"
+                                   RelativePanel.Below="TextTitleEn"
+                                   RelativePanel.RightOf="TextDirectors"
+                                   Margin="8,12, 0, 0"
                                    Text="{x:Bind MovieType}"/>
+                            <TextBlock x:Name="TextCommonSpecial"
+                                       Text="{x:Bind CommonSpecial}"
+                                       RelativePanel.Below="TextDirectors"/>
+                            <RatingControl x:Name="Rating"
+                                           RelativePanel.Below="TextCommonSpecial"
+                                           PlaceholderValue="{x:Bind RatingFive}"
+                                           Margin="0, 6,0 , 0"
+                                           IsReadOnly="True"/>
+                            <TextBlock x:Name="TextRating"
+                                       RelativePanel.Below="TextCommonSpecial"
+                                       RelativePanel.RightOf="Rating"
+                                       Margin="20, 10, 0, 0"
+                                       Text="{x:Bind Rating}"/>
+                            <TextBlock x:Name="TextDateHelp" Text="上映日期："
+                                       RelativePanel.Below="Rating"/>
+                            <TextBlock x:Name="TextDate" Text="{x:Bind Date}"
+                                       RelativePanel.Below="Rating"
+                                       RelativePanel.RightOf="TextDateHelp"/>
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

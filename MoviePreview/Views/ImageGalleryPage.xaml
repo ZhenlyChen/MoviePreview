@@ -18,12 +18,21 @@
             ItemsSource="{x:Bind ViewModel.Source}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
-            SelectionMode="None">
+            SelectionMode="None"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"  
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollMode="Enabled"                  
+            ScrollViewer.VerticalScrollMode="Disabled">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="ItemClick">
                     <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
                 </ic:EventTriggerBehavior>
             </i:Interaction.Behaviors>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
                     <Image
