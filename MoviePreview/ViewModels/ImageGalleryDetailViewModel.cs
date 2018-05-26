@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace MoviePreview.ViewModels
     {
         private static UIElement _image;
         private object _selectedImage;
-        private ObservableCollection<SampleImage> _source;
+        private ObservableCollection<PostItem> _source;
 
         public object SelectedImage
         {
@@ -28,11 +29,11 @@ namespace MoviePreview.ViewModels
             set
             {
                 Set(ref _selectedImage, value);
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewModel.ImageGallerySelectedIdKey, ((SampleImage)SelectedImage).ID);
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewModel.ImageGallerySelectedIdKey, ((PostItem)SelectedImage).ID);
             }
         }
 
-        public ObservableCollection<SampleImage> Source
+        public ObservableCollection<PostItem> Source
         {
             get => _source;
             set => Set(ref _source, value);
@@ -40,14 +41,18 @@ namespace MoviePreview.ViewModels
 
         public ImageGalleryDetailViewModel()
         {
-            // TODO WTS: Replace this with your actual data
-            Source = SampleDataService.GetGallerySampleData();
+        }
+
+        public void InitSource()
+        {
+            Source = new ObservableCollection<PostItem>(TimeAPIService.CurrentDetail.Images);
         }
 
         public void SetImage(UIElement image) => _image = image;
 
-        public async Task InitializeAsync(SampleImage sampleImage, NavigationMode navigationMode)
+        public async Task InitializeAsync(PostItem sampleImage, NavigationMode navigationMode)
         {
+            InitSource();
             if (sampleImage != null && navigationMode == NavigationMode.New)
             {
                 SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);

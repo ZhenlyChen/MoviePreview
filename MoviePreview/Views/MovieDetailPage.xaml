@@ -5,11 +5,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:MoviePreview.Models"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     Style="{StaticResource PageStyle}"
     DataContext="{Binding MovieDetailViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ScrollViewer x:Name="ScrollPage" VerticalScrollBarVisibility="Auto">
             <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -48,7 +50,7 @@
                            Width="200"
                            Stretch="Uniform"
                            RelativePanel.AlignTopWithPanel="True"
-                       Source="{x:Bind ViewModel.MovieDetail.ImageUri, Mode=OneWay}"/>
+                           Source="{x:Bind ViewModel.MovieDetail.ImageUri, Mode=OneWay}"/>
                     <TextBlock x:Name="TextTitleCn"
                                Text="{x:Bind ViewModel.MovieDetail.TitleCn, Mode=OneWay}"
                                Margin="0, 90, 0, 0"
@@ -230,10 +232,39 @@
                             Margin="20, 10, 0, 0"
                             FontWeight="Bold"/>
 
-                <Frame x:Name="FrameImage"
-                       Grid.Row="7"
-                       Height="200"
-                       Margin="20"/>
+                <GridView
+                    Grid.Row="7"
+                    Margin="20"
+                    x:Name="gridView"
+                    ItemsSource="{x:Bind ViewModel.Source}"
+                    IsItemClickEnabled="True"
+                    Padding="{StaticResource MediumLeftRightMargin}"
+                    SelectionMode="None"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"  
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled">
+                            <i:Interaction.Behaviors>
+                                <ic:EventTriggerBehavior EventName="ItemClick">
+                                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
+                                </ic:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"></StackPanel>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="model:PostItem">
+                            <Image
+                                x:Name="galleryImage"
+                                Style="{StaticResource ThumbnailImageStyle}"
+                                Source="{x:Bind ImageUri}"
+                                AutomationProperties.Name="{x:Bind Title}"
+                                ToolTipService.ToolTip="{x:Bind Title}"/>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
 
                 <TextBlock Text="预告片"
                             Grid.Row="8"

@@ -226,11 +226,28 @@ namespace MoviePreview.Services
         private static MovieItemDetail ParseMovieImage(MovieItemDetail m, JsonObject obj)
         {
             var list = obj["images"].GetArray();
-            m.Images = new List<string>();
+            int eachCount = 0;
+            int type = 0;
+            m.Images = new List<PostItem>();
             foreach (var i in list)
             {
                 var img = i.GetObject();
-                m.Images.Add(img["image"].GetString());
+                int typeNew = (int)img["type"].GetNumber();
+                if (type == typeNew)
+                {
+                    if (eachCount > 2) continue;
+                    eachCount++;
+                } else
+                {
+                    eachCount = 0;
+                    type = typeNew;
+                }
+                m.Images.Add(new PostItem()
+                {
+                    ID = img["id"].GetNumber().ToString(),
+                    Title = img["imageSubtypeDes"].GetString(),
+                    Image = img["image"].GetString(),
+                });
             }
             return m;
         }
@@ -285,6 +302,8 @@ namespace MoviePreview.Services
             return movieList;
         }
 
+        public static MovieItemDetail CurrentDetail;
+        public static Dictionary<string, MovieItemDetail> GetedDetail;
         /// <summary>
         /// 获取电影详情(包括详情，影评，预告片，剧照，演员表)
         /// 需使用5个API
@@ -312,7 +331,10 @@ namespace MoviePreview.Services
             // 剧照
             JsonObject images = await NetService.GetJson(string.Format(APIMovieImage, id));
             movieDetail = ParseMovieImage(movieDetail, images);
-            
+
+            CurrentDetail = movieDetail;
+            if (GetedDetail == null) GetedDetail = new Dictionary<string, MovieItemDetail>();
+            GetedDetail[movieDetail.ID] = movieDetail;
             return movieDetail;
         }
 

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace MoviePreview.ViewModels
 {
@@ -17,7 +20,7 @@ namespace MoviePreview.ViewModels
         {
         }
         public ObservableCollection<MovieItemNow> MovieItems { get; private set; } = new ObservableCollection<MovieItemNow>();
-
+        
         public Boolean EmptyItem {
             get {
                 return MovieItems.Count == 0;

@@ -138,6 +138,7 @@
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\APIService.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
+    <Compile Include="Services\ImageCacheService.cs" />
     <Compile Include="Services\LiveTileService.cs" />
     <Compile Include="Services\LiveTileServices.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />

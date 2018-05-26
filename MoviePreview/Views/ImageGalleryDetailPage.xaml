@@ -27,14 +27,14 @@
             x:Name="flipView"
             Visibility="Collapsed"
             ItemsSource="{x:Bind ViewModel.Source}"
-            SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=TwoWay}">
+            SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=OneWay}">
             <FlipView.ItemTemplate>
-                <DataTemplate x:DataType="models:SampleImage">
+                <DataTemplate x:DataType="models:PostItem">
                     <Viewbox StretchDirection="DownOnly">
                         <Image
                             x:Name="detailImage"
                             Stretch="None"
-                            Source="{x:Bind Source, Mode=OneWay}" />
+                            Source="{x:Bind ImageUri, Mode=OneWay}" />
                     </Viewbox>
                 </DataTemplate>
             </FlipView.ItemTemplate>
@@ -45,6 +45,6 @@
         <Image
             x:Name="previewImage"
             Style="{StaticResource DetailImageStyle}"
-            Source="{x:Bind ViewModel.SelectedImage.(models:SampleImage.Source), Mode=OneWay}" />
+            Source="{x:Bind ViewModel.SelectedImage.(models:PostItem.ImageUri), Mode=OneWay}" />
     </Grid>
 </Page>

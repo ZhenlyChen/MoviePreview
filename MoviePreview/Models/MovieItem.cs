@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using MoviePreview.Services;
 
 namespace MoviePreview.Models
 {
@@ -48,18 +49,12 @@ namespace MoviePreview.Models
         // 上映日期
         public string Date {
             get; set;
-        }
+        } 
         // ---- 生成属性 ——--
         // 海报URL
         public BitmapImage ImageUri {
             get {
-                if (Image != null && Image != "")
-                {
-                    return new BitmapImage(new Uri(Image));
-                } else
-                {
-                    return new BitmapImage(new Uri("ms-appx://Aesets/background.jpg"));
-                }
+                return ImageCacheService.GetImage(Image);
             }
         }
     }
@@ -131,7 +126,7 @@ namespace MoviePreview.Models
             get; set;
         }
         // 剧照
-        public List<string> Images {
+        public List<PostItem> Images {
             get; set;
         }
         // 票房
@@ -145,6 +140,28 @@ namespace MoviePreview.Models
         // 预告片
         public List<VideoItem> Videos {
             get; set;
+        }
+    }
+
+    // 海报信息
+    public class PostItem
+    {
+        // ID
+        public string ID {
+            get;set;
+        }
+        // 标题
+        public string Title {
+            get;set;
+        }
+        public string Image {
+            get;set;
+        }
+        // ---- 生成属性 -----
+        public BitmapImage ImageUri {
+            get {
+                return ImageCacheService.GetImage(Image);
+            }
         }
     }
 
@@ -198,14 +215,7 @@ namespace MoviePreview.Models
         // ---- 生成属性 -----
         public BitmapImage HeadImgUri {
             get {
-                if (HeadImg != "")
-                {
-                    return new BitmapImage(new Uri(HeadImg));
-                }
-                else
-                {
-                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
-                }
+                return ImageCacheService.GetImage(HeadImg);
             }
         }
         public double RatingFive {
@@ -241,14 +251,7 @@ namespace MoviePreview.Models
         // ---- 生成属性 -----
         public BitmapImage ImageUri {
             get {
-                if (Image != "")
-                {
-                    return new BitmapImage(new Uri(Image));
-                }
-                else
-                {
-                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
-                }
+                return ImageCacheService.GetImage(Image);
             }
         }
     }
@@ -266,47 +269,8 @@ namespace MoviePreview.Models
         // ---- 生成属性 -----
         public BitmapImage RoleImageUri {
             get {
-                if (RoleImage != "")
-                {
-                    return new BitmapImage(new Uri(RoleImage));
-                }
-                else
-                {
-                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
-                }
+                return ImageCacheService.GetImage(RoleImage);
             }
         }
     }
-
-    public class StrToImageConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType,
-            object parameter, string language)
-        {
-            // value is the data from the source object.
-            string strUri;
-            if (value != null)
-            {
-                strUri = (string)value;
-                if (strUri != "")
-                {
-                    return new BitmapImage(new Uri(strUri));
-                } else
-                {
-                    return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
-                }
-            } else
-            {
-                return new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
-            }
-        }
-
-        // ConvertBack is not implemented for a OneWay binding.
-        public object ConvertBack(object value, Type targetType,
-            object parameter, string language)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
 }

@@ -25,7 +25,7 @@ namespace MoviePreview.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.InitializeAsync(e.Parameter as SampleImage, e.NavigationMode);
+            await ViewModel.InitializeAsync(e.Parameter as PostItem, e.NavigationMode);
             showFlipView.Begin();
         }
 
@@ -35,7 +35,7 @@ namespace MoviePreview.Views
             if (e.NavigationMode == NavigationMode.Back)
             {
                 previewImage.Visibility = Visibility.Visible;
-                ViewModel.SetAnimation();
+                // ViewModel.SetAnimation();
             }
         }
     }
