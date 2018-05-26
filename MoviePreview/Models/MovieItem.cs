@@ -97,6 +97,11 @@ namespace MoviePreview.Models
                 return Rating / 2;
             }
         }
+        public Visibility HasRating {
+            get {
+                return Rating == -1 ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
     }
 
     public class MovieItemDetail : MovieItemNow
@@ -186,6 +191,12 @@ namespace MoviePreview.Models
         }
         public int Type {
             get;set;
+        }
+        // ---- 生成属性 -----
+        public BitmapImage ImageUri {
+            get {
+                return ImageCacheService.GetImage(Image);
+            }
         }
     }
 

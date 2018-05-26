@@ -15,7 +15,7 @@ namespace MoviePreview.Services
             if (imageCache == null)
             {
                 imageCache = new Dictionary<string, BitmapImage>();
-                imageCache[""] = new BitmapImage(new Uri("ms-appx://Assets/background.jpg"));
+                imageCache[""] = new BitmapImage(new Uri("ms-appx:///Assets/background.jpg"));
             }
             if (uri == null) return imageCache[""];
             if (!imageCache.ContainsKey(uri))

@@ -9,6 +9,7 @@ using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -47,6 +48,8 @@ namespace MoviePreview.ViewModels
 
         private ObservableCollection<PostItem> _source;
         private ICommand _itemSelectedCommand;
+        private ICommand _videoSelectedCommand;
+        private ICommand _openUri;
         private GridView _imagesGridView;
 
         public ObservableCollection<PostItem> Source {
@@ -55,7 +58,10 @@ namespace MoviePreview.ViewModels
         }
 
         public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new RelayCommand<ItemClickEventArgs>(OnsItemSelected));
-        
+
+        public ICommand VideoSelectedCommand => _videoSelectedCommand ?? (_videoSelectedCommand = new RelayCommand<ItemClickEventArgs>(OnVideoSelected));
+
+        public ICommand OpenUri => _openUri ?? (_openUri = new RelayCommand(OpenTheUri));
 
         public void Initialize(GridView imagesGridView)
         {
@@ -69,14 +75,6 @@ namespace MoviePreview.ViewModels
             {
                 var item = _imagesGridView.Items.FirstOrDefault(i => ((PostItem)i).ID == selectedImageId);
                 if (item != null) _imagesGridView.ScrollIntoView(item);
-                //var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryAnimationClose);
-                //if (animation != null)
-                //{
-                //    var item = _imagesGridView.Items.FirstOrDefault(i => ((PostItem)i).ID == selectedImageId);
-                //    _imagesGridView.ScrollIntoView(item);
-                //    await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
-                //}
-
                 ApplicationData.Current.LocalSettings.SaveString(ImageGallerySelectedIdKey, string.Empty);
             }
         }
@@ -92,6 +90,18 @@ namespace MoviePreview.ViewModels
             var selected = args.ClickedItem as PostItem;
             _imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "galleryImage");
             NavigationService.Navigate(typeof(ImageGalleryDetailViewModel).FullName, args.ClickedItem);
+        }
+
+        private void OnVideoSelected(ItemClickEventArgs args)
+        {
+            var selected = args.ClickedItem as VideoItem;
+            NavigationService.Navigate(typeof(MediaPlayerViewModel).FullName, selected.Url);
+
+        }
+
+        private async void OpenTheUri()
+        {
+            await Launcher.LaunchUriAsync(new Uri(movieDetail.Url));
         }
     }
 }

@@ -11,13 +11,16 @@
     <Grid x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid>
-            <ProgressRing x:Name="Loading" IsActive="{x:Bind ViewModel.EmptyItem, Mode=OneWay}" Visibility="{x:Bind ViewModel.EmptyItem, Mode=OneWay}"/>
+            <ProgressRing x:Name="Loading"
+                          IsActive="{x:Bind ViewModel.EmptyItem, Mode=OneWay}"/>
+            
             <ListView x:Name="LocationMovieList"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{x:Bind ViewModel.MovieItems}"
                   Margin="25,25,25,0"
                   FontFamily="Segoe UI"
                   IsItemClickEnabled="True"
+                  ItemClick="LocationMovieList_ItemClick"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"  
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollMode="Enabled"                  
@@ -72,6 +75,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <ProgressRing x:Name="LoadToOther"
+                          IsActive="False"
+                          Height="50"
+                          Width="50"
+                          Foreground="Blue"/>
         </Grid>
     </Grid>
 </Page>

@@ -35,7 +35,7 @@
                            RelativePanel.AlignLeftWithPanel="True"
                            HorizontalAlignment="Stretch">
                     <Rectangle.Fill>
-                        <AcrylicBrush FallbackColor="#FFE6E6E6" TintColor="#99FFFFFF" TintOpacity="0.8"/>
+                        <AcrylicBrush FallbackColor="#ffe6E6E6" TintColor="#99dddddd" TintOpacity="0.5"/>
                     </Rectangle.Fill>
                 </Rectangle>
                 <RelativePanel x:Name="DataTopPanel"
@@ -72,6 +72,7 @@
                             RelativePanel.Below="TextTitleEn"
                             RelativePanel.RightOf="Rating"
                             Margin="20, 10, 0, 0"
+                               Visibility="{x:Bind ViewModel.MovieDetail.HasRating, Mode=OneWay}"
                             Text="{x:Bind ViewModel.MovieDetail.Rating, Mode=OneWay}"/>
                     <TextBlock x:Name="TextDirectorsHelp"
                                    RelativePanel.Below="Rating"
@@ -96,6 +97,7 @@
                             Style="{ThemeResource ButtonRevealStyle}"
                             RelativePanel.AlignRightWithPanel="True"
                             RelativePanel.AlignBottomWithPanel="True"
+                            Command="{x:Bind ViewModel.OpenUri}"
                             Margin="20"
                             Content="购票选座"/>
                 </RelativePanel>
@@ -129,12 +131,14 @@
                                Grid.Column="1"
                                FontSize="18"
                                Margin="0, 10, 0, 0"
-                               FontWeight="Bold"/>
+                               FontWeight="Bold"
+                               Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"/>
                     <RelativePanel Padding="20"
                           Grid.Row="1"
                           Grid.Column="1"
                           HorizontalAlignment="Left"
-                          VerticalAlignment="Top">
+                          VerticalAlignment="Top"
+                          Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}">
                         <TextBlock x:Name="TextTime"
                                     Text="时长： "
                                    RelativePanel.AlignTopWithPanel="True"
@@ -272,17 +276,60 @@
                             Margin="20, 10, 0, 0"
                             FontWeight="Bold"/>
 
-                <Frame x:Name="FrameVideo"
-                       Grid.Row="9"
-                       Height="200"
-                       Margin="20"/>
+                <GridView
+                    Grid.Row="9"
+                    Margin="20"
+                    x:Name="gridViewVideo"
+                    ItemsSource="{x:Bind ViewModel.MovieDetail.Videos}"
+                    IsItemClickEnabled="True"
+                    Padding="{StaticResource MediumLeftRightMargin}"
+                    SelectionMode="None"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"  
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollMode="Enabled"                  
+                    ScrollViewer.VerticalScrollMode="Disabled">
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="ItemClick">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.VideoSelectedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="model:VideoItem">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Image
+                                    x:Name="galleryImage"
+                                    Grid.Row="0"
+                                    Style="{StaticResource ThumbnailImageStyle}"
+                                    Source="{x:Bind ImageUri}"
+                                    AutomationProperties.Name="{x:Bind Title}"
+                                    ToolTipService.ToolTip="{x:Bind Title}"/>
+                                <TextBlock
+                                    Margin="10"
+                                    x:Name="TextTitle"
+                                    Grid.Row="1"
+                                    Text="{x:Bind Title}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
 
                 <TextBlock Text="影评"
                             Grid.Row="10"
                             FontSize="18"
                             Margin="20, 10, 0, 0"
-                            FontWeight="Bold"/>
+                            FontWeight="Bold"
+                            Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"/>
                 <ListView ItemsSource="{x:Bind ViewModel.MovieDetail.Comments, Mode=OneWay}"
+                          Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"
                           Grid.Row="11"
                           CanDragItems="False"
                           Margin="10"
