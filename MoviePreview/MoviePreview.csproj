@@ -122,18 +122,12 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="BackgroundTasks\BackgroundTask.cs" />
     <Compile Include="BackgroundTasks\BackgroundTask1.cs" />
-    <Compile Include="Helpers\DataRequestExtensions.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Helpers\TaskExtensions.cs" />
-    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\MovieItem.cs" />
-    <Compile Include="Models\SampleImage.cs" />
-    <Compile Include="Models\SampleOrder.cs" />
-    <Compile Include="Models\ShareSourceData.cs" />
-    <Compile Include="Models\ShareSourceItem.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\APIService.cs" />
@@ -144,7 +138,6 @@
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\NetService.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />
-    <Compile Include="Services\SampleDataService.cs" />
     <Compile Include="Services\SuspendAndResumeService.cs" />
     <Compile Include="Services\SuspensionState.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
@@ -152,7 +145,6 @@
     <Compile Include="Services\ToastNotificationsService.Samples.cs" />
     <Compile Include="ViewModels\BlankViewModel.cs" />
     <Compile Include="ViewModels\ImageGalleryDetailViewModel.cs" />
-    <Compile Include="ViewModels\ImageGalleryViewModel.cs" />
     <Compile Include="ViewModels\LoginWebViewViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MediaPlayerViewModel.cs" />
@@ -166,9 +158,6 @@
     </Compile>
     <Compile Include="Views\ImageGalleryDetailPage.xaml.cs">
       <DependentUpon>ImageGalleryDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ImageGalleryPage.xaml.cs">
-      <DependentUpon>ImageGalleryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginWebViewPage.xaml.cs">
       <DependentUpon>LoginWebViewPage.xaml</DependentUpon>
@@ -236,10 +225,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ImageGalleryDetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ImageGalleryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

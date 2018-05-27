@@ -12,6 +12,9 @@ using MoviePreview.Services;
 using Windows.Foundation;
 using Windows.System.Threading;
 using Windows.UI.Core;
+using MoviePreview.Helpers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MoviePreview.Views
 {
@@ -72,13 +75,17 @@ namespace MoviePreview.Views
             }
             else
             {
-                AddData(e.Parameter as MovieItemDetail);
+                var data = e.Parameter as MovieItemDetail;
+                if (data == null)
+                {
+                    data = JsonConvert.DeserializeObject<MovieItemDetail>((e.Parameter as JObject).ToString());
+                }
+                AddData(data);
+                MovieImage.Source = new BitmapImage(new Uri(data.Image));
                 ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("Image");
                 if (imageAnimation != null)
                 {
                     MovieImage.Opacity = 0;
-                    MovieImage.Source = new BitmapImage(new Uri((e.Parameter as MovieItemDetail).Image));
-                    // Wait for image opened. In future Insider Preview releases, this won't be necessary.
                     MovieImage.ImageOpened += (sender_, e_) =>
                     {
                         MovieImage.Opacity = 1;
@@ -86,7 +93,20 @@ namespace MoviePreview.Views
                     };
                 }
             }
+            Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += Instance_OnBackgroundEntering;
         }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering -= Instance_OnBackgroundEntering;
+        }
+
+        private void Instance_OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
+        {
+            ViewModel.SaveData(ref e);
+        }
+
+
 
         private void BGRectangle_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {

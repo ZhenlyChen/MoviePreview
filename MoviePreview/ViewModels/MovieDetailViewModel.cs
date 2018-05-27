@@ -45,16 +45,24 @@ namespace MoviePreview.ViewModels
             RaisePropertyChanged("GetVisibility");
         }
 
+        public void SaveData(ref OnBackgroundEnteringEventArgs e)
+        {
+            e.SuspensionState.Data = TimeAPIService.CurrentDetail;
+            e.Target = this.GetType();
+        }
+
         public const string ImageGallerySelectedIdKey = "ImageGallerySelectedIdKey";
         public const string ImageGalleryAnimationOpen = "ImageGallery_AnimationOpen";
         public const string ImageGalleryAnimationClose = "ImageGallery_AnimationClose";
 
         private ObservableCollection<PostItem> _source;
+        private GridView _imagesGridView;
+
         private ICommand _itemSelectedCommand;
         private ICommand _videoSelectedCommand;
         private ICommand _openUriCommand;
         private ICommand _shareMovieCommand;
-        private GridView _imagesGridView;
+        private ICommand _addFavoriteCommand;
 
         public ObservableCollection<PostItem> Source {
             get => _source;
@@ -68,6 +76,10 @@ namespace MoviePreview.ViewModels
         public ICommand OpenUri => _openUriCommand ?? (_openUriCommand = new RelayCommand(OpenTheUri));
 
         public ICommand ShareMovieCommand => _shareMovieCommand ?? (_shareMovieCommand = new RelayCommand(ShareMovie));
+
+        public ICommand AddFavoriteCommand => _addFavoriteCommand ?? (_addFavoriteCommand = new RelayCommand(AddFavorite));
+
+
 
         public void Initialize(GridView imagesGridView)
         {
@@ -122,9 +134,16 @@ namespace MoviePreview.ViewModels
                 RandomAccessStreamReference imageStreamRef = RandomAccessStreamReference.CreateFromUri(new Uri(movie.Image));
                 request.Data.Properties.Thumbnail = imageStreamRef;
                 request.Data.SetBitmap(imageStreamRef);
-                request.Data.SetText($"剧情简介：{movie.Story}\n");
+                request.Data.SetText($"剧情简介：{movie.Story}\n\n用预影分享你的电影\n");
+                request.Data.SetWebLink(new Uri(movie.Url));
             };
             DataTransferManager.ShowShareUI();
+        }
+
+        private void AddFavorite()
+        {
+            //TODO
+            // 加入我的收藏
         }
     }
 }

@@ -9,7 +9,7 @@ namespace MoviePreview.Services
         }
 
         public Type Target {
-            get; private set;
+            get; set;
         }
 
         public OnBackgroundEnteringEventArgs(SuspensionState suspensionState, Type target)

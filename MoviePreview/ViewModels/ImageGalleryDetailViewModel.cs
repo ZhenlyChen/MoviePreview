@@ -19,6 +19,7 @@ namespace MoviePreview.ViewModels
 {
     public class ImageGalleryDetailViewModel : ViewModelBase
     {
+        
         private static UIElement _image;
         private object _selectedImage;
         private ObservableCollection<PostItem> _source;
@@ -29,7 +30,7 @@ namespace MoviePreview.ViewModels
             set
             {
                 Set(ref _selectedImage, value);
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewModel.ImageGallerySelectedIdKey, ((PostItem)SelectedImage).ID);
+                ApplicationData.Current.LocalSettings.SaveString(MovieDetailViewModel.ImageGallerySelectedIdKey, ((PostItem)SelectedImage).ID);
             }
         }
 
@@ -59,20 +60,20 @@ namespace MoviePreview.ViewModels
             }
             else
             {
-                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewModel.ImageGallerySelectedIdKey);
+                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(MovieDetailViewModel.ImageGallerySelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
                 }
             }
 
-            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewModel.ImageGalleryAnimationOpen);
+            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(MovieDetailViewModel.ImageGalleryAnimationOpen);
             animation?.TryStart(_image);
         }
 
         public void SetAnimation()
         {
-            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewModel.ImageGalleryAnimationClose, _image);
+            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(MovieDetailViewModel.ImageGalleryAnimationClose, _image);
         }
     }
 }

@@ -20,7 +20,6 @@ namespace MoviePreview.ViewModels
             Register<BlankViewModel, BlankPage>();
             Register<SettingsViewModel, SettingsPage>();
             Register<MediaPlayerViewModel, MediaPlayerPage>();
-            Register<ImageGalleryViewModel, ImageGalleryPage>();
             Register<ImageGalleryDetailViewModel, ImageGalleryDetailPage>();
             Register<LoginWebViewViewModel, LoginWebViewPage>();
             Register<MovieDetailViewModel, MovieDetailPage>();
@@ -34,9 +33,7 @@ namespace MoviePreview.ViewModels
         public LoginWebViewViewModel LoginWebViewViewModel => ServiceLocator.Current.GetInstance<LoginWebViewViewModel>();
         
         public ImageGalleryDetailViewModel ImageGalleryDetailViewModel => ServiceLocator.Current.GetInstance<ImageGalleryDetailViewModel>();
-
-        public ImageGalleryViewModel ImageGalleryViewModel => ServiceLocator.Current.GetInstance<ImageGalleryViewModel>();
-
+        
         // A Guid is generated as a unique key for each instance as reusing the same VM instance in multiple MediaPlayerElement instances can cause playback errors
         public MediaPlayerViewModel MediaPlayerViewModel => ServiceLocator.Current.GetInstance<MediaPlayerViewModel>(Guid.NewGuid().ToString());
 

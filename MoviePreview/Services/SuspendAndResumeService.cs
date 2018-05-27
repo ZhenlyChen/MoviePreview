@@ -16,8 +16,7 @@ namespace MoviePreview.Services
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
         private const string StateFilename = "SuspendAndResumeState";
-
-        // TODO WTS: Subscribe to this event if you want to save the current state. It is fired just before the app enters the background.
+        
         public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
 
         public async Task SaveStateAsync()
@@ -51,7 +50,7 @@ namespace MoviePreview.Services
             if (saveState?.Target != null)
             {
                 var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-                navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
+                navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState.Data);
             }
         }
     }
