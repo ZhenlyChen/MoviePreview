@@ -18,14 +18,20 @@ namespace MoviePreview.ViewModels
     {
         public MainViewModel()
         {
+            MovieItems = new ObservableCollection<MovieItemNow>();
         }
-        public ObservableCollection<MovieItemNow> MovieItems { get; private set; } = new ObservableCollection<MovieItemNow>();
+        public ObservableCollection<MovieItemNow> _movieItems;
+        public ObservableCollection<MovieItemNow> MovieItems {
+            get => _movieItems;
+            set => Set(ref _movieItems, value);
+        }
         
         public Boolean EmptyItem {
             get {
                 return MovieItems.Count == 0;
             }
         }
+
         public async Task LoadData()
         {
             if (MovieItems.Count == 0)

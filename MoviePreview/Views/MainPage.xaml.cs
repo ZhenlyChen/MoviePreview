@@ -8,6 +8,10 @@ using Windows.UI.Xaml.Media.Imaging;
 using MoviePreview.Models;
 using MoviePreview.Services;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Media.Animation;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Globalization;
 
 namespace MoviePreview.Views
 {
@@ -45,13 +49,13 @@ namespace MoviePreview.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             LocationMovieList.IsEnabled = true;
-            LoadToOther.IsActive = false;
+            LoadToOther.Visibility = Visibility.Collapsed;
         }
 
         private async void LocationMovieList_ItemClick(object sender, ItemClickEventArgs e)
         {
             LocationMovieList.IsEnabled = false;
-            LoadToOther.IsActive = true;
+            LoadToOther.Visibility = Visibility.Visible;
             MovieItemDetail data;
             string movieId = (e.ClickedItem as MovieItemNow).ID;
             if (TimeAPIService.GetedDetail != null && TimeAPIService.GetedDetail.ContainsKey(movieId))
@@ -62,7 +66,19 @@ namespace MoviePreview.Views
                 data = await TimeAPIService.GetMovieDetail(movieId);
             }
             LocationMovieList.PrepareConnectedAnimation("Image", e.ClickedItem as MovieItemNow, "ImageMovie");
-            NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, data);
+            NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, data, new SuppressNavigationTransitionInfo());
+        }
+
+        private void RadioButtonRating_Checked(object sender, RoutedEventArgs e)
+        {
+            ViewModel.MovieItems = new ObservableCollection<MovieItemNow>(ViewModel.MovieItems.OrderBy(i => -i.Rating));
+        }
+
+        private void RadioButtonDate_Checked(object sender, RoutedEventArgs e)
+        {
+            ViewModel.MovieItems = new ObservableCollection<MovieItemNow>(ViewModel.MovieItems.OrderByDescending(i => {
+                return DateTime.ParseExact(i.Date, "yyyy-M-d", CultureInfo.InvariantCulture);
+            }));
         }
     }
 }

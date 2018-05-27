@@ -27,83 +27,100 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-            <RelativePanel x:Name="TopPanel"
-                           Grid.Row="0"
-                           MinHeight="512">
-                <Rectangle RelativePanel.AlignBottomWithPanel="True" MinHeight="200"
-                           RelativePanel.AlignRightWithPanel="True"
-                           RelativePanel.AlignLeftWithPanel="True"
-                           HorizontalAlignment="Stretch">
-                    <Rectangle.Fill>
-                        <AcrylicBrush FallbackColor="#ffe6E6E6" TintColor="#99dddddd" TintOpacity="0.5"/>
-                    </Rectangle.Fill>
-                </Rectangle>
-                <RelativePanel x:Name="DataTopPanel"
-                                RelativePanel.AlignBottomWithPanel="True"
-                               RelativePanel.AlignRightWithPanel="True"
-                               RelativePanel.AlignLeftWithPanel="True"
-                               Height="280"
-                               Visibility="{x:Bind ViewModel.GetVisibility, Mode=OneWay}"
-                           Background="Transparent">
-                    <Image x:Name="MovieImage"
-                           Margin="18"
-                           Width="200"
-                           Stretch="Uniform"
-                           RelativePanel.AlignTopWithPanel="True"
-                           Source="{x:Bind ViewModel.MovieDetail.ImageUri, Mode=OneWay}"/>
-                    <TextBlock x:Name="TextTitleCn"
-                               Text="{x:Bind ViewModel.MovieDetail.TitleCn, Mode=OneWay}"
-                               Margin="0, 90, 0, 0"
-                               FontSize="30"
-                               RelativePanel.RightOf="MovieImage"
-                               RelativePanel.AlignTopWithPanel="True"/>
-                    <TextBlock x:Name="TextTitleEn"
-                               Text="{x:Bind ViewModel.MovieDetail.TitleEn, Mode=OneWay}"
-                               FontSize="20"
-                               RelativePanel.RightOf="MovieImage"
-                               RelativePanel.Below="TextTitleCn"/>
-                    <RatingControl x:Name="Rating"
-                                RelativePanel.Below="TextTitleEn"
-                               RelativePanel.RightOf="MovieImage"
-                                PlaceholderValue="{x:Bind ViewModel.MovieDetail.RatingFive, Mode=OneWay}"
-                                Margin="0, 6,0 , 0"
-                                IsReadOnly="True"/>
-                    <TextBlock x:Name="TextRating"
+                <RelativePanel
+                    x:Name="TopPanel"
+                    Grid.Row="0"
+                    MinHeight="512">
+                    <RelativePanel.Resources>
+                        <Storyboard x:Name="EnterStoryboard">
+                            <FadeOutThemeAnimation Storyboard.TargetName="BGRectangle" />
+                        </Storyboard>
+                        <Storyboard x:Name="ExitStoryboard">
+                            <FadeInThemeAnimation Storyboard.TargetName="BGRectangle" />
+                        </Storyboard>
+                    </RelativePanel.Resources>
+                    <Rectangle
+                        x:Name="BGRectangle"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        PointerEntered="BGRectangle_PointerEntered"
+                        PointerExited="BGRectangle_PointerExited"
+                        MinHeight="200"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        HorizontalAlignment="Stretch">
+                        <Rectangle.Fill>
+                            <AcrylicBrush FallbackColor="#ffe6E6E6" TintColor="#99dddddd" TintOpacity="0.5"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <RelativePanel
+                        x:Name="DataTopPanel"
+                        RelativePanel.AlignBottomWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        Height="280"
+                        Visibility="{x:Bind ViewModel.GetVisibility, Mode=OneWay}"
+                        Background="Transparent">
+                        <Image
+                            x:Name="MovieImage"
+                            Margin="18"
+                            Width="200"
+                            Stretch="Uniform"
+                            RelativePanel.AlignTopWithPanel="True"/>
+                        <TextBlock
+                            x:Name="TextTitleCn"
+                            Text="{x:Bind ViewModel.MovieDetail.TitleCn, Mode=OneWay}"
+                            Margin="0, 90, 0, 0"
+                            FontSize="27"
+                            RelativePanel.RightOf="MovieImage"
+                            RelativePanel.AlignTopWithPanel="True"/>
+                        <TextBlock
+                            x:Name="TextTitleEn"
+                            Text="{x:Bind ViewModel.MovieDetail.TitleEn, Mode=OneWay}"
+                            FontSize="20"
+                            RelativePanel.RightOf="MovieImage"
+                            RelativePanel.Below="TextTitleCn"/>
+                        <RatingControl
+                            x:Name="Rating"
+                            RelativePanel.Below="TextTitleEn"
+                            RelativePanel.RightOf="MovieImage"
+                            PlaceholderValue="{x:Bind ViewModel.MovieDetail.RatingFive, Mode=OneWay}"
+                            Margin="0, 10, 0, 0"
+                            IsReadOnly="True"/>
+                        <TextBlock
+                            x:Name="TextRating"
                             RelativePanel.Below="TextTitleEn"
                             RelativePanel.RightOf="Rating"
-                            Margin="20, 10, 0, 0"
-                               Visibility="{x:Bind ViewModel.MovieDetail.HasRating, Mode=OneWay}"
+                            Margin="20, 13, 0, 0"
+                            Visibility="{x:Bind ViewModel.MovieDetail.HasRating, Mode=OneWay}"
                             Text="{x:Bind ViewModel.MovieDetail.Rating, Mode=OneWay}"/>
-                    <TextBlock x:Name="TextDirectorsHelp"
-                                   RelativePanel.Below="Rating"
-                               RelativePanel.RightOf="MovieImage"
-                                   Text="导演： "/>
-                    <TextBlock x:Name="TextDirectors"
-                                   RelativePanel.Below="Rating"
-                                   RelativePanel.RightOf="TextDirectorsHelp"
-                                   Text="{x:Bind ViewModel.MovieDetail.Directors, Mode=OneWay}"/>
-                    <TextBlock x:Name="TextType"
-                               Margin="-4, 5,0,5"
-                                   RelativePanel.Below="TextDirectors"
-                                   RelativePanel.RightOf="MovieImage"
-                                   Text="{x:Bind  ViewModel.MovieDetail.MovieType, Mode=OneWay}"/>
-                    <TextBlock x:Name="TextDateHelp" Text="上映日期："
-                               RelativePanel.Below="TextType"
-                               RelativePanel.RightOf="MovieImage"/>
-                    <TextBlock x:Name="TextDate" Text="{x:Bind ViewModel.MovieDetail.Date, Mode=OneWay}"
-                               RelativePanel.Below="TextType"
-                               RelativePanel.RightOf="TextDateHelp"/>
-                    <Button x:Name="ButtonGoto"
+                        <TextBlock
+                            x:Name="TextType"
+                            Margin="-4, 5, 0, 12"
+                            FontSize="17"
+                            RelativePanel.Below="Rating"
+                            RelativePanel.RightOf="MovieImage"
+                            Text="{x:Bind  ViewModel.MovieDetail.MovieType, Mode=OneWay}"/>
+                        <TextBlock
+                            x:Name="TextDateHelp"
+                            Text="上映日期："
+                            RelativePanel.Below="TextType"
+                            RelativePanel.RightOf="MovieImage"/>
+                        <TextBlock
+                            x:Name="TextDate"
+                            Text="{x:Bind ViewModel.MovieDetail.Date, Mode=OneWay}"
+                            RelativePanel.Below="TextType"
+                            RelativePanel.RightOf="TextDateHelp"/>
+                        <Button
+                            x:Name="ButtonGoto"
                             Style="{ThemeResource ButtonRevealStyle}"
                             RelativePanel.AlignRightWithPanel="True"
                             RelativePanel.AlignBottomWithPanel="True"
                             Command="{x:Bind ViewModel.OpenUri}"
                             Margin="20"
                             Content="购票选座"/>
+                    </RelativePanel>
                 </RelativePanel>
-            </RelativePanel>
-                <Grid Grid.Row="1"
-                      Margin="20">
+                <Grid Grid.Row="1" Margin="20">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -123,7 +140,7 @@
                           Grid.Column="0"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top">
-                    <TextBlock Text="{x:Bind ViewModel.MovieDetail.Story, Mode=OneWay}"
+                        <TextBlock Text="{x:Bind ViewModel.MovieDetail.Story, Mode=OneWay}"
                                TextWrapping="WrapWholeWords"/>
                     </Grid>
                     <TextBlock Text="其他信息"
@@ -164,8 +181,7 @@
                           Grid.Row="3"
                           CanDragItems="False"
                           Margin="10"
-                          Padding="20"
-                          >
+                          Padding="20">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:PeopleItem">
                             <RelativePanel Margin="10">
@@ -203,20 +219,26 @@
                                                RelativePanel.AlignTopWithPanel="True"
                                                RelativePanel.AlignLeftWithPanel="True"
                                                Height="60"/>
-                                <TextBlock x:Name="ActorName"
-                                           Width="150"
-                                           Text="{x:Bind NameCn, Mode=OneWay}"
-                                           RelativePanel.RightOf="PictureHeadActor"
-                                           Margin="20, 10, 0, 0"/>
-                                <TextBlock x:Name="ActorNameEn"
-                                           Text="{x:Bind NameEn, Mode=OneWay}"
-                                           RelativePanel.Below="ActorName"
-                                           RelativePanel.RightOf="PictureHeadActor"
-                                           Margin="20, 0"/>
+                                <Grid x:Name="ActorGrid"
+                                      RelativePanel.RightOf="PictureHeadActor"
+                                      MinWidth="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Text="{x:Bind NameCn, Mode=OneWay}"
+                                        Margin="20, 10, 0, 0"/>
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Text="{x:Bind NameEn, Mode=OneWay}"
+                                        Margin="20, 0"/>
+                                </Grid>
                                 <TextBlock x:Name="ActorHelpText"
                                            Text="饰"
                                            Margin="0,20, 40, 0"
-                                           RelativePanel.RightOf="ActorName"/>
+                                           RelativePanel.RightOf="ActorGrid"/>
                                 <PersonPicture x:Name="PictureHeadRole" ProfilePicture="{x:Bind RoleImageUri, Mode=OneWay}"
                                                RelativePanel.RightOf="ActorHelpText"
                                                Height="60"/>
@@ -248,16 +270,16 @@
                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollMode="Enabled"                  
                     ScrollViewer.VerticalScrollMode="Disabled">
-                            <i:Interaction.Behaviors>
-                                <ic:EventTriggerBehavior EventName="ItemClick">
-                                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
-                                </ic:EventTriggerBehavior>
-                            </i:Interaction.Behaviors>
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal"></StackPanel>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="ItemClick">
+                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="model:PostItem">
                             <Image
@@ -308,6 +330,8 @@
                                 <Image
                                     x:Name="galleryImage"
                                     Grid.Row="0"
+                                    Height="120"
+                                    Margin="0, 10"
                                     Style="{StaticResource ThumbnailImageStyle}"
                                     Source="{x:Bind ImageUri}"
                                     AutomationProperties.Name="{x:Bind Title}"
@@ -316,6 +340,8 @@
                                     Margin="10"
                                     x:Name="TextTitle"
                                     Grid.Row="1"
+                                    FontSize="13"
+                                    Foreground="#ff555555"
                                     Text="{x:Bind Title}"/>
                             </Grid>
                         </DataTemplate>
@@ -337,7 +363,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:CommentItem">
                             <Grid Margin="10"
-                                  ColumnSpacing="20">
+                                  ColumnSpacing="30">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
@@ -353,7 +379,7 @@
                                     <RatingControl x:Name="Rating"
                                                 RelativePanel.Below="PictureHead"
                                                 PlaceholderValue="{x:Bind RatingFive, Mode=OneWay}"
-                                                Margin="0, 6,0,0"
+                                                Margin="0,6,0,0"
                                                 IsReadOnly="True"/>
                                 </RelativePanel>
                                 <RelativePanel Grid.Column="1">
@@ -361,16 +387,18 @@
                                                Text="{x:Bind NickName, Mode=OneWay}"
                                                 RelativePanel.AlignTopWithPanel="True"
                                                RelativePanel.AlignLeftWithPanel="True"
-                                               FontSize="20"/>
+                                               FontSize="17"/>
                                     <TextBlock x:Name="ComLocation"
                                                Text="{x:Bind LocationName, Mode=OneWay}"
                                                RelativePanel.RightOf="ComName"
                                                RelativePanel.AlignBottomWith="ComName"
                                                Foreground="Gray"
+                                               FontSize="12"
                                                Margin="10, 0"/>
                                     <TextBlock x:Name="TextContent"
                                                Text="{x:Bind Content, Mode=OneWay}"
                                                Margin="0, 10"
+                                               FontSize="14"
                                                RelativePanel.AlignLeftWithPanel="True"
                                                RelativePanel.Below="ComName"
                                                TextWrapping="WrapWholeWords"/>

@@ -50,11 +50,9 @@ namespace MoviePreview.Views
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                TimeSpan delay = TimeSpan.FromSeconds(0.1);
-
+                // 滚动到之前的地方
                 ThreadPoolTimer DelayTimer = ThreadPoolTimer.CreateTimer(async (source) =>
                     {
-                        // 滚动到之前的地方
                         await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                                               {
                                                   var transform = gridView.TransformToVisual(ScrollPage);
@@ -62,12 +60,14 @@ namespace MoviePreview.Views
                                                   if (point.Y != 0)
                                                   {
                                                       var y = point.Y + ScrollPage.VerticalOffset;
+                                                      if (y < 200) y += 200;
                                                       ScrollPage.ChangeView(null, y - 200, null, true);
                                                   }
                                               });
 
-                    }, delay);
+                    }, TimeSpan.FromSeconds(0.1));
                 ChangeBG();
+                MovieImage.Source = TimeAPIService.CurrentDetail.ImageUri;
                 await ViewModel.LoadAnimationAsync();
             }
             else
@@ -76,9 +76,26 @@ namespace MoviePreview.Views
                 ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("Image");
                 if (imageAnimation != null)
                 {
-                    imageAnimation.TryStart(MovieImage);
+                    MovieImage.Opacity = 0;
+                    MovieImage.Source = new BitmapImage(new Uri((e.Parameter as MovieItemDetail).Image));
+                    // Wait for image opened. In future Insider Preview releases, this won't be necessary.
+                    MovieImage.ImageOpened += (sender_, e_) =>
+                    {
+                        MovieImage.Opacity = 1;
+                        imageAnimation.TryStart(MovieImage);
+                    };
                 }
             }
+        }
+
+        private void BGRectangle_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            EnterStoryboard.Begin();
+        }
+
+        private void BGRectangle_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            ExitStoryboard.Begin();
         }
     }
 }

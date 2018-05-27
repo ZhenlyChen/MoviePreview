@@ -114,6 +114,12 @@ namespace MoviePreview.Services
             };
         }
 
+        /// <summary>
+        /// 解析演员表
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         private static MovieItemDetail ParseMoviePeople(MovieItemDetail m, JsonObject obj)
         {
             var list = obj["types"].GetArray();
@@ -203,7 +209,12 @@ namespace MoviePreview.Services
             return m;
         }
 
-
+        /// <summary>
+        /// 解析预告片
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         private static MovieItemDetail ParseMovieVideo(MovieItemDetail m, JsonObject obj)
         {
             var list = obj["videoList"].GetArray();
@@ -223,24 +234,31 @@ namespace MoviePreview.Services
             return m;
         }
 
+        /// <summary>
+        /// 解析剧照
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         private static MovieItemDetail ParseMovieImage(MovieItemDetail m, JsonObject obj)
         {
             var list = obj["images"].GetArray();
             int eachCount = 0;
-            int type = 0;
+            int currentType = 0;
             m.Images = new List<PostItem>();
             foreach (var i in list)
             {
                 var img = i.GetObject();
+                // 每种剧照只获取3张
                 int typeNew = (int)img["type"].GetNumber();
-                if (type == typeNew)
+                if (currentType == typeNew)
                 {
                     if (eachCount > 2) continue;
                     eachCount++;
                 } else
                 {
                     eachCount = 0;
-                    type = typeNew;
+                    currentType = typeNew;
                 }
                 m.Images.Add(new PostItem()
                 {
@@ -285,6 +303,8 @@ namespace MoviePreview.Services
         {
             var movieList = new List<MovieItemComing>();
             JsonObject res = await NetService.GetJson(string.Format(APIMovieComingNew, location));
+
+            // 加入热门电影
             JsonArray attentions = res["attention"].GetArray();
             foreach (var m in attentions)
             {
@@ -292,10 +312,20 @@ namespace MoviePreview.Services
                 movie.Hot = true;
                 movieList.Add(movie);
             }
+
             JsonArray moviecomings = res["moviecomings"].GetArray();
             foreach (var m in moviecomings)
             {
                 var movie = ParseComingMovie(m);
+
+                // 过滤已存在电影
+                bool flag = false;
+                foreach(var had in movieList)
+                {
+                    if (had.ID == movie.ID) flag = true;
+                }
+                if (flag == true) continue;
+
                 movie.Hot = false;
                 movieList.Add(movie);
             }

@@ -226,7 +226,7 @@ namespace MoviePreview.Models
         // ---- 生成属性 -----
         public BitmapImage HeadImgUri {
             get {
-                return ImageCacheService.GetImage(HeadImg);
+                return ImageCacheService.GetImage(HeadImg, 60);
             }
         }
         public double RatingFive {
@@ -262,7 +262,7 @@ namespace MoviePreview.Models
         // ---- 生成属性 -----
         public BitmapImage ImageUri {
             get {
-                return ImageCacheService.GetImage(Image);
+                return ImageCacheService.GetImage(Image, 60);
             }
         }
     }
@@ -280,7 +280,7 @@ namespace MoviePreview.Models
         // ---- 生成属性 -----
         public BitmapImage RoleImageUri {
             get {
-                return ImageCacheService.GetImage(RoleImage);
+                return ImageCacheService.GetImage(RoleImage, 60);
             }
         }
     }

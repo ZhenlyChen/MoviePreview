@@ -95,7 +95,7 @@ namespace MoviePreview.ViewModels
         private void OnVideoSelected(ItemClickEventArgs args)
         {
             var selected = args.ClickedItem as VideoItem;
-            NavigationService.Navigate(typeof(MediaPlayerViewModel).FullName, selected.Url);
+            NavigationService.Navigate(typeof(MediaPlayerViewModel).FullName, args.ClickedItem);
 
         }
 

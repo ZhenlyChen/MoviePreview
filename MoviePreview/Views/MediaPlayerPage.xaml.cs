@@ -1,5 +1,5 @@
 ﻿using System;
-
+using MoviePreview.Models;
 using MoviePreview.ViewModels;
 using Windows.Media.Core;
 using Windows.Media.Playback;
@@ -31,7 +31,9 @@ namespace MoviePreview.Views
         {
             base.OnNavigatedTo(e);
             mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
-            ViewModel.Source = MediaSource.CreateFromUri(new Uri(e.Parameter as string));
+            var arg = e.Parameter as VideoItem;
+            ViewModel.Source = MediaSource.CreateFromUri(new Uri(arg.Url));
+            ViewModel.PosterSource = arg.Image;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
