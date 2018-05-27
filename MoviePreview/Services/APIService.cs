@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MoviePreview.Helpers;
 using MoviePreview.Models;
 using Windows.Data.Json;
 
@@ -278,7 +279,7 @@ namespace MoviePreview.Services
         /// <returns>电影列表</returns>
         public static async Task<List<MovieItemNow>> GetLocationMovies(string location = "365")
         {
-            JsonObject res = await NetService.GetJson(string.Format(APIHotPlayMovies, location));
+            JsonObject res = await Singleton<NetService>.Instance.GetJson(string.Format(APIHotPlayMovies, location));
             JsonArray ms = res["movies"].GetArray();
             var movieList = new List<MovieItemNow>();
             foreach (var m in ms)
@@ -302,7 +303,7 @@ namespace MoviePreview.Services
         public static async Task<List<MovieItemComing>> GetComingMovies(string location = "365")
         {
             var movieList = new List<MovieItemComing>();
-            JsonObject res = await NetService.GetJson(string.Format(APIMovieComingNew, location));
+            JsonObject res = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieComingNew, location));
 
             // 加入热门电影
             JsonArray attentions = res["attention"].GetArray();
@@ -343,23 +344,23 @@ namespace MoviePreview.Services
         public static async Task<MovieItemDetail> GetMovieDetail(string id)
         {
             // 详情
-            JsonObject detail = await NetService.GetJson(string.Format(APIMovieDetail, LocationGuangZhou, id));
+            JsonObject detail = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieDetail, LocationGuangZhou, id));
             var movieDetail = ParseMovieDetail(detail["data"].GetObject());
 
             // 演员表
-            JsonObject people = await NetService.GetJson(string.Format(APIMovieCredits, id));
+            JsonObject people = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieCredits, id));
             movieDetail = ParseMoviePeople(movieDetail, people);
 
             // 影评
-            JsonObject comments = await NetService.GetJson(string.Format(APIMovieComment, id));
+            JsonObject comments = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieComment, id));
             movieDetail = ParseMovieComment(movieDetail, comments);
 
             // 预告片
-            JsonObject videos = await NetService.GetJson(string.Format(APIMovieVideo, id));
+            JsonObject videos = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieVideo, id));
             movieDetail = ParseMovieVideo(movieDetail, videos);
 
             // 剧照
-            JsonObject images = await NetService.GetJson(string.Format(APIMovieImage, id));
+            JsonObject images = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieImage, id));
             movieDetail = ParseMovieImage(movieDetail, images);
 
             CurrentDetail = movieDetail;
@@ -367,6 +368,7 @@ namespace MoviePreview.Services
             GetedDetail[movieDetail.ID] = movieDetail;
             return movieDetail;
         }
+        
 
     }
 }

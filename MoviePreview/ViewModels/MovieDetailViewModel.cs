@@ -97,7 +97,7 @@ namespace MoviePreview.ViewModels
             }
         }
 
-        public NavigationServiceEx NavigationService {
+        private NavigationServiceEx NavigationService {
             get {
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
@@ -142,8 +142,7 @@ namespace MoviePreview.ViewModels
 
         private void AddFavorite()
         {
-            //TODO
-            // 加入我的收藏
+            // TODO 加入我的收藏
         }
     }
 }

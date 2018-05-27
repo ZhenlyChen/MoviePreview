@@ -135,6 +135,7 @@
     <Compile Include="Services\ImageCacheService.cs" />
     <Compile Include="Services\LiveTileService.cs" />
     <Compile Include="Services\LiveTileServices.cs" />
+    <Compile Include="Services\MyCollectService.cs" />
     <Compile Include="Services\NavigationServiceEx.cs" />
     <Compile Include="Services\NetService.cs" />
     <Compile Include="Services\OnBackgroundEnteringEventArgs.cs" />

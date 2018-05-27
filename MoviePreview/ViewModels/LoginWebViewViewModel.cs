@@ -13,7 +13,6 @@ namespace MoviePreview.ViewModels
 {
     public class LoginWebViewViewModel : ViewModelBase
     {
-        // TODO WTS: Set the URI of the page to show by default
         private const string DefaultUrl = "https://oauth.xmatrix.studio";
 
         private Uri _source;

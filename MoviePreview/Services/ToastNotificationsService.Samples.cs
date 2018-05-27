@@ -51,9 +51,7 @@ namespace MoviePreview.Services
             // Add the content to the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                // TODO WTS: Set a unique identifier for this notification within the notification group. (optional)
-                // More details at https://docs.microsoft.com/en-gb/uwp/api/windows.ui.notifications.toastnotification#Windows_UI_Notifications_ToastNotification_Tag
-                Tag = "ToastTag"
+                Tag = "MoviePreviewToastAddToCollection"
             };
 
             // And show the toast

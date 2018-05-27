@@ -9,9 +9,9 @@ using Windows.Data.Xml.Dom;
 
 namespace MoviePreview.Services
 {
-    public static class NetService
+    public class NetService
     {
-        private static async Task<string> Get(string url)
+        private async Task<string> Get(string url)
         {
             //Create an HTTP client object
             HttpClient httpClient = new HttpClient();
@@ -37,12 +37,12 @@ namespace MoviePreview.Services
         }
 
 
-        public static async Task<JsonObject> GetJson(string url)
+        public async Task<JsonObject> GetJson(string url)
         {
             return JsonObject.Parse(await Get(url));
         }
 
-        public static async Task<XmlDocument> GetXml(string url)
+        public async Task<XmlDocument> GetXml(string url)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(await Get(url));
