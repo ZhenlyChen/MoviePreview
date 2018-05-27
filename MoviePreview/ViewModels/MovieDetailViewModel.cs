@@ -8,7 +8,10 @@ using GalaSoft.MvvmLight.Command;
 using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -49,7 +52,8 @@ namespace MoviePreview.ViewModels
         private ObservableCollection<PostItem> _source;
         private ICommand _itemSelectedCommand;
         private ICommand _videoSelectedCommand;
-        private ICommand _openUri;
+        private ICommand _openUriCommand;
+        private ICommand _shareMovieCommand;
         private GridView _imagesGridView;
 
         public ObservableCollection<PostItem> Source {
@@ -61,7 +65,9 @@ namespace MoviePreview.ViewModels
 
         public ICommand VideoSelectedCommand => _videoSelectedCommand ?? (_videoSelectedCommand = new RelayCommand<ItemClickEventArgs>(OnVideoSelected));
 
-        public ICommand OpenUri => _openUri ?? (_openUri = new RelayCommand(OpenTheUri));
+        public ICommand OpenUri => _openUriCommand ?? (_openUriCommand = new RelayCommand(OpenTheUri));
+
+        public ICommand ShareMovieCommand => _shareMovieCommand ?? (_shareMovieCommand = new RelayCommand(ShareMovie));
 
         public void Initialize(GridView imagesGridView)
         {
@@ -102,6 +108,23 @@ namespace MoviePreview.ViewModels
         private async void OpenTheUri()
         {
             await Launcher.LaunchUriAsync(new Uri(movieDetail.Url));
+        }
+
+        private void ShareMovie()
+        {
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+
+            MovieItemDetail movie = TimeAPIService.CurrentDetail;
+            dataTransferManager.DataRequested += (s, args) => {
+                DataRequest request = args.Request;
+                request.Data.Properties.Title = $"向你分享一部电影《{movie.TitleCn}》";
+                request.Data.Properties.Description = "分享你的电影";
+                RandomAccessStreamReference imageStreamRef = RandomAccessStreamReference.CreateFromUri(new Uri(movie.Image));
+                request.Data.Properties.Thumbnail = imageStreamRef;
+                request.Data.SetBitmap(imageStreamRef);
+                request.Data.SetText($"剧情简介：{movie.Story}\n");
+            };
+            DataTransferManager.ShowShareUI();
         }
     }
 }

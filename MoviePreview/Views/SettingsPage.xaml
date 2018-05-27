@@ -18,8 +18,9 @@
             x:Name="ContentArea">
             <TextBlock
                 x:Uid="Settings_Personalization"
+                Margin="0, 10"
                 Style="{StaticResource SubtitleTextBlockStyle}" />
-            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
+            <StackPanel Margin="10, 10">
                 <TextBlock
                     x:Uid="Settings_Theme"
                     Style="{StaticResource BodyTextStyle}" />

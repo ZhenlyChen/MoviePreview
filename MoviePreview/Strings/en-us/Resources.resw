@@ -297,4 +297,8 @@
     <value>MovieDetail</value>
     <comment>Navigation view item name for MovieDetail</comment>
   </data>
+  <data name="Shell_MyCollect.Content" xml:space="preserve">
+    <value>MyCollect</value>
+    <comment>Navigation view item name for MyCollect</comment>
+  </data>
 </root>

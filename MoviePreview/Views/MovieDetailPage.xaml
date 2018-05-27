@@ -10,9 +10,39 @@
     Style="{StaticResource PageStyle}"
     DataContext="{Binding MovieDetailViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid x:Name="ContentArea">
-        <ScrollViewer x:Name="ScrollPage" VerticalScrollBarVisibility="Auto">
-            <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+    <RelativePanel
+        x:Name="ContentArea"
+        Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="650" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TextTitle.Margin" 
+                                Value="10, 10"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TextTitle.Margin"
+                                Value="55, 10"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ScrollViewer
+            x:Name="ScrollPage"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            VerticalScrollBarVisibility="Auto">
+            <Grid Background="Transparent">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
@@ -83,6 +113,7 @@
                             x:Name="Rating"
                             RelativePanel.Below="TextTitleEn"
                             RelativePanel.RightOf="MovieImage"
+                            Visibility="{x:Bind ViewModel.MovieDetail.HasRating, Mode=OneWay}"
                             PlaceholderValue="{x:Bind ViewModel.MovieDetail.RatingFive, Mode=OneWay}"
                             Margin="0, 10, 0, 0"
                             IsReadOnly="True"/>
@@ -110,14 +141,6 @@
                             Text="{x:Bind ViewModel.MovieDetail.Date, Mode=OneWay}"
                             RelativePanel.Below="TextType"
                             RelativePanel.RightOf="TextDateHelp"/>
-                        <Button
-                            x:Name="ButtonGoto"
-                            Style="{ThemeResource ButtonRevealStyle}"
-                            RelativePanel.AlignRightWithPanel="True"
-                            RelativePanel.AlignBottomWithPanel="True"
-                            Command="{x:Bind ViewModel.OpenUri}"
-                            Margin="20"
-                            Content="购票选座"/>
                     </RelativePanel>
                 </RelativePanel>
                 <Grid Grid.Row="1" Margin="20">
@@ -410,5 +433,33 @@
                 </ListView>
             </Grid>
         </ScrollViewer>
-    </Grid>
+
+        <CommandBar
+            Background="{ThemeResource SystemControlAcrylicElementBrush}"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            DefaultLabelPosition="Right">
+            <AppBarButton Icon="Add" Label="收藏"/>
+            <AppBarButton
+                Icon="Share"
+                Label="分享"
+                Command="{x:Bind ViewModel.ShareMovieCommand}"/>
+            <AppBarButton
+                Icon="CalendarWeek"
+                Label="购票选座"
+                Visibility="{x:Bind ViewModel.MovieDetail.HasRating, Mode=OneWay}"
+                Command="{x:Bind ViewModel.OpenUri}"/>
+            <AppBarButton
+                Icon="Globe"
+                Label="查看详情"
+                Visibility="{x:Bind ViewModel.MovieDetail.NotRating, Mode=OneWay}"
+                Command="{x:Bind ViewModel.OpenUri}"/>
+        </CommandBar>
+        
+        <TextBlock
+            x:Name="TextTitle"
+            Text="影片详情"
+            Margin="55, 10"
+            FontSize="21"/>
+    </RelativePanel>
 </Page>

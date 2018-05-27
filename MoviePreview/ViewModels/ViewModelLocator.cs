@@ -18,23 +18,21 @@ namespace MoviePreview.ViewModels
             SimpleIoc.Default.Register<ShellViewModel>();
             Register<MainViewModel, MainPage>();
             Register<BlankViewModel, BlankPage>();
-            Register<MasterDetailViewModel, MasterDetailPage>();
-            Register<ChartViewModel, ChartPage>();
             Register<SettingsViewModel, SettingsPage>();
             Register<MediaPlayerViewModel, MediaPlayerPage>();
             Register<ImageGalleryViewModel, ImageGalleryPage>();
             Register<ImageGalleryDetailViewModel, ImageGalleryDetailPage>();
-            Register<LoginViewModel, LoginPage>();
             Register<LoginWebViewViewModel, LoginWebViewPage>();
             Register<MovieDetailViewModel, MovieDetailPage>();
+            Register<MyCollectViewModel, MyCollectPage>();
         }
+
+        public MyCollectViewModel MyCollectViewModel => ServiceLocator.Current.GetInstance<MyCollectViewModel>();
 
         public MovieDetailViewModel MovieDetailViewModel => ServiceLocator.Current.GetInstance<MovieDetailViewModel>();
 
         public LoginWebViewViewModel LoginWebViewViewModel => ServiceLocator.Current.GetInstance<LoginWebViewViewModel>();
-
-        public LoginViewModel LoginViewModel => ServiceLocator.Current.GetInstance<LoginViewModel>();
-
+        
         public ImageGalleryDetailViewModel ImageGalleryDetailViewModel => ServiceLocator.Current.GetInstance<ImageGalleryDetailViewModel>();
 
         public ImageGalleryViewModel ImageGalleryViewModel => ServiceLocator.Current.GetInstance<ImageGalleryViewModel>();
@@ -43,10 +41,6 @@ namespace MoviePreview.ViewModels
         public MediaPlayerViewModel MediaPlayerViewModel => ServiceLocator.Current.GetInstance<MediaPlayerViewModel>(Guid.NewGuid().ToString());
 
         public SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-
-        public ChartViewModel ChartViewModel => ServiceLocator.Current.GetInstance<ChartViewModel>();
-
-        public MasterDetailViewModel MasterDetailViewModel => ServiceLocator.Current.GetInstance<MasterDetailViewModel>();
 
         public BlankViewModel BlankViewModel => ServiceLocator.Current.GetInstance<BlankViewModel>();
 

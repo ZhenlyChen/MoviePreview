@@ -1,20 +1,19 @@
 ﻿using System;
 
 using MoviePreview.ViewModels;
-using MoviePreview.Services;
 
 using Windows.UI.Xaml.Controls;
 
 namespace MoviePreview.Views
 {
-    public sealed partial class LoginPage : Page
+    public sealed partial class MyCollectPage : Page
     {
-        private LoginViewModel ViewModel
+        private MyCollectViewModel ViewModel
         {
-            get { return DataContext as LoginViewModel; }
+            get { return DataContext as MyCollectViewModel; }
         }
 
-        public LoginPage()
+        public MyCollectPage()
         {
             InitializeComponent();
         }
