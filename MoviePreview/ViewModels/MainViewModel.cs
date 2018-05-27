@@ -44,6 +44,7 @@ namespace MoviePreview.ViewModels
                 }
                 RaisePropertyChanged("EmptyItem");
                 Singleton<LiveTileService>.Instance.AddTileToQueue("最新上映", MovieItems[0].TitleCn, MovieItems[0].TitleEn);
+                Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
             }
         }
 

@@ -142,7 +142,7 @@ namespace MoviePreview.ViewModels
 
         private void AddFavorite()
         {
-            // TODO 加入我的收藏
+            // TODO 加入我的收藏 并 发送通知
         }
     }
 }

@@ -54,6 +54,10 @@ namespace MoviePreview.Models
         public string Date {
             get; set;
         }
+        // 备注
+        public string Note {
+            get; set;
+        }
         // ---- 生成属性 ——--
         // 海报URL
         [JsonIgnore]
