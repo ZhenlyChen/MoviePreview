@@ -15,6 +15,7 @@ using Windows.UI.Core;
 using MoviePreview.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace MoviePreview.Views
 {
@@ -116,6 +117,12 @@ namespace MoviePreview.Views
         private void BGRectangle_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             ExitStoryboard.Begin();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutAdd.Hide();
+            ViewModel.AddFavorite(TextNote.Text, TimeAPIService.CurrentDetail);
         }
     }
 }

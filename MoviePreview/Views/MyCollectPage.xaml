@@ -6,14 +6,111 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     DataContext="{Binding MyCollectViewModel, Source={StaticResource Locator}}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:model="using:MoviePreview.Models"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity">
     <Grid
         x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        Background="{StaticResource SystemControlAcrylicWindowBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock
+            Text="我的收藏"
+            Grid.Row="0"
+            Margin="50, 10"
+            FontSize="22"/>
+        <ListView
+            x:Name="CollectionsView"
+            ItemsSource="{x:Bind ViewModel.Collections, Mode=OneWay}"
+            Grid.Row="1"
+            CanDragItems="False"
+            Margin="10"
+            ItemClick="CollectionsView_ItemClick"
+            IsItemClickEnabled="True"
+            Padding="20">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:MovieItem">
+                    <RelativePanel Margin="10">
+                        <Image
+                            x:Name="ImageMovie"
+                            Height="180"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            Source="{x:Bind ImageUri, Mode=OneWay}"/>
+                        <TextBlock
+                            x:Name="TextTitle"
+                            RelativePanel.RightOf="ImageMovie"
+                            FontSize="20"
+                            Text="{x:Bind TitleCn, Mode=OneWay}"
+                            Margin="20, 0, 0, 10"/>
+                        <TextBlock
+                            x:Name="TextDirectors"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextTitle"
+                            Text="{x:Bind Directors, Mode=OneWay}"
+                            Margin="20, 5"/>
+                        <TextBlock
+                            x:Name="TextDate"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextDirectors"
+                            Text="{x:Bind Date, Mode=OneWay}"
+                            Margin="20, 5"/>
+                        <TextBlock
+                            x:Name="TextType"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextDate"
+                            Text="{x:Bind MovieType, Mode=OneWay}"
+                            Margin="15, 10"/>
+                        <TextBlock
+                            x:Name="TextNoteHelp"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextType"
+                            Text="备注： "
+                            Margin="20, 10, 0, 0"/>
+                        <TextBlock
+                            x:Name="TextNote"
+                            RelativePanel.RightOf="TextNoteHelp"
+                            RelativePanel.Below="TextType"
+                            Text="{x:Bind Note, Mode=OneWay}"
+                            Margin="0, 10"/>
+                        <Button
+                            x:Name="ButtonEdit"
+                            Visibility="Collapsed"
+                            Content="修改"
+                            Margin="10"
+                            AllowFocusOnInteraction="True">
+                            <Button.Flyout>
+                                <Flyout x:Name="EditFlyout">
+                                    <StackPanel>
+                                        <TextBox
+                                            x:Name="TextNoteEdit"
+                                            Header="修改备注为："
+                                            Margin="10"
+                                            MinWidth="200" />
+                                         <Button
+                                            HorizontalAlignment="Right"
+                                            Content="确定"
+                                            Click="ChangeNoteButton_Click"/>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                        <AppBarButton
+                            Content="删除"
+                            Icon="Delete"
+                            Click="DeleteButton_Click"
+                            RelativePanel.AlignRightWithPanel="True"/>
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

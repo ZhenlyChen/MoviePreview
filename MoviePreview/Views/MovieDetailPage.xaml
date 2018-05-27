@@ -230,7 +230,7 @@
                             FontSize="18"
                             Margin="20, 10, 0, 0"
                             FontWeight="Bold"/>
-                <GridView  ItemsSource="{x:Bind ViewModel.MovieDetail.ActorList, Mode=OneWay}"
+                <GridView ItemsSource="{x:Bind ViewModel.MovieDetail.ActorList, Mode=OneWay}"
                           Grid.Row="5"
                           CanDragItems="False"
                           Margin="10"
@@ -439,7 +439,27 @@
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             DefaultLabelPosition="Right">
-            <AppBarButton Icon="Add" Label="收藏"/>
+            <AppBarButton Icon="Add" Label="收藏" AllowFocusOnInteraction="True">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="FlyoutAdd">
+                        <StackPanel>
+                            <TextBlock
+                                Style="{ThemeResource BaseTextBlockStyle}"
+                                Text="添加到我的收藏"
+                                Margin="12" />
+                            <TextBox
+                                x:Name="TextNote"
+                                Header="备注："
+                                Margin="10"
+                                MinWidth="200" />
+                            <Button
+                                HorizontalAlignment="Right"
+                                Content="收藏"
+                                Click="Button_Click"/>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
             <AppBarButton
                 Icon="Share"
                 Label="分享"

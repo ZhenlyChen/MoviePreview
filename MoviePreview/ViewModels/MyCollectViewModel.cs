@@ -8,6 +8,7 @@ using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace MoviePreview.ViewModels
 {
@@ -28,6 +29,8 @@ namespace MoviePreview.ViewModels
         public MyCollectViewModel()
         {
             SyncData();
+            // TODO 加入磁贴 我的收藏
+            // 还有N天就上映/已经上映N天了
         }
 
         public void SaveData()
@@ -40,28 +43,18 @@ namespace MoviePreview.ViewModels
             Collections = new ObservableCollection<MovieItem>(Singleton<MyCollectService>.Instance.Collections);
         }
 
-        // 打开收藏详情
-        private ICommand _itemSelectedCommand;
-        public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new RelayCommand<ItemClickEventArgs>(OnsItemSelected));
-        private void OnsItemSelected(ItemClickEventArgs args)
-        {
-            // TODO 打开收藏详情
-        }
-
+        
+        
         // 删除收藏
-        private ICommand _itemDeleteCommand;
-        public ICommand ItemDeleteCommand => _itemDeleteCommand ?? (_itemDeleteCommand = new RelayCommand<ItemClickEventArgs>(OnsItemDelete));
-        private void OnsItemDelete(ItemClickEventArgs args)
+        public void OnsItemDelete(MovieItem item)
         {
-            // TODO 删除收藏
+            Collections.Remove(item);
         }
 
         // 修改备注
-        private ICommand _itemChangeCommand;
-        public ICommand ItemChangeCommand => _itemChangeCommand ?? (_itemChangeCommand = new RelayCommand<ItemClickEventArgs>(OnsItemChange));
-        private void OnsItemChange(ItemClickEventArgs args)
+        public void OnsItemChange(string id, string newNote)
         {
-            // TODO 修改备注
+            // Nothing
         }
     }
 }

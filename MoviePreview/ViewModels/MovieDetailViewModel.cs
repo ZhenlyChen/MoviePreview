@@ -62,7 +62,6 @@ namespace MoviePreview.ViewModels
         private ICommand _videoSelectedCommand;
         private ICommand _openUriCommand;
         private ICommand _shareMovieCommand;
-        private ICommand _addFavoriteCommand;
 
         public ObservableCollection<PostItem> Source {
             get => _source;
@@ -76,8 +75,7 @@ namespace MoviePreview.ViewModels
         public ICommand OpenUri => _openUriCommand ?? (_openUriCommand = new RelayCommand(OpenTheUri));
 
         public ICommand ShareMovieCommand => _shareMovieCommand ?? (_shareMovieCommand = new RelayCommand(ShareMovie));
-
-        public ICommand AddFavoriteCommand => _addFavoriteCommand ?? (_addFavoriteCommand = new RelayCommand(AddFavorite));
+        
 
 
 
@@ -140,9 +138,13 @@ namespace MoviePreview.ViewModels
             DataTransferManager.ShowShareUI();
         }
 
-        private void AddFavorite()
+        public void AddFavorite(string note, MovieItemDetail data)
         {
-            // TODO 加入我的收藏 并 发送通知
+            data.Note = note;
+            // Test
+            Singleton<MyCollectService>.Instance.Collections.Add(data);
+            Singleton<MyCollectService>.Instance.SaveToStorage();
+            // TODO 添加收藏 判断是否有重复，如果有就直接覆盖掉
         }
     }
 }

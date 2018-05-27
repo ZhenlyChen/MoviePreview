@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MoviePreview.Helpers;
 using MoviePreview.Models;
+using Windows.Storage;
 
 namespace MoviePreview.Services
 {
@@ -13,20 +15,26 @@ namespace MoviePreview.Services
 
         public MyCollectService()
         {
-            LoadFormStorage();
+            Collections = new List<MovieItem>();
+            // LoadFormStorage();
         }
 
-        public void LoadFormStorage()
+        public async void LoadFormStorage()
         {
-            // TODO 从本地文件加载我的收藏
-            // 使用 Helpers.SettingsStorageExtensions
+            var c = await ApplicationData.Current.LocalFolder.ReadAsync<List<MovieItem>>("MyCollection");
+            if (c != null)
+            {
+                Collections = c;
+            } else
+            {
+                Collections = new List<MovieItem>();
+            }
         }
 
-        public void SaveToStorage(List<MovieItem> data)
+        public async void SaveToStorage(List<MovieItem> data = null)
         {
-            Collections = data;
-            // TODO 把我的收藏存到本地文件中
-            // 使用 Helpers.SettingsStorageExtensions
+            if (data != null) Collections = data;
+            await ApplicationData.Current.LocalFolder.SaveAsync("MyCollection", Collections);
         }
     }
 }
