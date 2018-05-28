@@ -56,9 +56,9 @@
                         <TextBlock
                             x:Name="TextTitle"
                             RelativePanel.RightOf="ImageMovie"
-                            FontSize="20"
+                            FontSize="21"
                             Text="{x:Bind TitleCn, Mode=OneWay}"
-                            Margin="20, 0, 0, 10"/>
+                            Margin="20, 0, 0, 5"/>
                         <TextBlock
                             x:Name="TextDirectors"
                             RelativePanel.RightOf="ImageMovie"
@@ -76,19 +76,19 @@
                             RelativePanel.RightOf="ImageMovie"
                             RelativePanel.Below="TextDate"
                             Text="{x:Bind MovieType, Mode=OneWay}"
-                            Margin="15, 10"/>
+                            Margin="15, 5"/>
                         <TextBlock
                             x:Name="TextNoteHelp"
                             RelativePanel.RightOf="ImageMovie"
                             RelativePanel.Below="TextType"
                             Text="备注： "
-                            Margin="20, 10, 0, 0"/>
+                            Margin="20, 5, 0, 0"/>
                         <TextBlock
                             x:Name="TextNote"
                             RelativePanel.RightOf="TextNoteHelp"
                             RelativePanel.Below="TextType"
                             Text="{x:Bind Note, Mode=OneWay}"
-                            Margin="0, 10"/>
+                            Margin="0, 5"/>
                         <Button
                             x:Name="ButtonEdit"
                             Visibility="Collapsed"
@@ -112,7 +112,6 @@
                             </Button.Flyout>
                         </Button>
                         <AppBarButton
-                            Content="删除"
                             Icon="Delete"
                             Click="DeleteButton_Click"
                             RelativePanel.AlignRightWithPanel="True"/>

@@ -85,7 +85,6 @@ namespace MoviePreview.Services
         private async Task InitializeAsync()
         {
             await Singleton<LiveTileService>.Instance.EnableQueueAsync();
-            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await ThemeSelectorService.InitializeAsync();
             await Task.CompletedTask;
         }
@@ -102,7 +101,6 @@ namespace MoviePreview.Services
             yield return Singleton<LiveTileService>.Instance;
             yield return Singleton<ToastNotificationsService>.Instance;
             yield return Singleton<SuspendAndResumeService>.Instance;
-            yield return Singleton<BackgroundTaskService>.Instance;
         }
 
         private bool IsInteractive(object args)

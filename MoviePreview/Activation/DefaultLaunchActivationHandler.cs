@@ -30,7 +30,6 @@ namespace MoviePreview.Activation
             NavigationService.Navigate(_navElement, args.Arguments);
 
             Singleton<MyCollectService>.Instance.LoadFormStorage();
-            // TODO 打开应用发送通知 如果我的收藏里面有即将上映的电影，那么发送Toast通知，提醒用户还有几天就上映了
             
             await Task.CompletedTask;
         }
