@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
 
@@ -32,8 +33,8 @@ namespace MoviePreview.ViewModels
                     }
                 }
                 RaisePropertyChanged("EmptyItem");
-                // TODO 加入磁贴 即将上映
-                // Singleton<LiveTileService>.Instance.AddTileToQueue("最新上映", MovieItems[0].TitleCn, MovieItems[0].TitleEn);
+                Singleton<LiveTileService>.Instance.AddTileToQueue("即将上映", MovieItems[0].TitleCn, "", "上映时间：", MovieItems[0].Date);
+                Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
             }
         }
     }

@@ -12,7 +12,7 @@ namespace MoviePreview.Services
     {
         // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
         // TODO 完善磁贴
-        public void AddTileToQueue(string title, string subject, string body)
+        public void AddTileToQueue(string title, string subject, string body, string CountOrDateStr, string CountOrDate)
         {
 
             // Construct the tile content
@@ -25,21 +25,39 @@ namespace MoviePreview.Services
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            PeekImage = new TilePeekImage()
+                            {
+                                Source = "Assets/LargeTile.scale-400.png",
+                                HintCrop = TilePeekImageCrop.Circle
+                            },
                             Children =
                             {
                                 new AdaptiveText()
                                 {
-                                    Text = title
+                                    Text = title,
+                                    HintStyle = AdaptiveTextStyle.Caption,
+                                    HintAlign = AdaptiveTextAlign.Left
                                 },
                                 new AdaptiveText()
                                 {
                                     Text = subject,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                    HintAlign = AdaptiveTextAlign.Center
                                 },
                                 new AdaptiveText()
                                 {
                                     Text = body,
                                     HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = CountOrDateStr,
+                                    HintAlign = AdaptiveTextAlign.Left
+                                },
+                                new AdaptiveText()
+                                {
+                                    Text = CountOrDate,
+                                    HintAlign = AdaptiveTextAlign.Left
                                 }
                             }
                         }
