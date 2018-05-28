@@ -120,8 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
-    <Compile Include="BackgroundTasks\BackgroundTask.cs" />
-    <Compile Include="BackgroundTasks\BackgroundTask1.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
@@ -131,7 +129,6 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\APIService.cs" />
-    <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\ImageCacheService.cs" />
     <Compile Include="Services\LiveTileService.cs" />
     <Compile Include="Services\LiveTileServices.cs" />
