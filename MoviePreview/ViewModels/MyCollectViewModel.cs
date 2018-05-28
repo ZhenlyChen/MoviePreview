@@ -31,6 +31,12 @@ namespace MoviePreview.ViewModels
             SyncData();
             // TODO 加入磁贴 我的收藏
             // 还有N天就上映/已经上映N天了
+            if(Collections.Count != 0)
+            {
+                string day;
+                Singleton<LiveTileService>.Instance.AddTileToQueue("我的收藏", Collections[0].TitleCn, "", "上映时间：", Collections[0].Date);
+                Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
+            }
         }
 
         public void SaveData()
