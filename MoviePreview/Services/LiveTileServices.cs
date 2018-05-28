@@ -12,7 +12,7 @@ namespace MoviePreview.Services
     {
         // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
         // TODO 完善磁贴
-        public void AddTileToQueue(string title, string subject, string body, string CountOrDateStr, string CountOrDate)
+        public void AddTileToQueue(string title, string subject, string body, string CountOrDateStr, string CountOrDate, string imageUri)
         {
 
             // Construct the tile content
@@ -27,8 +27,8 @@ namespace MoviePreview.Services
                         {
                             PeekImage = new TilePeekImage()
                             {
-                                Source = "Assets/LargeTile.scale-400.png",
-                                HintCrop = TilePeekImageCrop.Circle
+                                Source = imageUri
+                                
                             },
                             Children =
                             {
