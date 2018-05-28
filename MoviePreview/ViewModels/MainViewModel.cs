@@ -44,7 +44,7 @@ namespace MoviePreview.ViewModels
                 }
                 RaisePropertyChanged("EmptyItem");
                 // TODO 加入磁贴 正在热映
-                Singleton<LiveTileService>.Instance.AddTileToQueue("最新上映", MovieItems[0].TitleCn, MovieItems[0].TitleEn);
+                // Singleton<LiveTileService>.Instance.AddTileToQueue("最新上映", MovieItems[0].TitleCn, MovieItems[0].TitleEn);
             }
         }
 
