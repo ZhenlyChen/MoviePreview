@@ -29,6 +29,8 @@ namespace MoviePreview.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            CollectionsView.IsEnabled = true;
+            LoadToOther.Visibility = Visibility.Collapsed;
             ViewModel.SyncData();
         }
 
@@ -67,6 +69,8 @@ namespace MoviePreview.Views
 
         private async void CollectionsView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            CollectionsView.IsEnabled = false;
+            LoadToOther.Visibility = Visibility.Visible;
             MovieItemDetail data;
             string movieId = (e.ClickedItem as MovieItem).ID;
             if (TimeAPIService.GetedDetail != null && TimeAPIService.GetedDetail.ContainsKey(movieId))

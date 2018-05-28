@@ -22,6 +22,14 @@
             Grid.Row="0"
             Margin="50, 10"
             FontSize="22"/>
+        <ProgressBar
+                x:Name="LoadToOther"
+                IsIndeterminate="True"
+                Visibility="Collapsed"
+                VerticalAlignment="Top"
+                Grid.Row="0"
+                Margin="20, 10, 20 ,0"
+                Foreground="Blue"/>
         <ListView
             x:Name="CollectionsView"
             ItemsSource="{x:Bind ViewModel.Collections, Mode=OneWay}"
