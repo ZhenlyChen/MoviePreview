@@ -90,6 +90,10 @@
                                    Text="{x:Bind Directors}"/>
                             <TextBlock x:Name="TextDate" Text="{x:Bind DisplayDate}"
                                        RelativePanel.Below="TextDirectors"/>
+                            <TextBlock
+                                Text="上映"
+                                RelativePanel.Below="TextDirectors"
+                                RelativePanel.RightOf="TextDate"/>
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
