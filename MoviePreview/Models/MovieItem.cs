@@ -66,6 +66,14 @@ namespace MoviePreview.Models
                 return ImageCacheService.GetImage(Image);
             }
         }
+        [JsonIgnore]
+        public string DisplayDate
+        {
+            get
+            {
+                return DateTime.ParseExact(Date, "yyyy-M-d", CultureInfo.InvariantCulture).ToString("M月d日");
+            }
+        }
     }
 
     public class MovieItemComing : MovieItem
@@ -117,12 +125,6 @@ namespace MoviePreview.Models
         public Visibility NotRating {
             get {
                 return HasRating == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
-            }
-        }
-        [JsonIgnore]
-        public string DisplayDate {
-            get {
-                return DateTime.ParseExact(Date, "yyyy-M-d", CultureInfo.InvariantCulture).ToString("M月d日");
             }
         }
     }

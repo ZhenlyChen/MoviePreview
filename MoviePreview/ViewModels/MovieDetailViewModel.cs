@@ -141,10 +141,24 @@ namespace MoviePreview.ViewModels
         public void AddFavorite(string note, MovieItemDetail data)
         {
             data.Note = note;
+            int flag = 0;
             // Test
-            Singleton<MyCollectService>.Instance.Collections.Add(data);
-            Singleton<MyCollectService>.Instance.SaveToStorage();
-            // TODO 添加收藏 判断是否有重复，如果有就直接覆盖掉
+            //Singleton<MyCollectService>.Instance.Collections.Add(data);
+            //Singleton<MyCollectService>.Instance.SaveToStorage();
+
+            foreach(MovieItem movie in Singleton<MyCollectService>.Instance.Collections)
+            {
+                if(movie.ID == data.ID)
+                {
+                    movie.Note = note;
+                    flag = 1;
+                }
+            }
+            if(flag == 0)
+            {
+                Singleton<MyCollectService>.Instance.Collections.Add(data);
+                Singleton<MyCollectService>.Instance.SaveToStorage();
+            }
         }
     }
 }

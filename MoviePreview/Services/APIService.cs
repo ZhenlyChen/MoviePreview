@@ -39,6 +39,7 @@ namespace MoviePreview.Services
         private static MovieItemNow ParseLocationMovie(IJsonValue value)
         {
             JsonObject m = value.GetObject();
+            string dataStr = $"{m["rYear"].GetNumber().ToString()}-{m["rMonth"].GetNumber().ToString()}-{m["rDay"].GetNumber().ToString()}";
             return new MovieItemNow
             {
                 Actor1 = m["actorName1"].GetString(),
@@ -49,7 +50,8 @@ namespace MoviePreview.Services
                 MovieType = m["type"].GetString(),
                 Rating = m["ratingFinal"].GetNumber(),
                 // 转换日期格式
-                Date = $"{m["rYear"].GetNumber().ToString()}-{m["rMonth"].GetNumber().ToString()}-{m["rDay"].GetNumber().ToString()}",
+                Date = dataStr,
+                
                 TitleCn = m["titleCn"].GetString(),
                 TitleEn = m["titleEn"].GetString(),
                 WantedCount = (int)m["wantedCount"].GetNumber(),
@@ -65,6 +67,7 @@ namespace MoviePreview.Services
         private static MovieItemComing ParseComingMovie(IJsonValue value)
         {
             JsonObject m = value.GetObject();
+            string dataStr = $"{m["rYear"].GetNumber().ToString()}-{m["rMonth"].GetNumber().ToString()}-{m["rDay"].GetNumber().ToString()}";
             return new MovieItemComing
             {
                 Actor1 = m["actor1"].GetString(),
@@ -73,7 +76,7 @@ namespace MoviePreview.Services
                 ID = m["id"].GetNumber().ToString(),
                 Image = m["image"].GetString().Replace("_1280X720X2", "_225X312"),
                 LocationName = m["locationName"].GetString(),
-                Date = m["releaseDate"].GetString(),
+                Date = dataStr,
                 TitleCn = m["title"].GetString(),
                 MovieType = m["type"].GetString(),
                 WantedCount = (int)m["wantedCount"].GetNumber(),
