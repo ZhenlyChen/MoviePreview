@@ -61,8 +61,6 @@ namespace MoviePreview.Services
 
         public void ShowToastNotificationOfComingMovie(MovieItem Movie)
         {
-            string MovieName = Movie.TitleCn;
-            string MovieDate = Movie.Date;
             var content = new ToastContent()
             {
                 Launch = "ToastContentActivationParams",
@@ -80,8 +78,13 @@ namespace MoviePreview.Services
 
                             new AdaptiveText()
                             {
-                                 Text = @"电影《" + MovieName + "》将于" + MovieDate + "上映"
-                            }
+                                 Text = @"电影《" + Movie.TitleCn + "》将于" + Movie.Date + "上映"
+                            }       
+                        },
+
+                        HeroImage = new ToastGenericHeroImage()
+                        {
+                            Source = Movie.Image
                         }
                     }
                 },
@@ -90,12 +93,7 @@ namespace MoviePreview.Services
                 {
                     Buttons =
                     {
-                        new ToastButton("OK", "ToastButtonActivationArguments")
-                        {
-                            ActivationType = ToastActivationType.Foreground
-                        },
-
-                        new ToastButtonDismiss("Cancel")
+                        new ToastButtonDismiss("Oh Yeah")
                     }
                 }
             };
