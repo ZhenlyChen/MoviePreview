@@ -19,6 +19,11 @@ namespace MoviePreview.ViewModels
                 return MovieItems.Count == 0;
             }
         }
+
+        /// <summary>
+        /// 初始化数据
+        /// </summary>
+        /// <returns></returns>
         public async Task LoadData()
         {
             if (MovieItems.Count == 0)
@@ -27,12 +32,15 @@ namespace MoviePreview.ViewModels
                 var data = await TimeAPIService.GetComingMovies();
                 foreach (var movie in data)
                 {
+                    // 只添加具有封面的电影
                     if (movie.Image != "")
                     {
                         MovieItems.Add(movie);
                     }
                 }
+                // 刷新页面
                 RaisePropertyChanged("EmptyItem");
+                // 添加磁贴
                 Singleton<LiveTileService>.Instance.AddTileToQueue("即将上映", "", "上映时间：", MovieItems[0].Date, "猛戳看档期", MovieItems[0]);
             }
         }
