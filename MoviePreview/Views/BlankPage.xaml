@@ -20,9 +20,10 @@
                 Grid.Row="0"
                 Margin="20, 10"
                 VerticalAlignment="Top">
+                <!-- BlankPage_TextTitle.Text="即将上映" -->
                 <TextBlock
+                    x:Uid="BlankPage_TextTitle"
                     x:Name="TextTitle"
-                    Text="即将上映"
                     FontSize="23"
                     Margin="15, 0"
                     RelativePanel.AlignLeftWithPanel="True"/>

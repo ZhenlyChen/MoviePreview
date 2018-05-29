@@ -79,7 +79,7 @@ namespace MoviePreview.Services
                             new AdaptiveText()
                             {
                                  Text = @"电影《" + Movie.TitleCn + "》将于" + Movie.Date + "上映"
-                            }
+                            }       
                         },
 
                         HeroImage = new ToastGenericHeroImage()
