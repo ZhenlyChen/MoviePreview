@@ -40,9 +40,10 @@ namespace MoviePreview.Views
 
         private void ChangeBG()
         {
+            
             ImageBrush imageBrush = new ImageBrush
             {
-                ImageSource = ViewModel.MovieDetail.Images[0].ImageUri,
+                ImageSource = ImageCacheService.GetImage(ViewModel.MovieDetail.Images[0].Image),
                 Stretch = Stretch.UniformToFill,
                 AlignmentY = AlignmentY.Top,
             };
@@ -82,16 +83,11 @@ namespace MoviePreview.Views
                     data = JsonConvert.DeserializeObject<MovieItemDetail>((e.Parameter as JObject).ToString());
                 }
                 AddData(data);
-                MovieImage.Source = new BitmapImage(new Uri(data.Image));
+                MovieImage.Source = ImageCacheService.GetImage(data.Image); // new BitmapImage(new Uri(data.Image));
                 ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("Image");
                 if (imageAnimation != null)
                 {
-                    MovieImage.Opacity = 0;
-                    MovieImage.ImageOpened += (sender_, e_) =>
-                    {
-                        MovieImage.Opacity = 1;
-                        imageAnimation.TryStart(MovieImage);
-                    };
+                   imageAnimation.TryStart(MovieImage);
                 }
             }
             Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += Instance_OnBackgroundEntering;

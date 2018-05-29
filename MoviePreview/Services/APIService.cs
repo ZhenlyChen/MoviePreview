@@ -143,7 +143,7 @@ namespace MoviePreview.Services
                             ID = p["id"].GetNumber().ToString(),
                             NameCn = p["name"].GetString(),
                             NameEn = p["nameEn"].GetString(),
-                            Image = p["image"].GetString().Replace("_1280X720X2", "_225X312"),
+                            Image = p["image"].GetString().Replace("_1280X720X2", "_100X100"),
                             RoleName = p["personate"].GetString(),
                             RoleImage = p.ContainsKey("roleCover") ? p["roleCover"].GetString() : "",
                             TypeName = (t.GetObject())["typeName"].GetString(),
@@ -161,7 +161,7 @@ namespace MoviePreview.Services
                             ID = p["id"].GetNumber().ToString(),
                             NameCn = p["name"].GetString(),
                             NameEn = p["nameEn"].GetString(),
-                            Image = p["image"].GetString().Replace("_1280X720X2", "_225X312"),
+                            Image = p["image"].GetString().Replace("_1280X720X2", "_100X100"),
                             TypeName = (t.GetObject())["typeName"].GetString(),
                         });
 

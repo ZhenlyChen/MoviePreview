@@ -17,7 +17,7 @@ namespace MoviePreview.Models
 {
 
     public class MovieItem
-    { // 即将上映的电影
+    {
         // ID
         public string ID {
             get; set;
@@ -291,7 +291,7 @@ namespace MoviePreview.Models
         [JsonIgnore]
         public BitmapImage ImageUri {
             get {
-                return ImageCacheService.GetImage(Image, 60);
+                return ImageCacheService.GetImage(Image, 60, "people.png");
             }
         }
     }
@@ -310,7 +310,7 @@ namespace MoviePreview.Models
         [JsonIgnore]
         public BitmapImage RoleImageUri {
             get {
-                return ImageCacheService.GetImage(RoleImage, 60);
+                return ImageCacheService.GetImage(RoleImage, 60, "people.png");
             }
         }
     }

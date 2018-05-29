@@ -10,14 +10,22 @@ namespace MoviePreview.Services
     public static class ImageCacheService
     {
         private static Dictionary<string, BitmapImage> imageCache;
-        public static BitmapImage GetImage(string uri, int decode = -1)
+        /// <summary>
+        /// 从图片缓存器中获取图片
+        /// </summary>
+        /// <param name="uri">图片地址</param>
+        /// <param name="decode">解析大小</param>
+        /// <param name="defPic">默认图片</param>
+        /// <returns></returns>
+        public static BitmapImage GetImage(string uri, int decode = -1, string defPic = "background.jpg")
         {
             if (imageCache == null)
             {
+                // 初始化图片缓存器
                 imageCache = new Dictionary<string, BitmapImage>();
-                imageCache[""] = new BitmapImage(new Uri("ms-appx:///Assets/background.jpg"));
             }
-            if (uri == null) return imageCache[""];
+            if (uri == null || uri == "") return new BitmapImage(new Uri($"ms-appx:///Assets/{defPic}"));
+            
             if (!imageCache.ContainsKey(uri))
             {
                 if (decode == -1)

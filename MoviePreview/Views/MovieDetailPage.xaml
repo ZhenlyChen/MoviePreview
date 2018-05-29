@@ -262,7 +262,8 @@
                                            Text="饰"
                                            Margin="0,20, 40, 0"
                                            RelativePanel.RightOf="ActorGrid"/>
-                                <PersonPicture x:Name="PictureHeadRole" ProfilePicture="{x:Bind RoleImageUri, Mode=OneWay}"
+                                <PersonPicture x:Name="PictureHeadRole"
+                                               ProfilePicture="{x:Bind RoleImageUri, Mode=OneWay}"
                                                RelativePanel.RightOf="ActorHelpText"
                                                Height="60"/>
                                 <TextBlock x:Name="RoleName"
@@ -475,7 +476,7 @@
                 Visibility="{x:Bind ViewModel.MovieDetail.NotRating, Mode=OneWay}"
                 Command="{x:Bind ViewModel.OpenUri}"/>
         </CommandBar>
-        
+
         <TextBlock
             x:Name="TextTitle"
             Text="影片详情"
