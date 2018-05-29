@@ -30,8 +30,6 @@ namespace MoviePreview.ViewModels
         public MyCollectViewModel()
         {
             SyncData();
-            // TODO 加入磁贴 我的收藏
-            // 还有N天就上映/已经上映N天了
             if(Collections.Count != 0)
             {
                 var theDate = DateTime.ParseExact(Collections[0].Date, "yyyy-M-d",
@@ -52,7 +50,6 @@ namespace MoviePreview.ViewModels
                     date = $"还剩{day}天";
                 }
                 Singleton<LiveTileService>.Instance.AddTileToQueue("我的收藏", "", tips, date, "猛戳看收藏",Collections[0]);
-                Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
             }
         }
 
