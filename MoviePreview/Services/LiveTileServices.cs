@@ -130,10 +130,6 @@ namespace MoviePreview.Services
                     {
                         Content = new TileBindingContentAdaptive()
                         {
-                            BackgroundImage = new TileBackgroundImage()
-                            {
-                                
-                            },
                             Children =
                             {
                                 new AdaptiveGroup()
