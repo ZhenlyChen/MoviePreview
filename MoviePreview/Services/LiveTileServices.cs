@@ -10,8 +10,6 @@ namespace MoviePreview.Services
 {
     internal partial class LiveTileService
     {
-        // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
-        // TODO 完善磁贴
         public void AddTileToQueue(string title, string titleEn, string tips, string tipsData, string detail, MovieItem item)
         {
 
