@@ -55,6 +55,7 @@ namespace MoviePreview.ViewModels
         public void OnsItemDelete(MovieItem item)
         {
             Collections.Remove(item);
+            SaveData();
         }
 
         // 修改备注

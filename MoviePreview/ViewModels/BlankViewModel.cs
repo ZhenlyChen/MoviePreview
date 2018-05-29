@@ -34,7 +34,6 @@ namespace MoviePreview.ViewModels
                 }
                 RaisePropertyChanged("EmptyItem");
                 Singleton<LiveTileService>.Instance.AddTileToQueue("即将上映", MovieItems[0].TitleCn, "", "上映时间：", MovieItems[0].Date);
-                Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
             }
         }
     }
