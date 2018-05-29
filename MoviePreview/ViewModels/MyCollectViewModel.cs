@@ -38,6 +38,7 @@ namespace MoviePreview.ViewModels
                                   CultureInfo.InvariantCulture);
                 string tips;
                 string date;
+                string detail;
                 int day = (int)(theDate - DateTime.Now).TotalDays;
                 
                 if (day <= 0)
@@ -50,7 +51,7 @@ namespace MoviePreview.ViewModels
                     tips = "即将上映";
                     date = $"还剩{day}天";
                 }
-                Singleton<LiveTileService>.Instance.AddTileToQueue("我的收藏", Collections[0].TitleCn, "", tips, date, Collections[0].Image);
+                Singleton<LiveTileService>.Instance.AddTileToQueue("我的收藏", "", tips, date, "猛戳看收藏",Collections[0]);
                 Singleton<ToastNotificationsService>.Instance.ShowToastNotificationSample();
             }
         }

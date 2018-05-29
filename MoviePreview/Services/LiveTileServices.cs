@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 
 using Microsoft.Toolkit.Uwp.Notifications;
-
+using MoviePreview.Models;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 
@@ -12,7 +12,7 @@ namespace MoviePreview.Services
     {
         // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
         // TODO 完善磁贴
-        public void AddTileToQueue(string title, string subject, string body, string CountOrDateStr, string CountOrDate, string imageUri)
+        public void AddTileToQueue(string title, string titleEn, string tips, string tipsData, string detail, MovieItem item)
         {
 
             // Construct the tile content
@@ -27,8 +27,8 @@ namespace MoviePreview.Services
                         {
                             PeekImage = new TilePeekImage()
                             {
-                                Source = imageUri
-                                
+                                Source = item.Image
+
                             },
                             Children =
                             {
@@ -40,23 +40,23 @@ namespace MoviePreview.Services
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = subject,
+                                    Text = item.TitleCn,
                                     HintStyle = AdaptiveTextStyle.CaptionSubtle,
                                     HintAlign = AdaptiveTextAlign.Center
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = body,
+                                    Text = titleEn,
                                     HintStyle = AdaptiveTextStyle.CaptionSubtle
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = CountOrDateStr,
+                                    Text = tips,
                                     HintAlign = AdaptiveTextAlign.Left
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = CountOrDate,
+                                    Text = tipsData,
                                     HintAlign = AdaptiveTextAlign.Left
                                 }
                             }
@@ -67,23 +67,60 @@ namespace MoviePreview.Services
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            TextStacking = TileTextStacking.Center,
                             Children =
                             {
-                                new AdaptiveText()
+                                new AdaptiveGroup()
                                 {
-                                    Text = title,
-                                    HintStyle = AdaptiveTextStyle.Title
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = subject,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
-                                    HintWrap = true
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = body,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                    Children =
+                                    {
+                                        new AdaptiveSubgroup()
+                                        {
+                                            HintWeight = 1,
+                                            Children =
+                                            {
+                                                new AdaptiveImage()
+                                                {
+                                                    Source = item.Image,
+                                                    HintCrop = AdaptiveImageCrop.Circle
+                                                }
+                                            }
+                                        },
+                                        new AdaptiveSubgroup()
+                                        {
+                                            HintWeight = 1,
+                                            Children =
+                                            {
+                                                new AdaptiveText()
+                                                {
+                                                    Text = title,
+                                                    HintStyle = AdaptiveTextStyle.Caption,
+                                                    HintAlign = AdaptiveTextAlign.Left
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = item.TitleCn,
+                                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                                    HintAlign = AdaptiveTextAlign.Center
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = titleEn,
+                                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = tips,
+                                                    HintAlign = AdaptiveTextAlign.Left
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = tipsData,
+                                                    HintAlign = AdaptiveTextAlign.Left
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -93,22 +130,67 @@ namespace MoviePreview.Services
                     {
                         Content = new TileBindingContentAdaptive()
                         {
+                            BackgroundImage = new TileBackgroundImage()
+                            {
+                                
+                            },
                             Children =
                             {
-                                new AdaptiveText()
+                                new AdaptiveGroup()
                                 {
-                                    Text = title,
-                                    HintStyle = AdaptiveTextStyle.Header
+                                    Children =
+                                    {
+                                        new AdaptiveSubgroup()
+                                        {
+                                            HintWeight = 1,
+                                            Children =
+                                            {
+                                                new AdaptiveImage()
+                                                {
+                                                    Source = item.Image
+                                                }
+                                            }
+                                        },
+                                        new AdaptiveSubgroup()
+                                        {
+                                            HintWeight = 1,
+                                            Children =
+                                            {
+                                                new AdaptiveText()
+                                                {
+                                                    Text = title,
+                                                    HintStyle = AdaptiveTextStyle.Caption,
+                                                    HintAlign = AdaptiveTextAlign.Left
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = item.TitleCn,
+                                                    HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                                    HintAlign = AdaptiveTextAlign.Center
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = titleEn,
+                                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = tips,
+                                                    HintAlign = AdaptiveTextAlign.Left
+                                                },
+                                                new AdaptiveText()
+                                                {
+                                                    Text = tipsData,
+                                                    HintAlign = AdaptiveTextAlign.Left
+                                                }
+                                            }
+                                        }
+                                    }
                                 },
                                 new AdaptiveText()
                                 {
-                                    Text = subject,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
-                                },
-                                new AdaptiveText()
-                                {
-                                    Text = body,
-                                    HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                    Text = detail,
+                                    HintWrap = true
                                 }
                             }
                         }
