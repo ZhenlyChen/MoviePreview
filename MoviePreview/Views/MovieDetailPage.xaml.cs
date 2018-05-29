@@ -72,7 +72,7 @@ namespace MoviePreview.Views
 
                     }, TimeSpan.FromSeconds(0.1));
                 ChangeBG();
-                MovieImage.Source = TimeAPIService.CurrentDetail.ImageUri;
+                MovieImage.Source = ImageCacheService.GetImage(TimeAPIService.CurrentDetail.Image);
                 await ViewModel.LoadAnimationAsync();
             }
             else
@@ -90,7 +90,34 @@ namespace MoviePreview.Views
                    imageAnimation.TryStart(MovieImage);
                 }
             }
+            collectionButton();
             Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += Instance_OnBackgroundEntering;
+        }
+
+        private MovieItem collectionItem;
+
+        private void showAdd()
+        {
+            AppBarAdd.Visibility = Visibility.Visible;
+            AppBarEdit.Visibility = Visibility.Collapsed;
+        }
+        private void showEdit()
+        {
+            AppBarAdd.Visibility = Visibility.Collapsed;
+            AppBarEdit.Visibility = Visibility.Visible;
+        }
+        private void collectionButton()
+        {
+            showAdd();
+            foreach (var i in Singleton<MyCollectService>.Instance.Collections)
+            {
+                if (i.ID == ViewModel.movieDetail.ID)
+                {
+                    showEdit();
+                    collectionItem = i;
+                    break;
+                }
+            }
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -119,6 +146,27 @@ namespace MoviePreview.Views
         {
             FlyoutAdd.Hide();
             ViewModel.AddFavorite(TextNote.Text, TimeAPIService.CurrentDetail);
+            collectionButton();
+        }
+
+        // 修改备注
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutEdit.Hide();
+            ViewModel.AddFavorite(TextNoteEdit.Text, TimeAPIService.CurrentDetail);
+            collectionButton();
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutEdit.Hide();
+            ViewModel.DeleteFavorite(TimeAPIService.CurrentDetail);
+            collectionButton();
+        }
+
+        private void AppBarEdit_Click(object sender, RoutedEventArgs e)
+        {
+            TextNoteEdit.Text = collectionItem.Note;
         }
     }
 }

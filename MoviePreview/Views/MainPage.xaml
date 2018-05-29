@@ -10,6 +10,28 @@
     mc:Ignorable="d">
     <Grid x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="650" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TextTitle.Margin" 
+                                Value="0"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Small">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TextTitle.Margin"
+                                Value="25, 0"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -24,7 +46,6 @@
                     x:Name="TextTitle"
                     Text="正在上映"
                     FontSize="23"
-                    Margin="15, 0"
                     RelativePanel.AlignLeftWithPanel="True"/>
                 <RadioButton
                     x:Name="RadioDate"
@@ -67,7 +88,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"></StackPanel>
+                        <StackPanel x:Name="ItemPanel" Orientation="Horizontal"></StackPanel>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
@@ -118,7 +139,6 @@
                                 Text="上映"
                                 RelativePanel.Below="Rating"
                                 RelativePanel.RightOf="TextDate"/>
-                            
                         </RelativePanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

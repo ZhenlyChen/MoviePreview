@@ -14,7 +14,6 @@ namespace MoviePreview.Services
         // TODO 完善磁贴
         public void AddTileToQueue(string title, string titleEn, string tips, string tipsData, string detail, MovieItem item)
         {
-
             // Construct the tile content
             var content = new TileContent()
             {
@@ -157,6 +156,7 @@ namespace MoviePreview.Services
                                                     Text = title,
                                                     HintStyle = AdaptiveTextStyle.Caption,
                                                     HintAlign = AdaptiveTextAlign.Left
+                                                    
                                                 },
                                                 new AdaptiveText()
                                                 {

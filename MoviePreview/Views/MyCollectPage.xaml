@@ -11,8 +11,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity">
     <Grid
-        x:Name="ContentArea"
-        Background="{StaticResource SystemControlAcrylicWindowBrush}">
+        x:Name="ContentArea">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>

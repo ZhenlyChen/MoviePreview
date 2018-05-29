@@ -10,28 +10,29 @@
     Style="{StaticResource PageStyle}"
     DataContext="{Binding MovieDetailViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <RelativePanel
-        x:Name="ContentArea"
-        Background="{ThemeResource SystemControlAcrylicWindowBrush}">
-
+    <RelativePanel x:Name="ContentArea">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
-                <VisualState>
+                <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="650" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="TextTitle.Margin" 
                                 Value="10, 10"/>
+                        <Setter Target="MovieImage.Width"
+                                Value="200"/>
                     </VisualState.Setters>
                 </VisualState>
-                <VisualState>
+                <VisualState x:Name="Small">
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="TextTitle.Margin"
                                 Value="55, 10"/>
+                        <Setter Target="MovieImage.Width"
+                                Value="0"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -166,19 +167,23 @@
                         <TextBlock Text="{x:Bind ViewModel.MovieDetail.Story, Mode=OneWay}"
                                TextWrapping="WrapWholeWords"/>
                     </Grid>
-                    <TextBlock Text="其他信息"
-                               Grid.Row="0"
-                               Grid.Column="1"
-                               FontSize="18"
-                               Margin="0, 10, 0, 0"
-                               FontWeight="Bold"
-                               Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"/>
-                    <RelativePanel Padding="20"
-                          Grid.Row="1"
-                          Grid.Column="1"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}">
+                    <TextBlock 
+                        x:Name="OtherInfoHead"
+                        Text="其他信息"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="18"
+                        Margin="0, 10, 0, 0"
+                        FontWeight="Bold"
+                        Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"/>
+                    <RelativePanel 
+                        x:Name="OtherInfo"
+                        Padding="20"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}">
                         <TextBlock x:Name="TextTime"
                                     Text="时长： "
                                    RelativePanel.AlignTopWithPanel="True"
@@ -440,7 +445,11 @@
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             DefaultLabelPosition="Right">
-            <AppBarButton Icon="Add" Label="收藏" AllowFocusOnInteraction="True">
+            <AppBarButton
+                x:Name="AppBarAdd"
+                Icon="Add"
+                Label="收藏"
+                AllowFocusOnInteraction="True">
                 <AppBarButton.Flyout>
                     <Flyout x:Name="FlyoutAdd">
                         <StackPanel>
@@ -457,6 +466,39 @@
                                 HorizontalAlignment="Right"
                                 Content="收藏"
                                 Click="Button_Click"/>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton
+                x:Name="AppBarEdit"
+                Visibility="Collapsed"
+                Icon="SolidStar"
+                Label="已收藏"
+                Click="AppBarEdit_Click"
+                AllowFocusOnInteraction="True">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="FlyoutEdit">
+                        <StackPanel>
+                            <TextBlock
+                                Style="{ThemeResource BaseTextBlockStyle}"
+                                Text="已收藏"
+                                Margin="12" />
+                            <TextBox
+                                x:Name="TextNoteEdit"
+                                Header="备注："
+                                Margin="10"
+                                MinWidth="200" />
+                            <RelativePanel>
+                                <Button
+                                    RelativePanel.AlignLeftWithPanel="True"
+                                    Content="取消收藏"
+                                    Click="ButtonDelete_Click"/>
+                                <Button
+                                    RelativePanel.AlignRightWithPanel="True"
+                                    Content="修改"
+                                    Click="ButtonEdit_Click"/>
+                            </RelativePanel>
                         </StackPanel>
                     </Flyout>
                 </AppBarButton.Flyout>

@@ -152,12 +152,25 @@ namespace MoviePreview.ViewModels
                 {
                     movie.Note = note;
                     flag = 1;
+                    break;
                 }
             }
             if(flag == 0)
             {
                 Singleton<MyCollectService>.Instance.Collections.Add(data);
                 Singleton<MyCollectService>.Instance.SaveToStorage();
+            }
+        }
+
+        public void DeleteFavorite(MovieItemDetail data)
+        {
+            foreach (MovieItem movie in Singleton<MyCollectService>.Instance.Collections)
+            {
+                if (movie.ID == data.ID)
+                {
+                    Singleton<MyCollectService>.Instance.Collections.Remove(movie);
+                    break;
+                }
             }
         }
     }
