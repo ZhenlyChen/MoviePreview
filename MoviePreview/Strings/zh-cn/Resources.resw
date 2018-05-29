@@ -149,17 +149,9 @@
     <value>即将上映</value>
     <comment>Navigation view item name for Blank</comment>
   </data>
-  <data name="MasterDetail_NoSelection.Text" xml:space="preserve">
-    <value>选择一个项目</value>
-    <comment>No selection text for MasterDetail</comment>
-  </data>
   <data name="Shell_MasterDetail.Content" xml:space="preserve">
     <value>影片详情</value>
     <comment>Navigation view item name for MasterDetail</comment>
-  </data>
-  <data name="Shell_Chart.Content" xml:space="preserve">
-    <value>排行榜</value>
-    <comment>Navigation view item name for Chart</comment>
   </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
@@ -186,7 +178,7 @@
     <comment>About this application title for Settings</comment>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>MegaShow is very good.</value>
+    <value>预影旨在为用户提供及时的影视资讯，为用户提供各种方便的途径接触和了解最新的影视资讯。</value>
     <comment>About this application description for Settings</comment>
   </data>
   <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">
@@ -240,5 +232,9 @@
   </data>
   <data name="Shell_MyCollect.Content" xml:space="preserve">
     <value>我的收藏</value>
+  </data>
+  <data name="BlankPage_TextTitle.Text" xml:space="preserve">
+    <value>即将上映</value>
+    <comment>BlankPage</comment>
   </data>
 </root>
