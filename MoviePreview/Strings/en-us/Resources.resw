@@ -142,24 +142,16 @@
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
   <data name="Shell_Main.Content" xml:space="preserve">
-    <value>Main</value>
+    <value>Now on</value>
     <comment>Navigation view item name for Main</comment>
   </data>
   <data name="Shell_Blank.Content" xml:space="preserve">
-    <value>Blank</value>
+    <value>Coming</value>
     <comment>Navigation view item name for Blank</comment>
   </data>
-  <data name="MasterDetail_NoSelection.Text" xml:space="preserve">
-    <value>Select an item from the list.</value>
-    <comment>No selection text for MasterDetail</comment>
-  </data>
   <data name="Shell_MasterDetail.Content" xml:space="preserve">
-    <value>MasterDetail</value>
+    <value>Movies Detail</value>
     <comment>Navigation view item name for MasterDetail</comment>
-  </data>
-  <data name="Shell_Chart.Content" xml:space="preserve">
-    <value>Chart</value>
-    <comment>Navigation view item name for Chart</comment>
   </data>
   <data name="ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty" xml:space="preserve">
     <value>File name is null or empty. Specify a valid file name</value>
@@ -181,31 +173,31 @@
     <value>Light</value>
     <comment>Light theme text for Settings</comment>
   </data>
-  <data name="Settings_About.Text" xml:space="preserve">    
+  <data name="Settings_About.Text" xml:space="preserve">
     <value>About this application</value>
     <comment>About this application title for Settings</comment>
   </data>
-  <data name="Settings_AboutDescription.Text" xml:space="preserve">    
-    <value>Settings page placeholder text.  Your app description goes here.</value>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>Movie Preview is an application that provides films' information released or prepared released.</value>
     <comment>About this application description for Settings</comment>
   </data>
-  <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">    
+  <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">
     <value>Privacy Statement</value>
     <comment>Privacy Statement link content for Settings</comment>
   </data>
-  <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">  
-    <value>https://YourPrivacyUrlGoesHere/</value>
+  <data name="Settings_PrivacyTermsLink.NavigateUri" xml:space="preserve">
+    <value>https://zhenly.cn</value>
     <comment>Here is your Privacy Statement url for Settings</comment>
   </data>
-  <data name="Settings_Personalization.Text" xml:space="preserve">   
+  <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Personalization</value>
     <comment>Personalization text for Settings</comment>
   </data>
-  <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">   
+  <data name="ExceptionEnumToBooleanConverterValueMustBeAnEnum" xml:space="preserve">
     <value>value must be an Enum!</value>
     <comment>Value must be an Enum in enum to boolean converter</comment>
   </data>
-  <data name="ExceptionEnumToBooleanConverterParameterMustBeAnEnumName" xml:space="preserve">   
+  <data name="ExceptionEnumToBooleanConverterParameterMustBeAnEnumName" xml:space="preserve">
     <value>parameter must be an Enum name!</value>
     <comment>Parameter must be an Enum name in enum to boolean converter</comment>
   </data>
@@ -230,11 +222,11 @@
     <comment>The Parameter DeferredDataFormatId is null or does not contains any element.</comment>
   </data>
   <data name="Shell_MediaPlayer.Content" xml:space="preserve">
-    <value>MediaPlayer</value>
+    <value>Preview</value>
     <comment>Navigation view item name for MediaPlayer</comment>
   </data>
   <data name="Shell_ImageGallery.Content" xml:space="preserve">
-    <value>ImageGallery</value>
+    <value>Image Gallery</value>
     <comment>Navigation view item name for ImageGallery</comment>
   </data>
   <data name="Shell_Login.Content" xml:space="preserve">
@@ -253,7 +245,7 @@
     <value>retry</value>
     <comment>Retry button for LoginWebView</comment>
   </data>
-    <data name="LoginWebView_BrowserBackButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+  <data name="LoginWebView_BrowserBackButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Back</value>
     <comment>WebView back button automation name property for LoginWebView</comment>
   </data>
@@ -293,12 +285,12 @@
     <value>This view is being disposed.</value>
     <comment>View disposed</comment>
   </data>
-  <data name="Shell_MovieDetail.Content" xml:space="preserve">
-    <value>MovieDetail</value>
-    <comment>Navigation view item name for MovieDetail</comment>
-  </data>
   <data name="Shell_MyCollect.Content" xml:space="preserve">
-    <value>MyCollect</value>
+    <value>My Collections</value>
     <comment>Navigation view item name for MyCollect</comment>
+  </data>
+  <data name="BlankPage_TextTitle.Text" xml:space="preserve">
+    <value>Coming</value>
+    <comment>BlankPage</comment>
   </data>
 </root>

@@ -37,7 +37,7 @@ namespace MoviePreview.Services
             {
                 var theDate = DateTime.ParseExact(movie.Date, "yyyy-M-d",
                                   CultureInfo.InvariantCulture);
-                if ((theDate - DateTime.Now).TotalDays <= 10)
+                if ((theDate - DateTime.Now).TotalDays <= 10 && (theDate - DateTime.Now).TotalDays > 0)
                 {
                     Singleton<ToastNotificationsService>.Instance.ShowToastNotificationOfComingMovie(movie);
                     break;
