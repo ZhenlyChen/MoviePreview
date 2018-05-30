@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Animation;
@@ -20,12 +21,23 @@ namespace MoviePreview.ViewModels
         {
             MovieItems = new ObservableCollection<MovieItemNow>();
         }
-        public ObservableCollection<MovieItemNow> _movieItems;
+
+        private ObservableCollection<MovieItemNow> _movieItems;
         public ObservableCollection<MovieItemNow> MovieItems {
             get => _movieItems;
             set => Set(ref _movieItems, value);
         }
-        
+
+        public enum Sort
+        {
+            Default, Date, Rating
+        }
+        private Sort _sortedType = Sort.Default;
+        public Sort SortedType {
+            get => _sortedType;
+            set => Set(ref _sortedType, value);
+        }
+
         public Boolean EmptyItem {
             get {
                 return MovieItems.Count == 0;
@@ -44,10 +56,12 @@ namespace MoviePreview.ViewModels
                 }
                 foreach (var movie in data)
                 {
-                        MovieItems.Add(movie);
+                    MovieItems.Add(movie);
                 }
                 RaisePropertyChanged("EmptyItem");
-                Singleton<LiveTileService>.Instance.AddTileToQueue("最新上映", MovieItems[0].TitleEn, "想看人数", MovieItems[0].WantedCount.ToString(), MovieItems[0].CommonSpecial, MovieItems[0]);
+                string title = ResourceLoader.GetForCurrentView().GetString("MainViewModel_Title/Text");
+                string look = ResourceLoader.GetForCurrentView().GetString("MainViewModel_Look/Text");
+                Singleton<LiveTileService>.Instance.AddTileToQueue(title, MovieItems[0].TitleEn, look, MovieItems[0].WantedCount.ToString(), MovieItems[0].CommonSpecial, MovieItems[0]);
             }
         }
 

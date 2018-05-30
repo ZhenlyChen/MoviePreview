@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight;
 using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
+using Windows.ApplicationModel.Resources;
 
 namespace MoviePreview.ViewModels
 {
@@ -45,7 +46,10 @@ namespace MoviePreview.ViewModels
                 // 刷新页面
                 RaisePropertyChanged("EmptyItem");
                 // 添加磁贴
-                Singleton<LiveTileService>.Instance.AddTileToQueue("即将上映", "", "上映时间：", MovieItems[0].Date, "猛戳看档期", MovieItems[0]);
+                string title = ResourceLoader.GetForCurrentView().GetString("BlankPage_TextTitle/Text");
+                string date = ResourceLoader.GetForCurrentView().GetString("MovieDetailPage_TextDateHelp/Text");
+                string look = ResourceLoader.GetForCurrentView().GetString("BlankViewModel_Look/Text");
+                Singleton<LiveTileService>.Instance.AddTileToQueue(title, string.Empty, date, MovieItems[0].Date, look, MovieItems[0]);
             }
         }
     }

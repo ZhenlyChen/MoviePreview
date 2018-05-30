@@ -32,6 +32,14 @@ namespace MoviePreview.Views
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadData();
+            if (ViewModel.SortedType == MainViewModel.Sort.Date)
+            {
+                RadioDate.IsChecked = true;
+            }
+            else if (ViewModel.SortedType == MainViewModel.Sort.Rating)
+            {
+                RadioRating.IsChecked = true;
+            }
         }
 
         public NavigationServiceEx NavigationService {
@@ -55,7 +63,8 @@ namespace MoviePreview.Views
             if (TimeAPIService.GetedDetail != null && TimeAPIService.GetedDetail.ContainsKey(movieId))
             {
                 data = TimeAPIService.GetedDetail[movieId];
-            } else
+            }
+            else
             {
                 data = await TimeAPIService.GetMovieDetail(movieId);
             }
@@ -65,12 +74,15 @@ namespace MoviePreview.Views
 
         private void RadioButtonRating_Checked(object sender, RoutedEventArgs e)
         {
+            ViewModel.SortedType = MainViewModel.Sort.Rating;
             ViewModel.MovieItems = new ObservableCollection<MovieItemNow>(ViewModel.MovieItems.OrderBy(i => -i.Rating));
         }
 
         private void RadioButtonDate_Checked(object sender, RoutedEventArgs e)
         {
-            ViewModel.MovieItems = new ObservableCollection<MovieItemNow>(ViewModel.MovieItems.OrderByDescending(i => {
+            ViewModel.SortedType = MainViewModel.Sort.Date;
+            ViewModel.MovieItems = new ObservableCollection<MovieItemNow>(ViewModel.MovieItems.OrderByDescending(i =>
+            {
                 return DateTime.ParseExact(i.Date, "yyyy-M-d", CultureInfo.InvariantCulture);
             }));
         }

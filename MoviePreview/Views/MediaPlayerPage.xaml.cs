@@ -12,8 +12,7 @@ namespace MoviePreview.Views
 {
     public sealed partial class MediaPlayerPage : Page
     {
-        private MediaPlayerViewModel ViewModel
-        {
+        private MediaPlayerViewModel ViewModel {
             get { return DataContext as MediaPlayerViewModel; }
         }
 

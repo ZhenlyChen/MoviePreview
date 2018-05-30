@@ -142,7 +142,7 @@
     <comment>The page is unknown or not registered in navigation service</comment>
   </data>
   <data name="Shell_Main.Content" xml:space="preserve">
-    <value>Now on</value>
+    <value>Hot Playing</value>
     <comment>Navigation view item name for Main</comment>
   </data>
   <data name="Shell_Blank.Content" xml:space="preserve">
@@ -292,5 +292,176 @@
   <data name="BlankPage_TextTitle.Text" xml:space="preserve">
     <value>Coming</value>
     <comment>BlankPage</comment>
+  </data>
+  <data name="MainPage_RadioDate.Content" xml:space="preserve">
+    <value>Sorted by date</value>
+    <comment>MainPage Rating methods by times</comment>
+  </data>
+  <data name="MainPage_RadioRating.Content" xml:space="preserve">
+    <value>Sorted by rating</value>
+    <comment>MainPage Rating methods by scores</comment>
+  </data>
+  <data name="MainPage_TextTitle.Text" xml:space="preserve">
+    <value>Hot Playing</value>
+    <comment>MainPage Title</comment>
+  </data>
+  <data name="MovieDetailPage_ActorHelpText.Text" xml:space="preserve">
+    <value>as</value>
+    <comment>MovieDetailPage ActorHelpText.Text</comment>
+  </data>
+  <data name="MovieDetailPage_AddCollectionText.Text" xml:space="preserve">
+    <value>Add as my collection</value>
+    <comment>MovieDetailPage AddCollection Text</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarAdd.Label" xml:space="preserve">
+    <value>Collect</value>
+    <comment>MovieDetailPage AppBarAdd Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarDetail.Label" xml:space="preserve">
+    <value>Detail</value>
+    <comment>MovieDetailPage AppBarDetail Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarEdit.Label" xml:space="preserve">
+    <value>Collected</value>
+    <comment>MovieDetailPage AppBarEdit Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarPurchase.Label" xml:space="preserve">
+    <value>Purchase</value>
+    <comment>MovieDetailPage AppBarPurchase Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarShare.Label" xml:space="preserve">
+    <value>Share</value>
+    <comment>MovieDetailPage AppBarShare Label</comment>
+  </data>
+  <data name="MovieDetailPage_Cast.Text" xml:space="preserve">
+    <value>Cast</value>
+    <comment>MovieDetailPage Cast Header</comment>
+  </data>
+  <data name="MovieDetailPage_CollectButton.Content" xml:space="preserve">
+    <value>Add</value>
+    <comment>MovieDetailPage CollectButton Content</comment>
+  </data>
+  <data name="MovieDetailPage_CollectedText.Text" xml:space="preserve">
+    <value>Collected</value>
+    <comment>MovieDetailPage Collected Text</comment>
+  </data>
+  <data name="MovieDetailPage_CommentsHeader.Text" xml:space="preserve">
+    <value>Comments</value>
+    <comment>ovieDetailPage Comments Header</comment>
+  </data>
+  <data name="MovieDetailPage_Detail.Text" xml:space="preserve">
+    <value>Detail</value>
+    <comment>MovieDetailPage Detail Header</comment>
+  </data>
+  <data name="MovieDetailPage_NoteHeader.Header" xml:space="preserve">
+    <value>Note:   </value>
+    <comment>MovieDetailPage Note Header</comment>
+  </data>
+  <data name="MovieDetailPage_OtherInfoHead.Text" xml:space="preserve">
+    <value>Other Information</value>
+    <comment>MovieDetailPage OtherInfo Header</comment>
+  </data>
+  <data name="MovieDetailPage_PhotosHeader.Text" xml:space="preserve">
+    <value>Photos</value>
+    <comment>MovieDetailPage PhotosHeader</comment>
+  </data>
+  <data name="MovieDetailPage_PreVideosHeader.Text" xml:space="preserve">
+    <value>Pre-Videos</value>
+    <comment>MovieDetailPage PreVideos Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextDateHelp.Text" xml:space="preserve">
+    <value>In Theaters:   </value>
+    <comment>MovieDetailPage TextDateHelp Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextDirector.Text" xml:space="preserve">
+    <value>Director</value>
+    <comment>MovieDetailPage TextDirector Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextLocation.Text" xml:space="preserve">
+    <value>Location:</value>
+    <comment>MovieDetailPage TextLocation Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextTime.Text" xml:space="preserve">
+    <value>Runtime:</value>
+    <comment>MovieDetailPage TextTime Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextTitle.Text" xml:space="preserve">
+    <value>Movies Detail</value>
+  </data>
+  <data name="MovieDetailPage_UncollectButton.Content" xml:space="preserve">
+    <value>Remove</value>
+    <comment>MovieDetailPage UncollectButton Content</comment>
+  </data>
+  <data name="MovieDetailPage_UpdateText.Content" xml:space="preserve">
+    <value>Update</value>
+    <comment>MovieDetailPage Update Text</comment>
+  </data>
+  <data name="MyCollectPage_ButtonConfirm.Content" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="MyCollectPage_ButtonEdit.Content" xml:space="preserve">
+    <value>Update</value>
+    <comment>MyCollectPage ButtonEdit Content</comment>
+  </data>
+  <data name="MyCollectPage_TextNoteEdit.Header" xml:space="preserve">
+    <value>Note updated as:</value>
+  </data>
+  <data name="MyCollectPage_TextNoteHelp.Text" xml:space="preserve">
+    <value>Note:</value>
+    <comment>MyCollectPage TextNoteHelp Header</comment>
+  </data>
+  <data name="MyCollectPage_TextTitle.Text" xml:space="preserve">
+    <value>My Collection</value>
+  </data>
+  <data name="SettingsPage_LanguageRestartText.Text" xml:space="preserve">
+    <value>Change after restart the application</value>
+  </data>
+  <data name="SettingsPage_LanguageText.Text" xml:space="preserve">
+    <value>Choose Language</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.Content" xml:space="preserve">
+    <value>"{0}" will be removed from your collection list, and this operating can't be recovered.</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.PrimaryButtonText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.Title" xml:space="preserve">
+    <value>Do you want to delete this collection?</value>
+  </data>
+  <data name="BlankViewModel_Look.Text" xml:space="preserve">
+    <value>Click to look!!!</value>
+  </data>
+  <data name="MainViewModel_Look.Text" xml:space="preserve">
+    <value>Want to watch</value>
+  </data>
+  <data name="MainViewModel_Title.Text" xml:space="preserve">
+    <value>Newest Playing</value>
+  </data>
+  <data name="MovieDetailViewModel_Description.Text" xml:space="preserve">
+    <value>Share your movies</value>
+  </data>
+  <data name="MovieDetailViewModel_Request.Text" xml:space="preserve">
+    <value>Detail: {0}\n\nUse MoviePreview to share your movies.\n</value>
+  </data>
+  <data name="MovieDetailViewModel_Title.Text" xml:space="preserve">
+    <value>Share the movie "{0}" with you.</value>
+  </data>
+  <data name="MyCollectViewModel_Date1.Text" xml:space="preserve">
+    <value>Screened for {0} day(s)</value>
+  </data>
+  <data name="MyCollectViewModel_Date2.Text" xml:space="preserve">
+    <value>After {0} day(s)</value>
+  </data>
+  <data name="MyCollectViewModel_Look.Text" xml:space="preserve">
+    <value>Click to see the collection!!!</value>
+  </data>
+  <data name="ToastNotificationService_Description.Text" xml:space="preserve">
+    <value>Movie "{0}" will be in theaters on {1}.</value>
+  </data>
+  <data name="ToastNotificationService_Title.Text" xml:space="preserve">
+    <value>The movie you collected is coming.</value>
   </data>
 </root>
