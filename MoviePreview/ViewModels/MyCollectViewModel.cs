@@ -28,6 +28,20 @@ namespace MoviePreview.ViewModels
             }
         }
 
+        private ObservableCollection<MovieItem> _guessLike;
+        public ObservableCollection<MovieItem> GuessLike
+        {
+            get
+            {
+                if (_guessLike == null) _guessLike = new ObservableCollection<MovieItem>();
+                return _guessLike;
+            }
+            set
+            {
+                Set(ref _guessLike, value);
+            }
+        }
+
         public MyCollectViewModel()
         {
             SyncData();

@@ -464,4 +464,7 @@
   <data name="ToastNotificationService_Title.Text" xml:space="preserve">
     <value>The movie you collected is coming.</value>
   </data>
+  <data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
+    <value>Guess what you like</value>
+  </data>
 </root>
