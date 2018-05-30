@@ -464,4 +464,13 @@
   <data name="ToastNotificationService_Title.Text" xml:space="preserve">
     <value>The movie you collected is coming.</value>
   </data>
+  <data name="NetErrorBody.Text" xml:space="preserve">
+    <value>Can't connect to Internet</value>
+  </data>
+  <data name="NetErrorButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="NetErrorTitle.Text" xml:space="preserve">
+    <value>Network error!</value>
+  </data>
 </root>
