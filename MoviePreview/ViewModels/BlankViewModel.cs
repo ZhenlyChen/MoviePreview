@@ -30,6 +30,10 @@ namespace MoviePreview.ViewModels
             {
                 MovieItems.Clear();
                 var data = await TimeAPIService.GetComingMovies();
+                if (data.Count == 0)
+                {
+                    return;
+                }
                 foreach (var movie in data)
                 {
                     // 只添加具有封面的电影

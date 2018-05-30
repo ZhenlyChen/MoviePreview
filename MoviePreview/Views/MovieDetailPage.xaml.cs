@@ -78,6 +78,10 @@ namespace MoviePreview.Views
             else
             {
                 var data = e.Parameter as MovieItemDetail;
+                if (data != null && data.ID == null)
+                {
+                    
+                }
                 if (data == null)
                 {
                     data = JsonConvert.DeserializeObject<MovieItemDetail>((e.Parameter as JObject).ToString());
