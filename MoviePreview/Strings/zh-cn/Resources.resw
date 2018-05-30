@@ -408,4 +408,13 @@
   <data name="ToastNotificationService_Title.Text" xml:space="preserve">
     <value>收藏的电影即将上映</value>
   </data>
+  <data name="NetErrorBody.Text" xml:space="preserve">
+    <value>无法连接互联网</value>
+  </data>
+  <data name="NetErrorButton.Text" xml:space="preserve">
+    <value>我知道了</value>
+  </data>
+  <data name="NetErrorTitle.Text" xml:space="preserve">
+    <value>网络错误</value>
+  </data>
 </root>

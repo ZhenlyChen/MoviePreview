@@ -16,6 +16,7 @@ using MoviePreview.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.ApplicationModel.Resources;
 
 namespace MoviePreview.Views
 {
@@ -80,7 +81,8 @@ namespace MoviePreview.Views
                 var data = e.Parameter as MovieItemDetail;
                 if (data != null && data.ID == null)
                 {
-                    
+                    DisplayDeleteFileDialog();
+                    return;
                 }
                 if (data == null)
                 {
@@ -96,6 +98,33 @@ namespace MoviePreview.Views
             }
             collectionButton();
             Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += Instance_OnBackgroundEntering;
+        }
+
+        private async void DisplayDeleteFileDialog()
+        {
+            ContentDialog deleteFileDialog = new ContentDialog
+            {
+                Title = ResourceLoader.GetForCurrentView().GetString("NetErrorTitle/Text"),
+                Content = ResourceLoader.GetForCurrentView().GetString("NetErrorBody/Text"),
+                PrimaryButtonText = ResourceLoader.GetForCurrentView().GetString("NetErrorButton/Text"),
+            };
+
+            ContentDialogResult result = await deleteFileDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                if (NavigationService.CanGoBack)
+                {
+                    NavigationService.GoBack();
+                }
+                NavigationService.Navigate(typeof(MainViewModel).FullName, null, new SuppressNavigationTransitionInfo());
+            }
+        }
+
+        public NavigationServiceEx NavigationService {
+            get {
+                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+            }
         }
 
         private MovieItem collectionItem;
