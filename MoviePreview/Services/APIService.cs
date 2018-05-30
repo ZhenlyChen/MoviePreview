@@ -282,9 +282,13 @@ namespace MoviePreview.Services
         /// <returns>电影列表</returns>
         public static async Task<List<MovieItemNow>> GetLocationMovies(string location = "365")
         {
-            JsonObject res = await Singleton<NetService>.Instance.GetJson(string.Format(APIHotPlayMovies, location));
-            JsonArray ms = res["movies"].GetArray();
             var movieList = new List<MovieItemNow>();
+            JsonObject res = await Singleton<NetService>.Instance.GetJson(string.Format(APIHotPlayMovies, location));
+            if (res == null)
+            {
+                return movieList;
+            }
+            JsonArray ms = res["movies"].GetArray();
             foreach (var m in ms)
             {
                 var movie = ParseLocationMovie(m);
@@ -307,7 +311,10 @@ namespace MoviePreview.Services
         {
             var movieList = new List<MovieItemComing>();
             JsonObject res = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieComingNew, location));
-
+            if (res == null)
+            {
+                return movieList;
+            }
             // 加入热门电影
             JsonArray attentions = res["attention"].GetArray();
             foreach (var m in attentions)
@@ -347,29 +354,35 @@ namespace MoviePreview.Services
         public static async Task<MovieItemDetail> GetMovieDetail(string id)
         {
             // 详情
-            JsonObject detail = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieDetail, LocationGuangZhou, id));
-            var movieDetail = ParseMovieDetail(detail["data"].GetObject());
+            try
+            {
+                JsonObject detail = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieDetail, LocationGuangZhou, id));
+                var movieDetail = ParseMovieDetail(detail["data"].GetObject());
 
-            // 演员表
-            JsonObject people = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieCredits, id));
-            movieDetail = ParseMoviePeople(movieDetail, people);
+                // 演员表
+                JsonObject people = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieCredits, id));
+                movieDetail = ParseMoviePeople(movieDetail, people);
 
-            // 影评
-            JsonObject comments = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieComment, id));
-            movieDetail = ParseMovieComment(movieDetail, comments);
+                // 影评
+                JsonObject comments = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieComment, id));
+                movieDetail = ParseMovieComment(movieDetail, comments);
 
-            // 预告片
-            JsonObject videos = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieVideo, id));
-            movieDetail = ParseMovieVideo(movieDetail, videos);
+                // 预告片
+                JsonObject videos = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieVideo, id));
+                movieDetail = ParseMovieVideo(movieDetail, videos);
 
-            // 剧照
-            JsonObject images = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieImage, id));
-            movieDetail = ParseMovieImage(movieDetail, images);
+                // 剧照
+                JsonObject images = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieImage, id));
+                movieDetail = ParseMovieImage(movieDetail, images);
 
-            CurrentDetail = movieDetail;
-            if (GetedDetail == null) GetedDetail = new Dictionary<string, MovieItemDetail>();
-            GetedDetail[movieDetail.ID] = movieDetail;
-            return movieDetail;
+                CurrentDetail = movieDetail;
+                if (GetedDetail == null) GetedDetail = new Dictionary<string, MovieItemDetail>();
+                GetedDetail[movieDetail.ID] = movieDetail;
+                return movieDetail;
+            } catch (Exception)
+            {
+                return new MovieItemDetail();
+            }
         }
         
 

@@ -24,14 +24,18 @@ namespace MoviePreview.Services
         public async void LoadFormStorage()
         {
             var c = await ApplicationData.Current.LocalFolder.ReadAsync<List<MovieItem>>("MyCollection");
-            if (c != null)
+            if (c != null && c.Count != 0)
             {
                 Collections = c;
             } else
             {
                 Collections = new List<MovieItem>();
             }
-            // todo toast
+
+            if (ApplicationData.Current.LocalSettings.Values["Notice"] as string == "false")
+            {
+                return;
+            }
 
             foreach(MovieItem movie in Collections)
             {
@@ -41,7 +45,7 @@ namespace MoviePreview.Services
                 {
                     Singleton<ToastNotificationsService>.Instance.ShowToastNotificationOfComingMovie(movie);
                     break;
-                }   
+                }
             }
             //toast
         }

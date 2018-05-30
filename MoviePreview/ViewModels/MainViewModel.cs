@@ -50,6 +50,10 @@ namespace MoviePreview.ViewModels
             {
                 MovieItems.Clear();
                 var data = await TimeAPIService.GetLocationMovies();
+                if (data.Count == 0)
+                {
+                    return;
+                }
                 foreach (var movie in data)
                 {
                     MovieItems.Add(movie);

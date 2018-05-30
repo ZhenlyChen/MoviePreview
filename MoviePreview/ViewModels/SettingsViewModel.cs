@@ -27,6 +27,13 @@ namespace MoviePreview.ViewModels
             }
         }
 
+        private bool _switchValue;
+
+        public bool SwitchValue {
+            get => _switchValue;
+            set => Set(ref _switchValue, value);
+        }
+
         private string _versionDescription;
 
         public string VersionDescription {

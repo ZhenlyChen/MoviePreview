@@ -408,7 +408,19 @@
   <data name="ToastNotificationService_Title.Text" xml:space="preserve">
     <value>收藏的电影即将上映</value>
   </data>
-  <data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
+    <data name="NetErrorBody.Text" xml:space="preserve">
+    <value>无法连接互联网</value>
+  </data>
+  <data name="NetErrorButton.Text" xml:space="preserve">
+    <value>我知道了</value>
+  </data>
+  <data name="NetErrorTitle.Text" xml:space="preserve">
+    <value>网络错误</value>
+  </data>
+  <data name="SettingsPage_NoticeText.Text" xml:space="preserve">
+    <value>推送通知</value>
+  </data>
+<data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
     <value>猜你喜欢</value>
   </data>
 </root>

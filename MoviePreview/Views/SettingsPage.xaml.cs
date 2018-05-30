@@ -39,6 +39,15 @@ namespace MoviePreview.Views
                     LangSelect.SelectedItem = lang_zh_cn;
                     break;
             }
+            string Notice = ApplicationData.Current.LocalSettings.Values["Notice"] as string;
+            if (Notice == null)
+            {
+                ViewModel.SwitchValue = true;
+            } else
+            {
+                ViewModel.SwitchValue = Notice == "true" ? true : false;
+            }
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -68,6 +77,17 @@ namespace MoviePreview.Views
                 case "English":
                     ApplicationData.Current.LocalSettings.Values["CurrentLanguage"] = "en-us";
                     break;
+            }
+        }
+
+        private void NoticeSwitch_Toggled(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (NoticeSwitch.IsOn == true)
+            {
+                ApplicationData.Current.LocalSettings.Values["Notice"] = "true";
+            } else
+            {
+                ApplicationData.Current.LocalSettings.Values["Notice"] = "false";
             }
         }
     }

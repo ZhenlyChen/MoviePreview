@@ -51,7 +51,6 @@ namespace MoviePreview.ViewModels
                                   CultureInfo.InvariantCulture);
                 string tips;
                 string date;
-                string detail;
                 int day = (int)(theDate - DateTime.Now).TotalDays;
                 
                 if (day <= 0)
