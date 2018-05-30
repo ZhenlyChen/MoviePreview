@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
@@ -41,15 +42,19 @@ namespace MoviePreview.ViewModels
                 
                 if (day <= 0)
                 {
-                    tips = "正在上映";
-                    date = $"已上映{-day}天";
+                    // tips => 正在上映
+                    tips = ResourceLoader.GetForCurrentView().GetString("Shell_Main/Content");
+                    date = string.Format(ResourceLoader.GetForCurrentView().GetString("MyCollectViewModel_Date1/Text"), -day);
                 }
                 else
                 {
-                    tips = "即将上映";
-                    date = $"还剩{day}天";
+                    // tips => 即将上映
+                    tips = ResourceLoader.GetForCurrentView().GetString("Shell_Blank/Content");
+                    date = string.Format(ResourceLoader.GetForCurrentView().GetString("MyCollectViewModel_Date2/Text"), day);
                 }
-                Singleton<LiveTileService>.Instance.AddTileToQueue("我的收藏", "", tips, date, "猛戳看收藏",Collections[0]);
+                string title = ResourceLoader.GetForCurrentView().GetString("Shell_MyCollect/Content");
+                string look = ResourceLoader.GetForCurrentView().GetString("MyCollectViewModel_Look/Text");
+                Singleton<LiveTileService>.Instance.AddTileToQueue(title, string.Empty, tips, date, look, Collections[0]);
             }
         }
 

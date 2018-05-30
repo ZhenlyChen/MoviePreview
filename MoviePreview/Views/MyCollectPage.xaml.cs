@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using GalaSoft.MvvmLight.Views;
 using MoviePreview.Models;
 using MoviePreview.Services;
 using MoviePreview.ViewModels;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -46,10 +48,10 @@ namespace MoviePreview.Views
         {
             ContentDialog deleteFileDialog = new ContentDialog
             {
-                Title = "删除这个收藏？",
-                Content = $"{ToDelItem.TitleCn} 将从你的收藏里面删除，并且不可恢复。",
-                PrimaryButtonText = "狠心删除",
-                CloseButtonText = "留下来"
+                Title = ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_Delete/Title"),
+                Content = string.Format(ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_Delete/Content"), ToDelItem.TitleCn),
+                PrimaryButtonText = ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_Delete/PrimaryButtonText"),
+                CloseButtonText = ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_Delete/CloseButtonText")
             };
 
             ContentDialogResult result = await deleteFileDialog.ShowAsync();

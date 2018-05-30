@@ -378,11 +378,11 @@
     <comment>MovieDetailPage TextDirector Header</comment>
   </data>
   <data name="MovieDetailPage_TextLocation.Text" xml:space="preserve">
-    <value>Location:   </value>
+    <value>Location:</value>
     <comment>MovieDetailPage TextLocation Header</comment>
   </data>
   <data name="MovieDetailPage_TextTime.Text" xml:space="preserve">
-    <value>Runtime:  </value>
+    <value>Runtime:</value>
     <comment>MovieDetailPage TextTime Header</comment>
   </data>
   <data name="MovieDetailPage_TextTitle.Text" xml:space="preserve">
@@ -400,14 +400,14 @@
     <value>Confirm</value>
   </data>
   <data name="MyCollectPage_ButtonEdit.Content" xml:space="preserve">
-    <value> Update</value>
+    <value>Update</value>
     <comment>MyCollectPage ButtonEdit Content</comment>
   </data>
   <data name="MyCollectPage_TextNoteEdit.Header" xml:space="preserve">
-    <value>Note updated as:   </value>
+    <value>Note updated as:</value>
   </data>
   <data name="MyCollectPage_TextNoteHelp.Text" xml:space="preserve">
-    <value> Note:   </value>
+    <value>Note:</value>
     <comment>MyCollectPage TextNoteHelp Header</comment>
   </data>
   <data name="MyCollectPage_TextTitle.Text" xml:space="preserve">
@@ -418,5 +418,50 @@
   </data>
   <data name="SettingsPage_LanguageText.Text" xml:space="preserve">
     <value>Choose Language</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.Content" xml:space="preserve">
+    <value>"{0}" will be removed from your collection list, and this operating can't be recovered.</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.PrimaryButtonText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.Title" xml:space="preserve">
+    <value>Do you want to delete this collection?</value>
+  </data>
+  <data name="BlankViewModel_Look.Text" xml:space="preserve">
+    <value>Click to look!!!</value>
+  </data>
+  <data name="MainViewModel_Look.Text" xml:space="preserve">
+    <value>Want to watch</value>
+  </data>
+  <data name="MainViewModel_Title.Text" xml:space="preserve">
+    <value>Newest Playing</value>
+  </data>
+  <data name="MovieDetailViewModel_Description.Text" xml:space="preserve">
+    <value>Share your movies</value>
+  </data>
+  <data name="MovieDetailViewModel_Request.Text" xml:space="preserve">
+    <value>Detail: {0}\n\nUse MoviePreview to share your movies.\n</value>
+  </data>
+  <data name="MovieDetailViewModel_Title.Text" xml:space="preserve">
+    <value>Share the movie "{0}" with you.</value>
+  </data>
+  <data name="MyCollectViewModel_Date1.Text" xml:space="preserve">
+    <value>Screened for {0} day(s)</value>
+  </data>
+  <data name="MyCollectViewModel_Date2.Text" xml:space="preserve">
+    <value>After {0} day(s)</value>
+  </data>
+  <data name="MyCollectViewModel_Look.Text" xml:space="preserve">
+    <value>Click to see the collection!!!</value>
+  </data>
+  <data name="ToastNotificationService_Description.Text" xml:space="preserve">
+    <value>Movie "{0}" will be in theaters on {1}.</value>
+  </data>
+  <data name="ToastNotificationService_Title.Text" xml:space="preserve">
+    <value>The movie you collected is coming.</value>
   </data>
 </root>

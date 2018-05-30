@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Animation;
@@ -54,7 +55,9 @@ namespace MoviePreview.ViewModels
                     MovieItems.Add(movie);
                 }
                 RaisePropertyChanged("EmptyItem");
-                Singleton<LiveTileService>.Instance.AddTileToQueue("最新上映", MovieItems[0].TitleEn, "想看人数", MovieItems[0].WantedCount.ToString(), MovieItems[0].CommonSpecial, MovieItems[0]);
+                string title = ResourceLoader.GetForCurrentView().GetString("MainViewModel_Title/Text");
+                string look = ResourceLoader.GetForCurrentView().GetString("MainViewModel_Look/Text");
+                Singleton<LiveTileService>.Instance.AddTileToQueue(title, MovieItems[0].TitleEn, look, MovieItems[0].WantedCount.ToString(), MovieItems[0].CommonSpecial, MovieItems[0]);
             }
         }
 

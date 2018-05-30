@@ -363,4 +363,49 @@
   <data name="SettingsPage_LanguageText.Text" xml:space="preserve">
     <value>选择语言</value>
   </data>
+  <data name="MyCollectPage_CS_Delete.CloseButtonText" xml:space="preserve">
+    <value>留下来</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.Content" xml:space="preserve">
+    <value>《{0}》将从你的收藏里面删除，并且不可恢复。</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.PrimaryButtonText" xml:space="preserve">
+    <value>狠心删除</value>
+  </data>
+  <data name="MyCollectPage_CS_Delete.Title" xml:space="preserve">
+    <value>删除这个收藏？</value>
+  </data>
+  <data name="BlankViewModel_Look.Text" xml:space="preserve">
+    <value>猛戳看档期</value>
+  </data>
+  <data name="MainViewModel_Look.Text" xml:space="preserve">
+    <value>想看人数</value>
+  </data>
+  <data name="MainViewModel_Title.Text" xml:space="preserve">
+    <value>最新上映</value>
+  </data>
+  <data name="MovieDetailViewModel_Description.Text" xml:space="preserve">
+    <value>分享你的电影</value>
+  </data>
+  <data name="MovieDetailViewModel_Request.Text" xml:space="preserve">
+    <value>剧情简介：{0}\n\n用预影分享你的电影\n</value>
+  </data>
+  <data name="MovieDetailViewModel_Title.Text" xml:space="preserve">
+    <value>向你分享一部电影《{0}》</value>
+  </data>
+  <data name="MyCollectViewModel_Date1.Text" xml:space="preserve">
+    <value>已上映{0}天</value>
+  </data>
+  <data name="MyCollectViewModel_Date2.Text" xml:space="preserve">
+    <value>还剩{0}天</value>
+  </data>
+  <data name="MyCollectViewModel_Look.Text" xml:space="preserve">
+    <value>猛戳看收藏</value>
+  </data>
+  <data name="ToastNotificationService_Description.Text" xml:space="preserve">
+    <value>电影《{0}》将于{1}上映</value>
+  </data>
+  <data name="ToastNotificationService_Title.Text" xml:space="preserve">
+    <value>收藏的电影即将上映</value>
+  </data>
 </root>

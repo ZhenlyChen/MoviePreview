@@ -9,6 +9,7 @@ using MoviePreview.Helpers;
 using MoviePreview.Models;
 using MoviePreview.Services;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -125,14 +126,17 @@ namespace MoviePreview.ViewModels
             DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
 
             MovieItemDetail movie = TimeAPIService.CurrentDetail;
+            string title = ResourceLoader.GetForCurrentView().GetString("MovieDetailViewModel_Title/Text");
+            string description = ResourceLoader.GetForCurrentView().GetString("MovieDetailViewModel_Description/Text");
+            string reqText = ResourceLoader.GetForCurrentView().GetString("MovieDetailViewModel_Request/Text");
             dataTransferManager.DataRequested += (s, args) => {
                 DataRequest request = args.Request;
-                request.Data.Properties.Title = $"向你分享一部电影《{movie.TitleCn}》";
-                request.Data.Properties.Description = "分享你的电影";
+                request.Data.Properties.Title = string.Format(title, movie.TitleCn);
+                request.Data.Properties.Description = description;
                 RandomAccessStreamReference imageStreamRef = RandomAccessStreamReference.CreateFromUri(new Uri(movie.Image));
                 request.Data.Properties.Thumbnail = imageStreamRef;
                 request.Data.SetBitmap(imageStreamRef);
-                request.Data.SetText($"剧情简介：{movie.Story}\n\n用预影分享你的电影\n");
+                request.Data.SetText(string.Format(reqText, movie.Story));
                 request.Data.SetWebLink(new Uri(movie.Url));
             };
             DataTransferManager.ShowShareUI();

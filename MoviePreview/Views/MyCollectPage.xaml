@@ -83,7 +83,7 @@
                             x:Name="TextNoteHelp"
                             RelativePanel.RightOf="ImageMovie"
                             RelativePanel.Below="TextType"
-                            Margin="20, 5, 0, 0"/>
+                            Margin="20, 5, 5, 0"/>
                         <TextBlock
                             x:Name="TextNote"
                             RelativePanel.RightOf="TextNoteHelp"

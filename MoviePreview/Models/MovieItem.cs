@@ -12,6 +12,7 @@ using System.Globalization;
 using Windows.Storage.Streams;
 using System.IO;
 using Newtonsoft.Json;
+using Windows.Globalization;
 
 namespace MoviePreview.Models
 {
@@ -71,7 +72,14 @@ namespace MoviePreview.Models
         {
             get
             {
-                return DateTime.ParseExact(Date, "yyyy-M-d", CultureInfo.InvariantCulture).ToString("M月d日");
+                if (ApplicationLanguages.PrimaryLanguageOverride.ToLower() == "zh-cn")
+                {
+                    return DateTime.ParseExact(Date, "yyyy-M-d", CultureInfo.InvariantCulture).ToString("M月d日");
+                }
+                else
+                {
+                    return DateTime.ParseExact(Date, "yyyy-M-d", CultureInfo.InvariantCulture).ToString("MMM d");
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Diagnostics;
 using MoviePreview.ViewModels;
 using Windows.Storage;
 using Windows.System.UserProfile;
@@ -16,25 +16,27 @@ namespace MoviePreview.Views
             }
         }
 
+        private bool init = false;
+
         public SettingsPage()
         {
             InitializeComponent();
             string lang = ApplicationData.Current.LocalSettings.Values["CurrentLanguage"] as string;
-            if (lang != null)
+            if (lang == null)
             {
                 var langs = GlobalizationPreferences.Languages;
                 lang = (langs.Count > 0 ? langs[0] : Windows.Globalization.Language.CurrentInputMethodLanguageTag);
             }
-            switch (lang)
+            switch (lang.ToLower())
             {
                 case "zh-cn":
-                    lang_zh_cn.IsSelected = true;
+                    LangSelect.SelectedItem = lang_zh_cn;
                     break;
-                case "en_us":
-                    lang_en_us.IsSelected = true;
+                case "en-us":
+                    LangSelect.SelectedItem = lang_en_us;
                     break;
                 default:
-                    lang_zh_cn.IsSelected = true;
+                    LangSelect.SelectedItem = lang_zh_cn;
                     break;
             }
         }
@@ -46,7 +48,16 @@ namespace MoviePreview.Views
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (init == false)
+            {
+                init = true;
+                return;
+            }
             var combo = (ComboBox)sender;
+            if (combo.SelectedIndex == -1)
+            {
+                return;
+            }
             var item = (ComboBoxItem)combo.SelectedItem;
             string lang = item.Content.ToString();
             switch (lang)
