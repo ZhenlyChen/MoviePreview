@@ -30,6 +30,8 @@ namespace MoviePreview.Services
         private static readonly string APIMovieVideo = "https://api-m.mtime.cn/Movie/Video.api?pageIndex=1&movieId={0}";
         // 剧照
         private static readonly string APIMovieImage = "https://api-m.mtime.cn/Movie/ImageAll.api?movieId={0}";
+        // 电影搜索
+        private static readonly string APIMovieSearch = "https://api-m.mtime.cn/Showtime/SearchVoice.api?Keyword={0}";
 
         /// <summary>
         /// 解析正在上映的电影
@@ -372,6 +374,16 @@ namespace MoviePreview.Services
             return movieDetail;
         }
         
-
+        public static async Task<List<string>> GetMoviesTitleList(string query)
+        {
+            JsonObject res = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieSearch, query));
+            var titleList = new List<string>();
+            JsonArray movies = res["movies"].GetArray();
+            foreach (var movie in movies)
+            {
+                titleList.Add(movie.GetObject()["name"].GetString());
+            }
+            return titleList;
+        }
     }
 }

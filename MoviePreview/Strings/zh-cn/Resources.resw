@@ -408,4 +408,7 @@
   <data name="ToastNotificationService_Title.Text" xml:space="preserve">
     <value>收藏的电影即将上映</value>
   </data>
+  <data name="MainPage_TextDateHelp.Text" xml:space="preserve">
+    <value>上映</value>
+  </data>
 </root>

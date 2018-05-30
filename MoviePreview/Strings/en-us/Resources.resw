@@ -464,4 +464,7 @@
   <data name="ToastNotificationService_Title.Text" xml:space="preserve">
     <value>The movie you collected is coming.</value>
   </data>
+  <data name="MainPage_TextDateHelp.Text" xml:space="preserve">
+    <value>in theaters</value>
+  </data>
 </root>

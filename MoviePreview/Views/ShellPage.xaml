@@ -23,6 +23,9 @@
             <NavigationViewItem x:Uid="Shell_Blank" Icon="VideoChat" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.BlankViewModel" />
             <NavigationViewItem x:Uid="Shell_MyCollect" Icon="OutlineStar" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MyCollectViewModel" />
         </NavigationView.MenuItems>
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox x:Name="NavASB" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged"/>
+        </NavigationView.AutoSuggestBox>
         <NavigationView.HeaderTemplate>
             <DataTemplate />
             <!--<DataTemplate>
