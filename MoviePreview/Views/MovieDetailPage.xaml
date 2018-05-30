@@ -132,9 +132,10 @@
                             RelativePanel.Below="Rating"
                             RelativePanel.RightOf="MovieImage"
                             Text="{x:Bind  ViewModel.MovieDetail.MovieType, Mode=OneWay}"/>
+                        <!-- MovieDetailPage_TextDateHelp.Text="上映日期：" -->
                         <TextBlock
+                            x:Uid="MovieDetailPage_TextDateHelp"
                             x:Name="TextDateHelp"
-                            Text="上映日期："
                             RelativePanel.Below="TextType"
                             RelativePanel.RightOf="MovieImage"/>
                         <TextBlock
@@ -153,7 +154,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="剧情简介"
+                    <!-- MovieDetailPage_Detail.Text="剧情简介" -->
+                    <TextBlock x:Uid="MovieDetailPage_Detail"
                                Grid.Row="0"
                                Grid.Column="0"
                                FontSize="18"
@@ -167,9 +169,10 @@
                         <TextBlock Text="{x:Bind ViewModel.MovieDetail.Story, Mode=OneWay}"
                                TextWrapping="WrapWholeWords"/>
                     </Grid>
-                    <TextBlock 
+                    <!-- MovieDetailPage_OtherInfoHead.Text="其他信息" -->
+                    <TextBlock
+                        x:Uid="MovieDetailPage_OtherInfoHead"
                         x:Name="OtherInfoHead"
-                        Text="其他信息"
                         Grid.Row="0"
                         Grid.Column="1"
                         FontSize="18"
@@ -184,15 +187,17 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}">
-                        <TextBlock x:Name="TextTime"
-                                    Text="时长： "
+                        <!-- MovieDetailPage_TextTime.Text="时长： "  -->
+                        <TextBlock x:Uid="MovieDetailPage_TextTime"
+                                   x:Name="TextTime"
                                    RelativePanel.AlignTopWithPanel="True"
                                    RelativePanel.AlignLeftWithPanel="True"/>
                         <TextBlock Text="{x:Bind ViewModel.MovieDetail.MovieTime, Mode=OneWay}"
                                    RelativePanel.AlignTopWithPanel="True"
                                    RelativePanel.RightOf="TextTime"/>
-                        <TextBlock x:Name="TextLocation"
-                                    Text="地区： "
+                        <!-- MovieDetailPage_TextLocation.Text="地区： " -->
+                        <TextBlock x:Uid="MovieDetailPage_TextLocation"
+                                   x:Name="TextLocation"
                                    RelativePanel.Below="TextTime"
                                    RelativePanel.AlignLeftWithPanel="True"/>
                         <TextBlock Text="{x:Bind ViewModel.MovieDetail.LocationName, Mode=OneWay}"
@@ -200,11 +205,12 @@
                                    RelativePanel.RightOf="TextLocation"/>
                     </RelativePanel>
                 </Grid>
-                <TextBlock Text="导演"
-                            Grid.Row="2"
-                            FontSize="18"
-                            Margin="20, 10, 0, 0"
-                            FontWeight="Bold"/>
+                <!-- MovieDetailPage_TextDirector.Text="导演" -->
+                <TextBlock x:Uid="MovieDetailPage_TextDirector"
+                           Grid.Row="2"
+                           FontSize="18"
+                           Margin="20, 10, 0, 0"
+                           FontWeight="Bold"/>
                 <GridView ItemsSource="{x:Bind ViewModel.MovieDetail.DirectorList, Mode=OneWay}"
                           Grid.Row="3"
                           CanDragItems="False"
@@ -230,11 +236,12 @@
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
-                <TextBlock Text="演员"
-                            Grid.Row="4"
-                            FontSize="18"
-                            Margin="20, 10, 0, 0"
-                            FontWeight="Bold"/>
+                <!-- MovieDetailPage_Cast.Text="演员" -->
+                <TextBlock x:Uid="MovieDetailPage_Cast"
+                           Grid.Row="4"
+                           FontSize="18"
+                           Margin="20, 10, 0, 0"
+                           FontWeight="Bold"/>
                 <GridView ItemsSource="{x:Bind ViewModel.MovieDetail.ActorList, Mode=OneWay}"
                           Grid.Row="5"
                           CanDragItems="False"
@@ -263,8 +270,9 @@
                                         Text="{x:Bind NameEn, Mode=OneWay}"
                                         Margin="20, 0"/>
                                 </Grid>
-                                <TextBlock x:Name="ActorHelpText"
-                                           Text="饰"
+                                <!-- MovieDetailPage_ActorHelpText.Text="饰" -->
+                                <TextBlock x:Uid="MovieDetailPage_ActorHelpText"
+                                           x:Name="ActorHelpText"
                                            Margin="0,20, 40, 0"
                                            RelativePanel.RightOf="ActorGrid"/>
                                 <PersonPicture x:Name="PictureHeadRole"
@@ -281,11 +289,12 @@
                     </GridView.ItemTemplate>
                 </GridView>
 
-                <TextBlock Text="剧照"
-                            Grid.Row="6"
-                            FontSize="18"
-                            Margin="20, 10, 0, 0"
-                            FontWeight="Bold"/>
+                <!-- MovieDetailPage_PhotosHeader.Text="剧照" -->
+                <TextBlock x:Uid="MovieDetailPage_PhotosHeader"
+                           Grid.Row="6"
+                           FontSize="18"
+                           Margin="20, 10, 0, 0"
+                           FontWeight="Bold"/>
 
                 <GridView
                     Grid.Row="7"
@@ -321,11 +330,12 @@
                     </GridView.ItemTemplate>
                 </GridView>
 
-                <TextBlock Text="预告片"
-                            Grid.Row="8"
-                            FontSize="18"
-                            Margin="20, 10, 0, 0"
-                            FontWeight="Bold"/>
+                <!-- MovieDetailPage_PreVideosHeader.Text="预告片" -->
+                <TextBlock x:Uid="MovieDetailPage_PreVideosHeader"
+                           Grid.Row="8"
+                           FontSize="18"
+                           Margin="20, 10, 0, 0"
+                           FontWeight="Bold"/>
 
                 <GridView
                     Grid.Row="9"
@@ -377,12 +387,13 @@
                     </GridView.ItemTemplate>
                 </GridView>
 
-                <TextBlock Text="影评"
-                            Grid.Row="10"
-                            FontSize="18"
-                            Margin="20, 10, 0, 0"
-                            FontWeight="Bold"
-                            Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"/>
+                <!-- MovieDetailPage_CommentsHeader.Text="影评" -->
+                <TextBlock x:Uid="MovieDetailPage_CommentsHeader"
+                           Grid.Row="10"
+                           FontSize="18"
+                           Margin="20, 10, 0, 0"
+                           FontWeight="Bold"
+                           Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"/>
                 <ListView ItemsSource="{x:Bind ViewModel.MovieDetail.Comments, Mode=OneWay}"
                           Visibility="{x:Bind ViewModel.movieDetail.HasRating, Mode=OneWay}"
                           Grid.Row="11"
@@ -445,83 +456,96 @@
             RelativePanel.AlignLeftWithPanel="True"
             RelativePanel.AlignRightWithPanel="True"
             DefaultLabelPosition="Right">
+            <!-- MovieDetailPage_AppBarAdd.Label="收藏" -->
             <AppBarButton
+                x:Uid="MovieDetailPage_AppBarAdd"
                 x:Name="AppBarAdd"
                 Icon="Add"
-                Label="收藏"
                 AllowFocusOnInteraction="True">
                 <AppBarButton.Flyout>
                     <Flyout x:Name="FlyoutAdd">
                         <StackPanel>
+                            <!-- MovieDetailPage_AddCollectionText.Text="添加到我的收藏" -->
                             <TextBlock
+                                x:Uid="MovieDetailPage_AddCollectionText"
                                 Style="{ThemeResource BaseTextBlockStyle}"
-                                Text="添加到我的收藏"
                                 Margin="12" />
+                            <!-- MovieDetailPage_NoteHeader.Header="备注：" 多次使用 -->
                             <TextBox
+                                x:Uid="MovieDetailPage_NoteHeader"
                                 x:Name="TextNote"
-                                Header="备注："
                                 Margin="10"
                                 MinWidth="200" />
+                            <!-- MovieDetailPage_CollectButton.Content="收藏" -->
                             <Button
+                                x:Uid="MovieDetailPage_CollectButton"
                                 HorizontalAlignment="Right"
-                                Content="收藏"
                                 Click="Button_Click"/>
                         </StackPanel>
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
+            <!-- MovieDetailPage_AppBarEdit.Label="收藏" -->
             <AppBarButton
+                x:Uid="MovieDetailPage_AppBarEdit"
                 x:Name="AppBarEdit"
                 Visibility="Collapsed"
                 Icon="SolidStar"
-                Label="已收藏"
                 Click="AppBarEdit_Click"
                 AllowFocusOnInteraction="True">
                 <AppBarButton.Flyout>
                     <Flyout x:Name="FlyoutEdit">
                         <StackPanel>
+                            <!-- MovieDetailPage_CollectedText.Text="已收藏" -->
                             <TextBlock
+                                x:Uid="MovieDetailPage_CollectedText"
                                 Style="{ThemeResource BaseTextBlockStyle}"
-                                Text="已收藏"
                                 Margin="12" />
+                            <!-- MovieDetailPage_NoteHeader.Header="备注：" 多次使用 -->
                             <TextBox
+                                x:Uid="MovieDetailPage_NoteHeader"
                                 x:Name="TextNoteEdit"
-                                Header="备注："
                                 Margin="10"
                                 MinWidth="200" />
                             <RelativePanel>
+                                <!-- MovieDetailPage_UncollectButton.Content="取消收藏" -->
                                 <Button
+                                    x:Uid="MovieDetailPage_UncollectButton"
                                     RelativePanel.AlignLeftWithPanel="True"
-                                    Content="取消收藏"
                                     Click="ButtonDelete_Click"/>
+                                <!-- MovieDetailPage_UpdateText.Content="修改" -->
                                 <Button
+                                    x:Uid="MovieDetailPage_UpdateText"
                                     RelativePanel.AlignRightWithPanel="True"
-                                    Content="修改"
                                     Click="ButtonEdit_Click"/>
                             </RelativePanel>
                         </StackPanel>
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
+            <!-- MovieDetailPage_AppBarShare.Label="分享" -->
             <AppBarButton
+                x:Uid="MovieDetailPage_AppBarShare"
                 Icon="Share"
-                Label="分享"
                 Command="{x:Bind ViewModel.ShareMovieCommand}"/>
+            <!-- MovieDetailPage_AppBarPurchase.Label="购票选座" -->
             <AppBarButton
+                x:Uid="MovieDetailPage_AppBarPurchase"
                 Icon="CalendarWeek"
-                Label="购票选座"
                 Visibility="{x:Bind ViewModel.MovieDetail.HasRating, Mode=OneWay}"
                 Command="{x:Bind ViewModel.OpenUri}"/>
+            <!-- MovieDetailPage_AppBarDetail.Label="查看详情" -->
             <AppBarButton
+                x:Uid="MovieDetailPage_AppBarDetail"
                 Icon="Globe"
-                Label="查看详情"
                 Visibility="{x:Bind ViewModel.MovieDetail.NotRating, Mode=OneWay}"
                 Command="{x:Bind ViewModel.OpenUri}"/>
         </CommandBar>
 
+        <!-- MovieDetailPage_TextTitle.Text="影片详情" -->
         <TextBlock
+            x:Uid="MovieDetailPage_TextTitle"
             x:Name="TextTitle"
-            Text="影片详情"
             Margin="55, 10"
             FontSize="21"/>
     </RelativePanel>

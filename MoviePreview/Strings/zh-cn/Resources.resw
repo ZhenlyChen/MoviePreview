@@ -237,4 +237,130 @@
     <value>即将上映</value>
     <comment>BlankPage</comment>
   </data>
+  <data name="MainPage_RadioDate.Content" xml:space="preserve">
+    <value>按时间排序</value>
+    <comment>MainPage Rating methods by times</comment>
+  </data>
+  <data name="MainPage_RadioRating.Content" xml:space="preserve">
+    <value>按评分排序</value>
+    <comment>MainPage Rating methods by scores</comment>
+  </data>
+  <data name="MainPage_TextTitle.Text" xml:space="preserve">
+    <value>正在上映</value>
+    <comment>MainPage Title</comment>
+  </data>
+  <data name="MovieDetailPage_ActorHelpText.Text" xml:space="preserve">
+    <value>饰</value>
+    <comment>MovieDetailPage ActorHelpText</comment>
+  </data>
+  <data name="MovieDetailPage_AddCollectionText.Text" xml:space="preserve">
+    <value>添加到我的收藏</value>
+    <comment>MovieDetailPage AddCollection Text</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarAdd.Label" xml:space="preserve">
+    <value>收藏</value>
+    <comment>MovieDetailPage AppBarAdd Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarDetail.Label" xml:space="preserve">
+    <value>查看详情</value>
+    <comment>MovieDetailPage AppBarDetail Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarEdit.Label" xml:space="preserve">
+    <value>已收藏</value>
+    <comment>MovieDetailPage AppBarEdit Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarPurchase.Label" xml:space="preserve">
+    <value>购票选座</value>
+    <comment>MovieDetailPage AppBarPurchase Label</comment>
+  </data>
+  <data name="MovieDetailPage_AppBarShare.Label" xml:space="preserve">
+    <value>分享</value>
+    <comment>MovieDetailPage AppBarShare Label</comment>
+  </data>
+  <data name="MovieDetailPage_Cast.Text" xml:space="preserve">
+    <value>演员</value>
+    <comment>MovieDetailPage Cast Header</comment>
+  </data>
+  <data name="MovieDetailPage_CollectButton.Content" xml:space="preserve">
+    <value>收藏</value>
+    <comment>MovieDetailPage CollectButton Content</comment>
+  </data>
+  <data name="MovieDetailPage_CollectedText.Text" xml:space="preserve">
+    <value>已收藏</value>
+    <comment>MovieDetailPage Collected Text</comment>
+  </data>
+  <data name="MovieDetailPage_Detail.Text" xml:space="preserve">
+    <value>剧情简介</value>
+    <comment>MovieDetailPage Detail Header</comment>
+  </data>
+  <data name="MovieDetailPage_NoteHeader.Header" xml:space="preserve">
+    <value>备注：</value>
+    <comment>MovieDetailPage Note Header</comment>
+  </data>
+  <data name="MovieDetailPage_OtherInfoHead.Text" xml:space="preserve">
+    <value>其他信息</value>
+    <comment>MovieDetailPage OtherInfo Header</comment>
+  </data>
+  <data name="MovieDetailPage_PhotosHeader.Text" xml:space="preserve">
+    <value>剧照</value>
+    <comment>MovieDetailPage Photos Header</comment>
+  </data>
+  <data name="MovieDetailPage_PreVideosHeader.Text" xml:space="preserve">
+    <value>预告片</value>
+    <comment>MovieDetailPage PreVideos Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextDateHelp.Text" xml:space="preserve">
+    <value>上映日期：</value>
+    <comment>MovieDetailPage TextDateHelp Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextDirector.Text" xml:space="preserve">
+    <value>导演</value>
+    <comment>MovieDetailPage TextDirector Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextLocation.Text" xml:space="preserve">
+    <value>地区： </value>
+    <comment>MovieDetailPage TextLocation Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextTime.Text" xml:space="preserve">
+    <value>时长：</value>
+    <comment>MovieDetailPage TextTime Header</comment>
+  </data>
+  <data name="MovieDetailPage_TextTitle.Text" xml:space="preserve">
+    <value>影片详情</value>
+  </data>
+  <data name="MovieDetailPage_UncollectButton.Content" xml:space="preserve">
+    <value>取消收藏</value>
+    <comment>MovieDetailPage UncollectButton Content</comment>
+  </data>
+  <data name="MovieDetailPage_UpdateText.Content" xml:space="preserve">
+    <value>修改</value>
+    <comment>MovieDetailPage Update Text</comment>
+  </data>
+  <data name="MyCollectPage_ButtonConfirm.Content" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="MyCollectPage_ButtonEdit.Content" xml:space="preserve">
+    <value>修改</value>
+    <comment>MyCollectPage ButtonEdit Content</comment>
+  </data>
+  <data name="MyCollectPage_TextNoteEdit.Header" xml:space="preserve">
+    <value>修改备注为：</value>
+  </data>
+  <data name="MyCollectPage_TextNoteHelp.Text" xml:space="preserve">
+    <value>备注：</value>
+    <comment>MyCollectPage TextNoteHelp Header</comment>
+  </data>
+  <data name="MyCollectPage_TextTitle.Text" xml:space="preserve">
+    <value>我的收藏</value>
+  </data>
+  <data name="ovieDetailPage_CommentsHeader.Text" xml:space="preserve">
+    <value>影评</value>
+    <comment>ovieDetailPage Comments Header</comment>
+  </data>
+  <data name="SettingsPage_LanguageRestartText.Text" xml:space="preserve">
+    <value>重启应用后有效</value>
+  </data>
+  <data name="SettingsPage_LanguageText.Text" xml:space="preserve">
+    <value>选择语言</value>
+  </data>
 </root>

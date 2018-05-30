@@ -40,7 +40,7 @@ namespace MoviePreview.Views
 
         private void ChangeBG()
         {
-            
+
             ImageBrush imageBrush = new ImageBrush
             {
                 ImageSource = ImageCacheService.GetImage(ViewModel.MovieDetail.Images[0].Image),
@@ -59,16 +59,16 @@ namespace MoviePreview.Views
                 ThreadPoolTimer DelayTimer = ThreadPoolTimer.CreateTimer(async (source) =>
                     {
                         await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
-                                              {
-                                                  var transform = gridView.TransformToVisual(ScrollPage);
-                                                  var point = transform.TransformPoint(new Point(0, 0));
-                                                  if (point.Y != 0)
-                                                  {
-                                                      var y = point.Y + ScrollPage.VerticalOffset;
-                                                      if (y < 200) y += 200;
-                                                      ScrollPage.ChangeView(null, y - 200, null, true);
-                                                  }
-                                              });
+                        {
+                            var transform = gridView.TransformToVisual(ScrollPage);
+                            var point = transform.TransformPoint(new Point(0, 0));
+                            if (point.Y != 0)
+                            {
+                                var y = point.Y + ScrollPage.VerticalOffset;
+                                if (y < 200) y += 200;
+                                ScrollPage.ChangeView(null, y - 200, null, true);
+                            }
+                        });
 
                     }, TimeSpan.FromSeconds(0.1));
                 ChangeBG();
@@ -87,7 +87,7 @@ namespace MoviePreview.Views
                 ConnectedAnimation imageAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("Image");
                 if (imageAnimation != null)
                 {
-                   imageAnimation.TryStart(MovieImage);
+                    imageAnimation.TryStart(MovieImage);
                 }
             }
             collectionButton();

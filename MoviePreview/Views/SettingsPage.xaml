@@ -56,6 +56,19 @@
                 </StackPanel>
             </StackPanel>
 
+            <StackPanel Margin="10, 10">
+                <TextBlock
+                    x:Uid="SettingsPage_LanguageText"
+                    Style="{StaticResource BodyTextStyle}" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Width="120"  Margin="10, 10" SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem x:Name="lang_zh_cn" Content="简体中文"/>
+                        <ComboBoxItem x:Name="lang_en_us"  Content="English" IsSelected="True"/>
+                    </ComboBox>
+                    <TextBlock Height="32" x:Uid="SettingsPage_LanguageRestartText"/>
+                </StackPanel>
+            </StackPanel>
+
             <TextBlock
                 x:Uid="Settings_About"
                 Style="{StaticResource SubtitleTextBlockStyle}" />

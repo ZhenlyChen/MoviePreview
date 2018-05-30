@@ -16,8 +16,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!-- MyCollectPage_TextTitle.Text="我的收藏" -->
         <TextBlock
-            Text="我的收藏"
+            x:Uid="MyCollectPage_TextTitle"
             Grid.Row="0"
             Margin="50, 10"
             FontSize="22"/>
@@ -76,11 +77,12 @@
                             RelativePanel.Below="TextDate"
                             Text="{x:Bind MovieType, Mode=OneWay}"
                             Margin="15, 5"/>
+                        <!-- MyCollectPage_TextNoteHelp.Text="备注： " -->
                         <TextBlock
+                            x:Uid="MyCollectPage_TextNoteHelp"
                             x:Name="TextNoteHelp"
                             RelativePanel.RightOf="ImageMovie"
                             RelativePanel.Below="TextType"
-                            Text="备注： "
                             Margin="20, 5, 0, 0"/>
                         <TextBlock
                             x:Name="TextNote"
@@ -88,23 +90,26 @@
                             RelativePanel.Below="TextType"
                             Text="{x:Bind Note, Mode=OneWay}"
                             Margin="0, 5"/>
+                        <!-- MyCollectPage_ButtonEdit.Content="修改" -->
                         <Button
+                            x:Uid="MyCollectPage_ButtonEdit"
                             x:Name="ButtonEdit"
                             Visibility="Collapsed"
-                            Content="修改"
                             Margin="10"
                             AllowFocusOnInteraction="True">
                             <Button.Flyout>
                                 <Flyout x:Name="EditFlyout">
                                     <StackPanel>
+                                        <!-- MyCollectPage_TextNoteEdit.Header="修改备注为：" -->
                                         <TextBox
+                                            x:Uid="MyCollectPage_TextNoteEdit"
                                             x:Name="TextNoteEdit"
-                                            Header="修改备注为："
                                             Margin="10"
                                             MinWidth="200" />
-                                         <Button
+                                        <!-- MyCollectPage_ButtonConfirm.Content="确定" -->
+                                        <Button
+                                            x:Uid="MyCollectPage_ButtonConfirm"
                                             HorizontalAlignment="Right"
-                                            Content="确定"
                                             Click="ChangeNoteButton_Click"/>
                                     </StackPanel>
                                 </Flyout>

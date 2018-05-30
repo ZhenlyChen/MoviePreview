@@ -42,21 +42,27 @@
                 Grid.Row="0"
                 Margin="20, 10"
                 VerticalAlignment="Top">
+                <!-- MainPage_TextTitle.Text="正在上映" -->
                 <TextBlock
+                    x:Uid="MainPage_TextTitle"
                     x:Name="TextTitle"
-                    Text="正在上映"
                     FontSize="23"
                     RelativePanel.AlignLeftWithPanel="True"/>
+                <!-- MainPage_RadioDate.Content="按时间排序" -->
                 <RadioButton
+                    x:Uid="MainPage_RadioDate"
                     x:Name="RadioDate"
-                    Content="按时间排序"
                     Tag="Date"
+                    Margin="5,0,5,0"
                     RelativePanel.AlignRightWithPanel="True"
                     GroupName="SortList"
                     Checked="RadioButtonDate_Checked"/>
+                <!-- MainPage_RadioRating.Content="按评分排序" -->
                 <RadioButton
-                    Content="按评分排序"
+                    x:Uid="MainPage_RadioRating"
+                    x:Name="RadioRating"
                     Tag="Rating"
+                    Margin="5,0,5,0"
                     GroupName="SortList"
                     RelativePanel.LeftOf="RadioDate"
                     Checked="RadioButtonRating_Checked"/>
