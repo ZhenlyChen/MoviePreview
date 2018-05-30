@@ -69,6 +69,15 @@
                 </StackPanel>
             </StackPanel>
 
+            <StackPanel Margin="10, 10">
+                <TextBlock
+                    x:Uid="SettingsPage_NoticeText"
+                    Style="{StaticResource BodyTextStyle}" />
+                <ToggleSwitch x:Name="NoticeSwitch" Toggled="NoticeSwitch_Toggled" IsOn="{x:Bind ViewModel.SwitchValue}"/>
+            </StackPanel>
+
+            
+
             <TextBlock
                 x:Uid="Settings_About"
                 Style="{StaticResource SubtitleTextBlockStyle}" />

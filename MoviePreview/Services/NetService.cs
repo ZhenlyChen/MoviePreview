@@ -31,7 +31,7 @@ namespace MoviePreview.Services
             }
             catch (Exception ex)
             {
-                httpResponseBody = "Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message;
+                httpResponseBody = null;
             }
             return httpResponseBody;
         }
@@ -39,7 +39,13 @@ namespace MoviePreview.Services
 
         public async Task<JsonObject> GetJson(string url)
         {
-            return JsonObject.Parse(await Get(url));
+            try
+            {
+                return JsonObject.Parse(await Get(url));
+            } catch (Exception)
+            {
+                return null;
+            }
         }
 
         public async Task<XmlDocument> GetXml(string url)

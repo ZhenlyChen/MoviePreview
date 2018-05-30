@@ -14,7 +14,9 @@
         x:Name="ContentArea">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <!-- MyCollectPage_TextTitle.Text="我的收藏" -->
         <TextBlock
@@ -90,35 +92,88 @@
                             RelativePanel.Below="TextType"
                             Text="{x:Bind Note, Mode=OneWay}"
                             Margin="0, 5"/>
-                        <!-- MyCollectPage_ButtonEdit.Content="修改" -->
-                        <Button
-                            x:Uid="MyCollectPage_ButtonEdit"
-                            x:Name="ButtonEdit"
-                            Visibility="Collapsed"
-                            Margin="10"
-                            AllowFocusOnInteraction="True">
-                            <Button.Flyout>
-                                <Flyout x:Name="EditFlyout">
-                                    <StackPanel>
-                                        <!-- MyCollectPage_TextNoteEdit.Header="修改备注为：" -->
-                                        <TextBox
-                                            x:Uid="MyCollectPage_TextNoteEdit"
-                                            x:Name="TextNoteEdit"
-                                            Margin="10"
-                                            MinWidth="200" />
-                                        <!-- MyCollectPage_ButtonConfirm.Content="确定" -->
-                                        <Button
-                                            x:Uid="MyCollectPage_ButtonConfirm"
-                                            HorizontalAlignment="Right"
-                                            Click="ChangeNoteButton_Click"/>
-                                    </StackPanel>
-                                </Flyout>
-                            </Button.Flyout>
-                        </Button>
                         <AppBarButton
                             Icon="Delete"
                             Click="DeleteButton_Click"
                             RelativePanel.AlignRightWithPanel="True"/>
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!-- MyCollectPage_TextTitle.GuessText="猜你喜欢" -->
+        <TextBlock
+            x:Uid="MyCollectPage_GuessTitle"
+            Grid.Row="2"
+            Margin="50, 50, 0,10"
+            FontSize="22"/>
+        <ListView
+            x:Name="GuessView"
+            ItemsSource="{x:Bind ViewModel.Collections, Mode=OneWay}"
+            Grid.Row="3"
+            CanDragItems="False"
+            Margin="10"
+            ItemClick="CollectionsView_ItemClick"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"  
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollMode="Enabled"                  
+            ScrollViewer.VerticalScrollMode="Disabled"
+            Padding="20">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel x:Name="ItemPanel" Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:MovieItem">
+                    <RelativePanel Margin="10">
+                        <Image
+                            x:Name="ImageMovie"
+                            Height="180"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            Source="{x:Bind ImageUri, Mode=OneWay}"/>
+                        <TextBlock
+                            x:Name="TextTitle"
+                            RelativePanel.RightOf="ImageMovie"
+                            FontSize="21"
+                            Text="{x:Bind TitleCn, Mode=OneWay}"
+                            Margin="20, 0, 0, 5"/>
+                        <TextBlock
+                            x:Name="TextDirectors"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextTitle"
+                            Text="{x:Bind Directors, Mode=OneWay}"
+                            Margin="20, 5"/>
+                        <TextBlock
+                            x:Name="TextDate"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextDirectors"
+                            Text="{x:Bind Date, Mode=OneWay}"
+                            Margin="20, 5"/>
+                        <TextBlock
+                            x:Name="TextType"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextDate"
+                            Text="{x:Bind MovieType, Mode=OneWay}"
+                            Margin="15, 5"/>
+                        <!-- MyCollectPage_TextNoteHelp.Text="备注： " -->
+                        <TextBlock
+                            x:Uid="MyCollectPage_TextNoteHelp"
+                            x:Name="TextNoteHelp"
+                            RelativePanel.RightOf="ImageMovie"
+                            RelativePanel.Below="TextType"
+                            Margin="20, 5, 5, 0"/>
+                        <TextBlock
+                            x:Name="TextNote"
+                            RelativePanel.RightOf="TextNoteHelp"
+                            RelativePanel.Below="TextType"
+                            Text="{x:Bind Note, Mode=OneWay}"
+                            Margin="0, 5"/>
                     </RelativePanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
