@@ -473,4 +473,7 @@
   <data name="NetErrorTitle.Text" xml:space="preserve">
     <value>Network error!</value>
   </data>
+  <data name="SettingsPage_NoticeText.Text" xml:space="preserve">
+    <value>Push Notification Services</value>
+  </data>
 </root>

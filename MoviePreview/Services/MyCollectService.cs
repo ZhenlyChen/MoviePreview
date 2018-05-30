@@ -32,6 +32,11 @@ namespace MoviePreview.Services
                 Collections = new List<MovieItem>();
             }
 
+            if (ApplicationData.Current.LocalSettings.Values["Notice"] as string == "false")
+            {
+                return;
+            }
+
             foreach(MovieItem movie in Collections)
             {
                 var theDate = DateTime.ParseExact(movie.Date, "yyyy-M-d",

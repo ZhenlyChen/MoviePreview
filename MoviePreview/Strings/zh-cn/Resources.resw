@@ -417,4 +417,7 @@
   <data name="NetErrorTitle.Text" xml:space="preserve">
     <value>网络错误</value>
   </data>
+  <data name="SettingsPage_NoticeText.Text" xml:space="preserve">
+    <value>推送通知</value>
+  </data>
 </root>
