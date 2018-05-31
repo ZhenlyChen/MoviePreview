@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Diagnostics;
 using MoviePreview.Services;
 using MoviePreview.ViewModels;
 
@@ -33,6 +33,21 @@ namespace MoviePreview.Views
             //    navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
             //}
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private async void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                if (sender.Text.Length == 0)
+                {
+                    sender.ItemsSource = null;
+                }
+                else
+                {
+                    sender.ItemsSource = await TimeAPIService.GetMoviesTitleList(sender.Text);
+                }
+            }
         }
     }
 }

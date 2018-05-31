@@ -423,4 +423,7 @@
 <data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
     <value>猜你喜欢</value>
   </data>
+  <data name="MainPage_TextDateHelp.Text" xml:space="preserve">
+    <value>上映</value>
+  </data>
 </root>

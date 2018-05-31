@@ -479,4 +479,7 @@
    <data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
     <value>Guess what you like</value>
   </data>
+  <data name="MainPage_TextDateHelp.Text" xml:space="preserve">
+    <value>in theaters</value>
+  </data>
 </root>

@@ -140,9 +140,11 @@
                                 x:Name="TextDate"
                                 Text="{x:Bind DisplayDate}"
                                 RelativePanel.Below="Rating"/>
+                            <!-- MainPage_TextDateHelp.Text="上映" -->
                             <TextBlock
+                                x:Uid="MainPage_TextDateHelp"
                                 x:Name="TextDateHelp"
-                                Text="上映"
+                                Margin="5,0,0,0"
                                 RelativePanel.Below="Rating"
                                 RelativePanel.RightOf="TextDate"/>
                         </RelativePanel>
