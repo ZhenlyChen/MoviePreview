@@ -27,11 +27,18 @@ namespace MoviePreview.ViewModels
             }
         }
 
-        private bool _switchValue;
+        private bool _noticeSwitchValue;
 
-        public bool SwitchValue {
-            get => _switchValue;
-            set => Set(ref _switchValue, value);
+        public bool NoticeSwitchValue {
+            get => _noticeSwitchValue;
+            set => Set(ref _noticeSwitchValue, value);
+        }
+
+        private bool _guessLikeSwitchValue;
+
+        public bool GuessLikeSwitchValue {
+            get => _guessLikeSwitchValue;
+            set => Set(ref _guessLikeSwitchValue, value);
         }
 
         private string _versionDescription;

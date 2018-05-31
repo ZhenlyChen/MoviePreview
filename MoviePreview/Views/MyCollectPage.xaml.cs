@@ -5,6 +5,7 @@ using MoviePreview.Models;
 using MoviePreview.Services;
 using MoviePreview.ViewModels;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,11 +30,25 @@ namespace MoviePreview.Views
             ViewModel.SaveData();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             CollectionsView.IsEnabled = true;
             LoadToOther.Visibility = Visibility.Collapsed;
-            ViewModel.SyncData();
+
+            string GuessLike = ApplicationData.Current.LocalSettings.Values["GuessLike"] as string;
+            if (GuessLike != null && GuessLike == "true")
+            {
+                LoadGuessList.Visibility = Visibility.Visible;
+                await ViewModel.SyncData();
+                GuessView.ItemsSource = ViewModel.GuessLike;
+                LoadGuessList.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                LoadGuessList.Visibility = Visibility.Collapsed;
+                GuessRowDefinition.Height = new GridLength(0);
+                await ViewModel.SyncData();
+            }
         }
 
         private void ChangeNoteButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -85,7 +100,41 @@ namespace MoviePreview.Views
             }
             CollectionsView.PrepareConnectedAnimation("Image", e.ClickedItem as MovieItem, "ImageMovie");
             NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, data, new SuppressNavigationTransitionInfo());
+        }
 
+        private async void GuessView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            GuessView.IsEnabled = false;
+            LoadGuessList.Visibility = Visibility.Visible;
+            MovieItemDetail data;
+            string movieId = (e.ClickedItem as MovieItem).ID;
+            if (TimeAPIService.GetedDetail != null && TimeAPIService.GetedDetail.ContainsKey(movieId))
+            {
+                data = TimeAPIService.GetedDetail[movieId];
+            }
+            else
+            {
+                data = await TimeAPIService.GetMovieDetail(movieId);
+            }
+            GuessView.PrepareConnectedAnimation("Image", e.ClickedItem as MovieItem, "ImageMovie");
+            NavigationService.Navigate(typeof(MovieDetailViewModel).FullName, data, new SuppressNavigationTransitionInfo());
+        }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog deleteFileDialog = new ContentDialog
+            {
+                Title = ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_CloseGuessLikeServices/Title"),
+                Content = ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_CloseGuessLikeServices/Content"),
+                PrimaryButtonText = ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_CloseGuessLikeServices/PrimaryButtonText"),
+                CloseButtonText = ResourceLoader.GetForCurrentView().GetString("MyCollectPage_CS_CloseGuessLikeServices/CloseButtonText")
+            };
+            ContentDialogResult result = await deleteFileDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                ApplicationData.Current.LocalSettings.Values["GuessLike"] = "false";
+                GuessRowDefinition.Height = new GridLength(0);
+            }
         }
 
         public NavigationServiceEx NavigationService {

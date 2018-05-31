@@ -14,6 +14,7 @@ namespace MoviePreview.Services
     public class MyCollectService
     {
         public List<MovieItem> Collections;
+        public Dictionary<string, double> History;
 
         public MyCollectService()
         {
@@ -23,15 +24,29 @@ namespace MoviePreview.Services
 
         public async void LoadFormStorage()
         {
+            // Collection
             var c = await ApplicationData.Current.LocalFolder.ReadAsync<List<MovieItem>>("MyCollection");
             if (c != null && c.Count != 0)
             {
                 Collections = c;
-            } else
+            }
+            else
             {
                 Collections = new List<MovieItem>();
             }
 
+            // History
+            var d = await ApplicationData.Current.LocalFolder.ReadAsync<Dictionary<string, double>>("MyHistory");
+            if (d != null && d.Count != 0)
+            {
+                History = d;
+            }
+            else
+            {
+                History = new Dictionary<string, double>();
+            }
+
+            // Toast
             if (ApplicationData.Current.LocalSettings.Values["Notice"] as string == "false")
             {
                 return;
@@ -47,13 +62,18 @@ namespace MoviePreview.Services
                     break;
                 }
             }
-            //toast
         }
 
         public async void SaveToStorage(List<MovieItem> data = null)
         {
             if (data != null) Collections = data;
             await ApplicationData.Current.LocalFolder.SaveAsync("MyCollection", Collections);
+        }
+
+        public async void SaveToStorage(Dictionary<string, double> history)
+        {
+            if (history != null) History = history;
+            await ApplicationData.Current.LocalFolder.SaveAsync("MyHistory", History);
         }
     }
 }

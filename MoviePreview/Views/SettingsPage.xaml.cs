@@ -21,6 +21,8 @@ namespace MoviePreview.Views
         public SettingsPage()
         {
             InitializeComponent();
+
+            // Language
             string lang = ApplicationData.Current.LocalSettings.Values["CurrentLanguage"] as string;
             if (lang == null)
             {
@@ -39,15 +41,27 @@ namespace MoviePreview.Views
                     LangSelect.SelectedItem = lang_zh_cn;
                     break;
             }
+
+            // Notice
             string Notice = ApplicationData.Current.LocalSettings.Values["Notice"] as string;
             if (Notice == null)
             {
-                ViewModel.SwitchValue = true;
+                ViewModel.NoticeSwitchValue = true;
             } else
             {
-                ViewModel.SwitchValue = Notice == "true" ? true : false;
+                ViewModel.NoticeSwitchValue = Notice == "true" ? true : false;
             }
 
+            // GuessLike
+            string GuessLike = ApplicationData.Current.LocalSettings.Values["GuessLike"] as string;
+            if (GuessLike == null)
+            {
+                ViewModel.GuessLikeSwitchValue = true;
+            }
+            else
+            {
+                ViewModel.GuessLikeSwitchValue = GuessLike == "true" ? true : false;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -88,6 +102,18 @@ namespace MoviePreview.Views
             } else
             {
                 ApplicationData.Current.LocalSettings.Values["Notice"] = "false";
+            }
+        }
+
+        private void GuessLikeSwitch_Toggled(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (GuessLikeSwitch.IsOn == true)
+            {
+                ApplicationData.Current.LocalSettings.Values["GuessLike"] = "true";
+            }
+            else
+            {
+                ApplicationData.Current.LocalSettings.Values["GuessLike"] = "false";
             }
         }
     }

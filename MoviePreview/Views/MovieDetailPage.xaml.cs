@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.ApplicationModel.Resources;
+using System.Diagnostics;
 
 namespace MoviePreview.Views
 {
@@ -95,6 +96,17 @@ namespace MoviePreview.Views
                 {
                     imageAnimation.TryStart(MovieImage);
                 }
+
+                // History Add
+                string[] types = data.MovieType.Split(new char[] { ' ' });
+                foreach (string type in types)
+                {
+                    if (type.Length != 0)
+                    {
+                        Singleton<MyCollectViewModel>.Instance.HistoryAdd(type);
+                    }
+                }
+                Singleton<MyCollectViewModel>.Instance.SaveHistory();
             }
             collectionButton();
             Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += Instance_OnBackgroundEntering;

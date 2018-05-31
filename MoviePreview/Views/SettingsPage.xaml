@@ -73,10 +73,15 @@
                 <TextBlock
                     x:Uid="SettingsPage_NoticeText"
                     Style="{StaticResource BodyTextStyle}" />
-                <ToggleSwitch x:Name="NoticeSwitch" Toggled="NoticeSwitch_Toggled" IsOn="{x:Bind ViewModel.SwitchValue}"/>
+                <ToggleSwitch x:Name="NoticeSwitch" Toggled="NoticeSwitch_Toggled" IsOn="{x:Bind ViewModel.NoticeSwitchValue}"/>
             </StackPanel>
 
-            
+            <StackPanel Margin="10, 10">
+                <TextBlock
+                    x:Uid="SettingsPage_GuessLikeText"
+                    Style="{StaticResource BodyTextStyle}" />
+                <ToggleSwitch x:Name="GuessLikeSwitch" Toggled="GuessLikeSwitch_Toggled" IsOn="{x:Bind ViewModel.GuessLikeSwitchValue}"/>
+            </StackPanel>
 
             <TextBlock
                 x:Uid="Settings_About"

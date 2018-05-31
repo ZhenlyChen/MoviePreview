@@ -464,7 +464,7 @@
   <data name="ToastNotificationService_Title.Text" xml:space="preserve">
     <value>The movie you collected is coming.</value>
   </data>
-    <data name="NetErrorBody.Text" xml:space="preserve">
+  <data name="NetErrorBody.Text" xml:space="preserve">
     <value>Can't connect to Internet</value>
   </data>
   <data name="NetErrorButton.Text" xml:space="preserve">
@@ -474,12 +474,27 @@
     <value>Network error!</value>
   </data>
   <data name="SettingsPage_NoticeText.Text" xml:space="preserve">
-    <value>Push Notification Services</value>
+    <value>Push Notification Service</value>
   </data>
-   <data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
+  <data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
     <value>Guess what you like</value>
   </data>
   <data name="MainPage_TextDateHelp.Text" xml:space="preserve">
     <value>in theaters</value>
+  </data>
+  <data name="MyCollectPage_CS_CloseGuessLikeServices.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="MyCollectPage_CS_CloseGuessLikeServices.Content" xml:space="preserve">
+    <value>Although you unsubscribe Movies Recommendation Service, you can still subscribe it in Settings.</value>
+  </data>
+  <data name="MyCollectPage_CS_CloseGuessLikeServices.PrimaryButtonText" xml:space="preserve">
+    <value>Unsubscribe</value>
+  </data>
+  <data name="MyCollectPage_CS_CloseGuessLikeServices.Title" xml:space="preserve">
+    <value>Do you want to unsubscribe Movies Recommendation Service? </value>
+  </data>
+  <data name="SettingsPage_GuessLikeText.Text" xml:space="preserve">
+    <value>Movies Recommendation Service</value>
   </data>
 </root>
