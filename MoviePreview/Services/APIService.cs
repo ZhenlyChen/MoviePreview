@@ -30,6 +30,8 @@ namespace MoviePreview.Services
         private static readonly string APIMovieVideo = "https://api-m.mtime.cn/Movie/Video.api?pageIndex=1&movieId={0}";
         // 剧照
         private static readonly string APIMovieImage = "https://api-m.mtime.cn/Movie/ImageAll.api?movieId={0}";
+        // 电影搜索
+        private static readonly string APIMovieSearch = "https://api-m.mtime.cn/Showtime/SearchVoice.api?Keyword={0}";
 
         /// <summary>
         /// 解析正在上映的电影
@@ -51,7 +53,7 @@ namespace MoviePreview.Services
                 Rating = m["ratingFinal"].GetNumber(),
                 // 转换日期格式
                 Date = dataStr,
-                
+
                 TitleCn = m["titleCn"].GetString(),
                 TitleEn = m["titleEn"].GetString(),
                 WantedCount = (int)m["wantedCount"].GetNumber(),
@@ -170,7 +172,7 @@ namespace MoviePreview.Services
             }
             return m;
         }
-        
+
 
         /// <summary>
         /// 解析评论
@@ -197,7 +199,7 @@ namespace MoviePreview.Services
                 });
             }
             var miniList = (data["mini"].GetObject())["list"].GetArray();
-            foreach (var mini in miniList )
+            foreach (var mini in miniList)
             {
                 var com = mini.GetObject();
                 m.Comments.Add(new CommentItem()
@@ -223,15 +225,15 @@ namespace MoviePreview.Services
         {
             var list = obj["videoList"].GetArray();
             m.Videos = new List<VideoItem>();
-            foreach (var video in list )
+            foreach (var video in list)
             {
                 var v = video.GetObject();
                 m.Videos.Add(new VideoItem()
                 {
                     Image = v["image"].GetString(),
-                    Url  = v["hightUrl"].GetString(),
+                    Url = v["hightUrl"].GetString(),
                     Title = v["title"].GetString(),
-                    Length =  (int)v["length"].GetNumber(),
+                    Length = (int)v["length"].GetNumber(),
                     Type = (int)v["type"].GetNumber(),
                 });
             }
@@ -259,7 +261,8 @@ namespace MoviePreview.Services
                 {
                     if (eachCount > 2) continue;
                     eachCount++;
-                } else
+                }
+                else
                 {
                     eachCount = 0;
                     currentType = typeNew;
@@ -331,7 +334,7 @@ namespace MoviePreview.Services
 
                 // 过滤已存在电影
                 bool flag = false;
-                foreach(var had in movieList)
+                foreach (var had in movieList)
                 {
                     if (had.ID == movie.ID) flag = true;
                 }
@@ -379,12 +382,32 @@ namespace MoviePreview.Services
                 if (GetedDetail == null) GetedDetail = new Dictionary<string, MovieItemDetail>();
                 GetedDetail[movieDetail.ID] = movieDetail;
                 return movieDetail;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 return new MovieItemDetail();
             }
         }
-        
 
+        public static async Task<Dictionary<string, string>> GetMoviesTitleList(string query)
+        {
+            JsonObject res = await Singleton<NetService>.Instance.GetJson(string.Format(APIMovieSearch, query));
+            if (res == null)
+            {
+                return new Dictionary<string, string>();
+            }
+            var map = new Dictionary<string, string>();
+            JsonArray movies = res["movies"].GetArray();
+            foreach (var obj in movies)
+            {
+                JsonObject movie = obj.GetObject();
+                string id = movie["id"].GetNumber().ToString();
+                string title = movie["name"].GetString();
+                // string year = movie["rYear"].GetNumber().ToString();
+                // string key = $"{title} ({year})";
+                map[title] = id;
+            }
+            return map;
+        }
     }
 }

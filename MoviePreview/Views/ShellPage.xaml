@@ -9,7 +9,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-    
+
     <NavigationView
         x:Name="navigationView"
         Style="{StaticResource CustomNavigationMenuStyle}"
@@ -23,6 +23,13 @@
             <NavigationViewItem x:Uid="Shell_Blank" Icon="VideoChat" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.BlankViewModel" />
             <NavigationViewItem x:Uid="Shell_MyCollect" Icon="OutlineStar" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MyCollectViewModel" />
         </NavigationView.MenuItems>
+        <NavigationView.AutoSuggestBox>
+            <AutoSuggestBox
+                x:Name="NavASB"
+                QueryIcon="Find"
+                TextChanged="AutoSuggestBox_TextChanged"
+                QuerySubmitted="AutoSuggestBox_QuerySubmitted"/>
+        </NavigationView.AutoSuggestBox>
         <NavigationView.HeaderTemplate>
             <DataTemplate />
             <!--<DataTemplate>
@@ -40,6 +47,14 @@
         </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />
+            <ProgressBar
+                x:Name="LoadToOther"
+                IsIndeterminate="True"
+                Visibility="Collapsed"
+                VerticalAlignment="Top"
+                Grid.Row="0"
+                Margin="20, 10, 20 ,0"
+                Foreground="Blue"/>
         </Grid>
     </NavigationView>
 </Page>

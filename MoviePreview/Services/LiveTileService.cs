@@ -19,7 +19,8 @@ namespace MoviePreview.Services
         public async Task EnableQueueAsync()
         {
             var queueEnabled = await ApplicationData.Current.LocalSettings.ReadAsync<bool>(QueueEnabledKey);
-            if (!queueEnabled)
+            // TEST
+            if (true || !queueEnabled)
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
                 await ApplicationData.Current.LocalSettings.SaveAsync(QueueEnabledKey, true);
