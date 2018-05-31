@@ -108,7 +108,7 @@
             FontSize="22"/>
         <ListView
             x:Name="GuessView"
-            ItemsSource="{x:Bind ViewModel.Collections, Mode=OneWay}"
+            ItemsSource="{x:Bind ViewModel.GuessLike, Mode=OneWay}"
             Grid.Row="3"
             CanDragItems="False"
             Margin="10"
@@ -161,19 +161,6 @@
                             RelativePanel.Below="TextDate"
                             Text="{x:Bind MovieType, Mode=OneWay}"
                             Margin="15, 5"/>
-                        <!-- MyCollectPage_TextNoteHelp.Text="备注： " -->
-                        <TextBlock
-                            x:Uid="MyCollectPage_TextNoteHelp"
-                            x:Name="TextNoteHelp"
-                            RelativePanel.RightOf="ImageMovie"
-                            RelativePanel.Below="TextType"
-                            Margin="20, 5, 5, 0"/>
-                        <TextBlock
-                            x:Name="TextNote"
-                            RelativePanel.RightOf="TextNoteHelp"
-                            RelativePanel.Below="TextType"
-                            Text="{x:Bind Note, Mode=OneWay}"
-                            Margin="0, 5"/>
                     </RelativePanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

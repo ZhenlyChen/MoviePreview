@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -76,9 +77,23 @@ namespace MoviePreview.ViewModels
             Singleton<MyCollectService>.Instance.SaveToStorage(Collections.ToList());
         }
 
-        public void SyncData()
+        public async Task SyncData()
         {
             Collections = new ObservableCollection<MovieItem>(Singleton<MyCollectService>.Instance.Collections);
+            //获得即将上映电影进行筛选
+            var data = await TimeAPIService.GetComingMovies();
+            if (data.Count == 0)
+            {
+                return;
+            }
+            foreach (var movie in data)
+            {
+                // 只添加具有封面的电影
+                if (movie.Image != "")
+                {
+                    GuessLike.Add(movie);
+                }
+            }
         }
 
         
