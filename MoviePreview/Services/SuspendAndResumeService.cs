@@ -16,7 +16,7 @@ namespace MoviePreview.Services
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
         private const string StateFilename = "SuspendAndResumeState";
-        
+
         public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
 
         public async Task SaveStateAsync()

@@ -56,7 +56,7 @@ namespace MoviePreview
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(ViewModels.MainViewModel), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(this, typeof(ViewModels.HotMovieViewModel), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()

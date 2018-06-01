@@ -15,28 +15,28 @@ using System.Globalization;
 
 namespace MoviePreview.Views
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class HotMoviePage : Page
     {
-        private MainViewModel ViewModel {
+        private HotMovieViewModel ViewModel {
             get {
-                return DataContext as MainViewModel;
+                return DataContext as HotMovieViewModel;
             }
         }
 
-        public MainPage()
+        public HotMoviePage()
         {
             InitializeComponent();
-            Loaded += MainPage_Loaded;
+            Loaded += HotMoviePage_Loaded;
         }
 
-        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private async void HotMoviePage_Loaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadData();
-            if (ViewModel.SortedType == MainViewModel.Sort.Date)
+            if (ViewModel.SortedType == HotMovieViewModel.Sort.Date)
             {
                 RadioDate.IsChecked = true;
             }
-            else if (ViewModel.SortedType == MainViewModel.Sort.Rating)
+            else if (ViewModel.SortedType == HotMovieViewModel.Sort.Rating)
             {
                 RadioRating.IsChecked = true;
             }
@@ -74,13 +74,13 @@ namespace MoviePreview.Views
 
         private void RadioButtonRating_Checked(object sender, RoutedEventArgs e)
         {
-            ViewModel.SortedType = MainViewModel.Sort.Rating;
+            ViewModel.SortedType = HotMovieViewModel.Sort.Rating;
             ViewModel.MovieItems = new ObservableCollection<MovieItemNow>(ViewModel.MovieItems.OrderBy(i => -i.Rating));
         }
 
         private void RadioButtonDate_Checked(object sender, RoutedEventArgs e)
         {
-            ViewModel.SortedType = MainViewModel.Sort.Date;
+            ViewModel.SortedType = HotMovieViewModel.Sort.Date;
             ViewModel.MovieItems = new ObservableCollection<MovieItemNow>(ViewModel.MovieItems.OrderByDescending(i =>
             {
                 return DateTime.ParseExact(i.Date, "yyyy-M-d", CultureInfo.InvariantCulture);

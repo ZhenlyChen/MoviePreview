@@ -289,21 +289,21 @@
     <value>My Collections</value>
     <comment>Navigation view item name for MyCollect</comment>
   </data>
-  <data name="BlankPage_TextTitle.Text" xml:space="preserve">
+  <data name="ComingMoviePage_TextTitle.Text" xml:space="preserve">
     <value>Coming</value>
-    <comment>BlankPage</comment>
+    <comment>ComingMoviePage</comment>
   </data>
-  <data name="MainPage_RadioDate.Content" xml:space="preserve">
+  <data name="HotMoviePage_RadioDate.Content" xml:space="preserve">
     <value>Sorted by date</value>
-    <comment>MainPage Rating methods by times</comment>
+    <comment>HotMoviePage Rating methods by times</comment>
   </data>
-  <data name="MainPage_RadioRating.Content" xml:space="preserve">
+  <data name="HotMoviePage_RadioRating.Content" xml:space="preserve">
     <value>Sorted by rating</value>
-    <comment>MainPage Rating methods by scores</comment>
+    <comment>HotMoviePage Rating methods by scores</comment>
   </data>
-  <data name="MainPage_TextTitle.Text" xml:space="preserve">
+  <data name="HotMoviePage_TextTitle.Text" xml:space="preserve">
     <value>Hot Playing</value>
-    <comment>MainPage Title</comment>
+    <comment>HotMoviePage Title</comment>
   </data>
   <data name="MovieDetailPage_ActorHelpText.Text" xml:space="preserve">
     <value>as</value>
@@ -431,13 +431,13 @@
   <data name="MyCollectPage_CS_Delete.Title" xml:space="preserve">
     <value>Do you want to delete this collection?</value>
   </data>
-  <data name="BlankViewModel_Look.Text" xml:space="preserve">
+  <data name="ComingMovieViewModel_Look.Text" xml:space="preserve">
     <value>Click to look!!!</value>
   </data>
-  <data name="MainViewModel_Look.Text" xml:space="preserve">
+  <data name="HotMovieViewModel_Look.Text" xml:space="preserve">
     <value>Want to watch</value>
   </data>
-  <data name="MainViewModel_Title.Text" xml:space="preserve">
+  <data name="HotMovieViewModel_Title.Text" xml:space="preserve">
     <value>Newest Playing</value>
   </data>
   <data name="MovieDetailViewModel_Description.Text" xml:space="preserve">
@@ -479,7 +479,7 @@
   <data name="MyCollectPage_GuessTitle.Text" xml:space="preserve">
     <value>Guess what you like</value>
   </data>
-  <data name="MainPage_TextDateHelp.Text" xml:space="preserve">
+  <data name="HotMoviePage_TextDateHelp.Text" xml:space="preserve">
     <value>in theaters</value>
   </data>
   <data name="MyCollectPage_CS_CloseGuessLikeServices.CloseButtonText" xml:space="preserve">

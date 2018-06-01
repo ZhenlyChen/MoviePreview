@@ -129,7 +129,7 @@ namespace MoviePreview.Views
                 {
                     NavigationService.GoBack();
                 }
-                NavigationService.Navigate(typeof(MainViewModel).FullName, null, new SuppressNavigationTransitionInfo());
+                NavigationService.Navigate(typeof(HotMovieViewModel).FullName, null, new SuppressNavigationTransitionInfo());
             }
         }
 

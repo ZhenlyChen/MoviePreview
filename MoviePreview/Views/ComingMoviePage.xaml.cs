@@ -12,21 +12,21 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MoviePreview.Views
 {
-    public sealed partial class BlankPage : Page
+    public sealed partial class ComingMoviePage : Page
     {
-        private BlankViewModel ViewModel {
+        private ComingMovieViewModel ViewModel {
             get {
-                return DataContext as BlankViewModel;
+                return DataContext as ComingMovieViewModel;
             }
         }
 
-        public BlankPage()
+        public ComingMoviePage()
         {
             InitializeComponent();
-            Loaded += BlankPage_Loaded;
+            Loaded += ComingMoviePage_Loaded;
         }
 
-        private async void BlankPage_Loaded(object sender, RoutedEventArgs e)
+        private async void ComingMoviePage_Loaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadData();
         }

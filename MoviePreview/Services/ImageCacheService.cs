@@ -25,13 +25,14 @@ namespace MoviePreview.Services
                 imageCache = new Dictionary<string, BitmapImage>();
             }
             if (uri == null || uri == "") return new BitmapImage(new Uri($"ms-appx:///Assets/{defPic}"));
-            
+
             if (!imageCache.ContainsKey(uri))
             {
                 if (decode == -1)
                 {
                     imageCache[uri] = new BitmapImage(new Uri(uri));
-                } else
+                }
+                else
                 {
                     imageCache[uri] = new BitmapImage()
                     {

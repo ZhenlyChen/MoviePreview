@@ -42,17 +42,11 @@ namespace MoviePreview.Services
             try
             {
                 return JsonObject.Parse(await Get(url));
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 return null;
             }
-        }
-
-        public async Task<XmlDocument> GetXml(string url)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(await Get(url));
-            return doc;
         }
     }
 }

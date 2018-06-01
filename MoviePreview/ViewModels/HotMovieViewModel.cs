@@ -15,9 +15,9 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace MoviePreview.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class HotMovieViewModel : ViewModelBase
     {
-        public MainViewModel()
+        public HotMovieViewModel()
         {
             MovieItems = new ObservableCollection<MovieItemNow>();
         }
@@ -59,8 +59,10 @@ namespace MoviePreview.ViewModels
                     MovieItems.Add(movie);
                 }
                 RaisePropertyChanged("EmptyItem");
-                string title = ResourceLoader.GetForCurrentView().GetString("MainViewModel_Title/Text");
-                string look = ResourceLoader.GetForCurrentView().GetString("MainViewModel_Look/Text");
+
+                // 添加磁贴
+                string title = ResourceLoader.GetForCurrentView().GetString("HotMovieViewModel_Title/Text");
+                string look = ResourceLoader.GetForCurrentView().GetString("HotMovieViewModel_Look/Text");
                 Singleton<LiveTileService>.Instance.AddTileToQueue(title, MovieItems[0].TitleEn, look, MovieItems[0].WantedCount.ToString(), MovieItems[0].CommonSpecial, MovieItems[0]);
             }
         }

@@ -1,11 +1,11 @@
 ﻿<Page
-    x:Class="MoviePreview.Views.BlankPage"
+    x:Class="MoviePreview.Views.ComingMoviePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    DataContext="{Binding BlankViewModel, Source={StaticResource Locator}}"
+    DataContext="{Binding ComingMovieViewModel, Source={StaticResource Locator}}"
     xmlns:model="using:MoviePreview.Models"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea"
@@ -20,9 +20,9 @@
                 Grid.Row="0"
                 Margin="20, 10"
                 VerticalAlignment="Top">
-                <!-- BlankPage_TextTitle.Text="即将上映" -->
+                <!-- ComingMoviePage_TextTitle.Text="即将上映" -->
                 <TextBlock
-                    x:Uid="BlankPage_TextTitle"
+                    x:Uid="ComingMoviePage_TextTitle"
                     x:Name="TextTitle"
                     FontSize="23"
                     Margin="15, 0"

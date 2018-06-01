@@ -20,7 +20,6 @@ namespace MoviePreview.Services
         {
             Collections = new List<MovieItem>();
             History = new Dictionary<string, double>();
-            // LoadFormStorage();
         }
 
         public async void LoadFormStorage()
@@ -53,7 +52,7 @@ namespace MoviePreview.Services
                 return;
             }
 
-            foreach(MovieItem movie in Collections)
+            foreach (MovieItem movie in Collections)
             {
                 var theDate = DateTime.ParseExact(movie.Date, "yyyy-M-d",
                                   CultureInfo.InvariantCulture);

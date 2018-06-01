@@ -19,8 +19,8 @@
         AlwaysShowHeader="False"
         Background="{ThemeResource SystemControlAcrylicWindowBrush}">
         <NavigationView.MenuItems>
-            <NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MainViewModel" />
-            <NavigationViewItem x:Uid="Shell_Blank" Icon="VideoChat" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.BlankViewModel" />
+            <NavigationViewItem x:Uid="Shell_Main" Icon="Home" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.HotMovieViewModel" />
+            <NavigationViewItem x:Uid="Shell_Blank" Icon="VideoChat" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.ComingMovieViewModel" />
             <NavigationViewItem x:Uid="Shell_MyCollect" Icon="OutlineStar" helpers:NavHelper.NavigateTo="MoviePreview.ViewModels.MyCollectViewModel" />
         </NavigationView.MenuItems>
         <NavigationView.AutoSuggestBox>

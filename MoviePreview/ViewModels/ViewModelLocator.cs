@@ -16,12 +16,11 @@ namespace MoviePreview.ViewModels
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             SimpleIoc.Default.Register<ShellViewModel>();
-            Register<MainViewModel, MainPage>();
-            Register<BlankViewModel, BlankPage>();
+            Register<HotMovieViewModel, HotMoviePage>();
+            Register<ComingMovieViewModel, ComingMoviePage>();
             Register<SettingsViewModel, SettingsPage>();
             Register<MediaPlayerViewModel, MediaPlayerPage>();
             Register<ImageGalleryDetailViewModel, ImageGalleryDetailPage>();
-            Register<LoginWebViewViewModel, LoginWebViewPage>();
             Register<MovieDetailViewModel, MovieDetailPage>();
             Register<MyCollectViewModel, MyCollectPage>();
         }
@@ -29,8 +28,6 @@ namespace MoviePreview.ViewModels
         public MyCollectViewModel MyCollectViewModel => ServiceLocator.Current.GetInstance<MyCollectViewModel>();
 
         public MovieDetailViewModel MovieDetailViewModel => ServiceLocator.Current.GetInstance<MovieDetailViewModel>();
-
-        public LoginWebViewViewModel LoginWebViewViewModel => ServiceLocator.Current.GetInstance<LoginWebViewViewModel>();
         
         public ImageGalleryDetailViewModel ImageGalleryDetailViewModel => ServiceLocator.Current.GetInstance<ImageGalleryDetailViewModel>();
         
@@ -39,9 +36,9 @@ namespace MoviePreview.ViewModels
 
         public SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
 
-        public BlankViewModel BlankViewModel => ServiceLocator.Current.GetInstance<BlankViewModel>();
+        public ComingMovieViewModel ComingMovieViewModel => ServiceLocator.Current.GetInstance<ComingMovieViewModel>();
 
-        public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public HotMovieViewModel HotMovieViewModel => ServiceLocator.Current.GetInstance<HotMovieViewModel>();
 
         public ShellViewModel ShellViewModel => ServiceLocator.Current.GetInstance<ShellViewModel>();
 

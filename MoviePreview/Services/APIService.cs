@@ -403,8 +403,6 @@ namespace MoviePreview.Services
                 JsonObject movie = obj.GetObject();
                 string id = movie["id"].GetNumber().ToString();
                 string title = movie["name"].GetString();
-                // string year = movie["rYear"].GetNumber().ToString();
-                // string key = $"{title} ({year})";
                 map[title] = id;
             }
             return map;

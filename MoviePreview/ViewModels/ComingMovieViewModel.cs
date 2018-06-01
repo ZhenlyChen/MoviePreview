@@ -9,9 +9,9 @@ using Windows.ApplicationModel.Resources;
 
 namespace MoviePreview.ViewModels
 {
-    public class BlankViewModel : ViewModelBase
+    public class ComingMovieViewModel : ViewModelBase
     {
-        public BlankViewModel()
+        public ComingMovieViewModel()
         {
         }
         public ObservableCollection<MovieItemComing> MovieItems { get; private set; } = new ObservableCollection<MovieItemComing>();
@@ -46,9 +46,9 @@ namespace MoviePreview.ViewModels
                 // 刷新页面
                 RaisePropertyChanged("EmptyItem");
                 // 添加磁贴
-                string title = ResourceLoader.GetForCurrentView().GetString("BlankPage_TextTitle/Text");
+                string title = ResourceLoader.GetForCurrentView().GetString("ComingMoviePage_TextTitle/Text");
                 string date = ResourceLoader.GetForCurrentView().GetString("MovieDetailPage_TextDateHelp/Text");
-                string look = ResourceLoader.GetForCurrentView().GetString("BlankViewModel_Look/Text");
+                string look = ResourceLoader.GetForCurrentView().GetString("ComingMovieViewModel_Look/Text");
                 Singleton<LiveTileService>.Instance.AddTileToQueue(title, string.Empty, date, MovieItems[0].Date, look, MovieItems[0]);
             }
         }
