@@ -92,6 +92,7 @@
                     Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
                 <TextBlock
                     x:Uid="Settings_AboutDescription"
+                    TextWrapping="Wrap"
                     Margin="{StaticResource EightTopMargin}" />
 
                 <HyperlinkButton

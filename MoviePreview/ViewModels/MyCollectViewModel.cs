@@ -31,15 +31,12 @@ namespace MoviePreview.ViewModels
         }
 
         private ObservableCollection<MovieItem> _guessLike;
-        public ObservableCollection<MovieItem> GuessLike
-        {
-            get
-            {
+        public ObservableCollection<MovieItem> GuessLike {
+            get {
                 if (_guessLike == null) _guessLike = new ObservableCollection<MovieItem>();
                 return _guessLike;
             }
-            set
-            {
+            set {
                 Set(ref _guessLike, value);
             }
         }
@@ -57,15 +54,20 @@ namespace MoviePreview.ViewModels
 
         public MyCollectViewModel()
         {
-            SyncData();
-            if(Collections.Count != 0)
+            InitSync();
+        }
+
+        public async void InitSync()
+        {
+            await SyncData();
+            if (Collections.Count != 0)
             {
                 var theDate = DateTime.ParseExact(Collections[0].Date, "yyyy-M-d",
                                   CultureInfo.InvariantCulture);
                 string tips;
                 string date;
                 int day = (int)(theDate - DateTime.Now).TotalDays;
-                
+
                 if (day <= 0)
                 {
                     // tips => 正在上映
@@ -167,14 +169,7 @@ namespace MoviePreview.ViewModels
         {
             if (_movieType.Contains(type))
             {
-                if (_history.ContainsKey(type))
-                {
-                    _history[type]++;
-                }
-                else
-                {
-                    _history.Add(type, 1);
-                }
+                Singleton<MyCollectService>.Instance.HistoryAdd(type);
             }
         }
     }

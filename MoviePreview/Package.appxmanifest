@@ -3,7 +3,7 @@
   <Identity Name="6FC641B0-6E29-4F08-9B52-E689AB8DDF68" Publisher="CN=Zhenly" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="6FC641B0-6E29-4F08-9B52-E689AB8DDF68" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>MoviePreview</DisplayName>
+    <DisplayName>ms-resource:AppDisplayName</DisplayName>
     <PublisherDisplayName>Zhenly</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>

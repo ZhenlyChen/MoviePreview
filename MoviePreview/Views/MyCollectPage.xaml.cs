@@ -36,8 +36,12 @@ namespace MoviePreview.Views
             LoadToOther.Visibility = Visibility.Collapsed;
 
             string GuessLike = ApplicationData.Current.LocalSettings.Values["GuessLike"] as string;
-            if (GuessLike != null && GuessLike == "true")
+            if (GuessLike == null || GuessLike == "true")
             {
+                if (GuessLike == null)
+                {
+                    ApplicationData.Current.LocalSettings.Values["GuessLike"] = "true";
+                }
                 LoadGuessList.Visibility = Visibility.Visible;
                 await ViewModel.SyncData();
                 GuessView.ItemsSource = ViewModel.GuessLike;

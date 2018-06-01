@@ -75,5 +75,18 @@ namespace MoviePreview.Services
             if (history != null) History = history;
             await ApplicationData.Current.LocalFolder.SaveAsync("MyHistory", History);
         }
+
+        public void HistoryAdd(string type)
+        {
+            if (History == null) History = new Dictionary<string, double>();
+            if (History.ContainsKey(type))
+            {
+                History[type]++;
+            }
+            else
+            {
+                History.Add(type, 1);
+            }
+        }
     }
 }
