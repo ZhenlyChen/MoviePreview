@@ -20,9 +20,12 @@ namespace MoviePreview.Views
             get { return DataContext as MyCollectViewModel; }
         }
 
+        private bool isGuessLikeServiceOpened = false;
+
         public MyCollectPage()
         {
             InitializeComponent();
+            this.SizeChanged += SizeChanged_GuessGrid;
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -38,6 +41,7 @@ namespace MoviePreview.Views
             string GuessLike = ApplicationData.Current.LocalSettings.Values["GuessLike"] as string;
             if (GuessLike == null || GuessLike == "true")
             {
+                isGuessLikeServiceOpened = true;
                 if (GuessLike == null)
                 {
                     ApplicationData.Current.LocalSettings.Values["GuessLike"] = "true";
@@ -49,9 +53,31 @@ namespace MoviePreview.Views
             }
             else
             {
+                isGuessLikeServiceOpened = false;
                 LoadGuessList.Visibility = Visibility.Collapsed;
-                GuessRowDefinition.Height = new GridLength(0);
+                GuessGrid.Height = 0;
                 await ViewModel.SyncData();
+            }
+        }
+
+        private void SizeChanged_GuessGrid(object sender, SizeChangedEventArgs e)
+        {
+            if (isGuessLikeServiceOpened)
+            {
+                if (e.NewSize.Height < 640)
+                {
+                    if (GuessGrid.Height != 0)
+                    {
+                        GuessGrid.Height = 0;
+                    }
+                }
+                else
+                {
+                    if (GuessGrid.Height == 0)
+                    {
+                        GuessGridOpenStoryboard.Begin();
+                    }
+                }
             }
         }
 
@@ -137,7 +163,8 @@ namespace MoviePreview.Views
             if (result == ContentDialogResult.Primary)
             {
                 ApplicationData.Current.LocalSettings.Values["GuessLike"] = "false";
-                GuessRowDefinition.Height = new GridLength(0);
+                isGuessLikeServiceOpened = false;
+                GuessGridCloseStoryboard.Begin();
             }
         }
 

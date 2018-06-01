@@ -4,8 +4,10 @@ using MoviePreview.Services;
 
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources;
 using Windows.Globalization;
 using Windows.Storage;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 
 namespace MoviePreview
@@ -25,7 +27,10 @@ namespace MoviePreview
             string lang = ApplicationData.Current.LocalSettings.Values["CurrentLanguage"] as string;
             if (lang != null && (lang == "zh-cn" || lang == "en-us"))
             {
-                ApplicationLanguages.PrimaryLanguageOverride = lang;
+                if (ApplicationLanguages.PrimaryLanguageOverride.ToLower() != lang)
+                {
+                    ApplicationLanguages.PrimaryLanguageOverride = lang;
+                }
             }
 
             InitializeComponent();
