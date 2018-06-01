@@ -19,6 +19,7 @@ namespace MoviePreview.Services
         public MyCollectService()
         {
             Collections = new List<MovieItem>();
+            History = new Dictionary<string, double>();
             // LoadFormStorage();
         }
 
